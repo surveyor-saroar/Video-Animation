@@ -12,7 +12,6 @@
             box-sizing: border-box;
         }
 
-        /* পুরো স্ক্রিনজুড়ে কালার গ্লো ও মাঝামাঝিতে বাড়তি গ্লো লেয়ার */
         body {
             background:
                 radial-gradient(circle at 50% 48%, rgba(255, 118, 0, 0.24) 0%, rgba(245, 158, 11, 0.12) 34%, transparent 62%),
@@ -52,7 +51,6 @@
             background: radial-gradient(circle, rgba(14, 165, 233, 0.22) 0%, transparent 72%);
             animation-delay: -4s;
         }
-        /* মাঝামাঝির বাড়তি ওয়ার্ম অরেঞ্জ ও গোল্ড গ্লো */
         .wide-glow-3 {
             top: 22%;
             left: 26%;
@@ -67,7 +65,6 @@
             100% { transform: translate(4%, 4%) scale(1.14); }
         }
 
-        /* বর্ডার ও আলাদা বক্স ছাড়া মাঝের ক্রপ-এরিয়া */
         #reel-area {
             position: relative;
             height: 100vh;
@@ -242,21 +239,6 @@
         #controls, #progress-line {
             display: none !important;
         }
-
-        #sound-unlock {
-            position: fixed;
-            top: 14px;
-            right: 14px;
-            background: rgba(255, 106, 0, 0.95);
-            color: #fff;
-            border: 1px solid #ffd166;
-            padding: 8px 14px;
-            border-radius: 30px;
-            font-size: 0.82rem;
-            font-weight: 600;
-            cursor: pointer;
-            z-index: 200;
-        }
     </style>
 </head>
 <body>
@@ -264,7 +246,6 @@
 <div class="wide-glow wide-glow-1"></div>
 <div class="wide-glow wide-glow-2"></div>
 <div class="wide-glow wide-glow-3"></div>
-<button id="sound-unlock" type="button">🔊 সাউন্ড চালু করে শুরু করুন</button>
 
 <div id="reel-area">
     <div id="wipe-overlay"></div>
@@ -366,245 +347,4 @@
             <div id="s2-t3" class="topic-pill">
                 <svg class="clear-icon" viewBox="0 0 24 24" fill="none" stroke="#ffb84d" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="2" y="4" width="20" height="16" rx="2"/>
-                    <polygon points="10 9 15 12 10 15 10 9" fill="#ffb84d" stroke="none"/>
-                </svg>
-                Creative video
-            </div>
-        </div>
-    </div>
-
-    <!-- সিন ৩ -->
-    <div id="scene-3" class="scene">
-        <div id="s3-top" class="course-top-pill">
-            <svg class="clear-icon sm-icon" viewBox="0 0 24 24" fill="none" stroke="#ff9d42" stroke-width="2.2">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-            </svg>
-            কোনো course করাই কিনা?
-        </div>
-        <div class="course-flow">
-            <div id="s3-gd" class="skill-box">
-                <h3>Graphics Design</h3>
-                <div class="app-icons">
-                    <div class="adobe-icon ps-icon">Ps</div>
-                    <div class="adobe-icon ai-icon">Ai</div>
-                </div>
-            </div>
-            <div id="s3-l1" class="connect-line"></div>
-            <div id="s3-q" class="question-circle">?</div>
-            <div id="s3-l2" class="connect-line"></div>
-            <div id="s3-ve" class="skill-box">
-                <h3>Video Editing</h3>
-                <div class="app-icons">
-                    <div class="adobe-icon ve-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                            <rect x="2" y="4" width="20" height="16" rx="2"/>
-                            <polygon points="10 9 15 12 10 15 10 9" fill="currentColor" stroke="none"/>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- সিন ৪ -->
-    <div id="scene-4" class="scene">
-        <div class="s4-left">
-            <div id="s4-sub" class="s4-sub">আজ আপনাদের জন্য</div>
-            <div id="s4-title" class="s4-title">একটি <span>দারুণ পেজ</span></div>
-            <div id="s4-brand" class="page-brand-row">
-                <div class="red-avatar-box">
-                    <img src="saroar.png" alt="মোঃ সরওয়ার আলম সবুজ">
-                </div>
-                <div class="aix-brand-name">মোঃ সরওয়ার আলম সবুজ</div>
-            </div>
-        </div>
-
-        <div id="s4-phone" class="phone-mockup">
-            <div class="phone-cover">প্রযুক্তি ও দক্ষতার সাথে ভবিষ্যতের পথে</div>
-            <div class="phone-body">
-                <div class="phone-avatar">
-                    <img src="saroar.png" alt="মোঃ সরওয়ার আলম সবুজ">
-                </div>
-                <div style="font-weight: 700; font-size: 0.9rem; white-space: nowrap;">মোঃ সরওয়ার আলম সবুজ</div>
-                <div style="font-size: 0.72rem; color: #65676b;">Digital Creator • Land Surveyor</div>
-                <div class="phone-btns">
-                    <div class="p-btn-blue">Message</div>
-                    <div class="p-btn-gray">Follow</div>
-                </div>
-                <div style="font-size: 0.72rem; color: #444; border-top: 1px solid #eee; padding-top: 8px; display: flex; align-items: center; gap: 5px;">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#d91e18" stroke-width="2.4">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                        <circle cx="12" cy="10" r="3"/>
-                    </svg>
-                    Cumilla, Bangladesh
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- সিন ৫ -->
-    <div id="scene-5" class="scene">
-        <div id="s5-head" class="free-heading">সম্পূর্ণ <span>বিনামূল্যে</span></div>
-        <div class="bento-grid">
-            <div id="s5-gd" class="bento-card b-gd">
-                <div class="bento-title">Graphics Design</div>
-                <div class="app-icons">
-                    <div class="adobe-icon ps-icon">Ps</div>
-                    <div class="adobe-icon ai-icon">Ai</div>
-                </div>
-            </div>
-            <div id="s5-ve" class="bento-card b-ve">
-                <div class="bento-title">Video Editing</div>
-                <div class="adobe-icon ve-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                        <rect x="2" y="4" width="20" height="16" rx="2"/>
-                        <polygon points="10 9 15 12 10 15 10 9" fill="currentColor" stroke="none"/>
-                    </svg>
-                </div>
-            </div>
-            <div id="s5-ai" class="bento-card b-ai">
-                <div class="bento-title">বিভিন্ন AI tools</div>
-                <div class="ai-pills">
-                    <div class="ai-chip">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10a37f" stroke-width="2.4">
-                            <circle cx="12" cy="12" r="9"/>
-                            <circle cx="12" cy="12" r="3"/>
-                        </svg>
-                        ChatGPT
-                    </div>
-                    <div class="ai-chip">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#4285f4">
-                            <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/>
-                        </svg>
-                        Gemini
-                    </div>
-                    <div class="ai-chip">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#d97757" stroke-width="2.5" stroke-linecap="round">
-                            <line x1="12" y1="3" x2="12" y2="21"/>
-                            <line x1="4.2" y1="7.5" x2="19.8" y2="16.5"/>
-                            <line x1="19.8" y1="7.5" x2="4.2" y2="16.5"/>
-                        </svg>
-                        Claude
-                    </div>
-                </div>
-            </div>
-            <div id="s5-tech" class="bento-card b-tech">
-                <svg class="clear-icon lg-icon" viewBox="0 0 24 24" fill="none" stroke="#ff9d00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-                </svg>
-                <div style="font-weight: 600;">নতুন নতুন technology</div>
-            </div>
-            <div id="s5-more" class="bento-card b-more">
-                <svg class="clear-icon lg-icon" viewBox="0 0 24 24" fill="none" stroke="#ff9d00" stroke-width="2.5" stroke-linecap="round">
-                    <line x1="12" y1="5" x2="12" y2="19"/>
-                    <line x1="5" y1="12" x2="19" y2="12"/>
-                </svg>
-                <div style="font-weight: 600;">আরও অনেক কিছু</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- সিন ৬ -->
-    <div id="scene-6" class="scene">
-        <div id="s6-phone" class="laptop-outline">
-            <div class="laptop-screen">
-                <svg width="34" height="34" viewBox="0 0 24 24" fill="#ffd000">
-                    <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/>
-                </svg>
-                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="23 4 23 10 17 10"/>
-                    <polyline points="1 20 1 14 7 14"/>
-                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
-                </svg>
-            </div>
-            <div class="laptop-base"></div>
-        </div>
-        <div class="s6-right">
-            <div id="s6-title" class="s6-title"><span>ল্যাপটপ</span> দিয়ে</div>
-            <div id="s6-c1" class="check-pill">
-                <span class="check-icon">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ff9d00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="20 6 9 17 4 12"/>
-                    </svg>
-                </span>
-                নতুন নতুন skill শিখুন
-            </div>
-            <div id="s6-c2" class="check-pill">
-                <span class="check-icon">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ff9d00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="20 6 9 17 4 12"/>
-                    </svg>
-                </span>
-                নিজেকে update রাখুন
-            </div>
-        </div>
-    </div>
-
-    <!-- সিন ৭ -->
-    <div id="scene-7" class="scene">
-        <div id="s7-head" class="follow-header"><span>Follow</span> করুন</div>
-        <div id="s7-bar" class="follow-bar">
-            <div class="fb-info">
-                <div class="red-avatar-box">
-                    <img src="saroar.png" alt="মোঃ সরওয়ার আলম সবুজ">
-                </div>
-                <div>
-                    <div class="fb-name">মোঃ সরওয়ার আলম সবুজ</div>
-                    <div style="font-size: 0.8rem; color: #cbd5e1;">Facebook পেজ</div>
-                </div>
-            </div>
-            <div id="s7-fbtn" class="follow-btn">Follow</div>
-        </div>
-
-        <div id="s7-cbox" class="comment-prompt-box">
-            <div class="comment-label">যেকোনো একটি ভিডিওতে কমেন্ট করুন</div>
-            <div class="comment-input-bar">
-                <span style="display: flex; align-items: center; gap: 8px;">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#cbd5e1" stroke-width="2">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                        <circle cx="12" cy="7" r="4"/>
-                    </svg>
-                    কমেন্ট লিখুন
-                </span>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="#ff7700">
-                    <line x1="22" y1="2" x2="11" y2="13" stroke="#ff7700" stroke-width="2.2"/>
-                    <polygon points="22 2 15 22 11 13 2 9 22 2"/>
-                </svg>
-            </div>
-        </div>
-
-        <div id="s7-cta" class="final-cta">আপনি কী <span>শিখতে চান?</span></div>
-    </div>
-
-    <div id="controls">
-        <button id="replay-btn">↺ Replay (48s)</button>
-        <span id="time-display">00:00 / 00:48</span>
-    </div>
-    <div id="progress-line"></div>
-</div>
-
-<script>
-(function () {
-    const TOTAL_MS = 48000;
-    const STEP_MS = 50;
-    let currentMs = 0;
-    let timerId = null;
-    let fired = new Set();
-
-    let audioCtx = null;
-    function unlockAudio() {
-        try {
-            if (!audioCtx) {
-                const Ctx = window.AudioContext || window.webkitAudioContext;
-                if (Ctx) audioCtx = new Ctx();
-            }
-            if (audioCtx && audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
-        } catch (e) {}
-    }
-
-    function playSound(type) {
-        try {
-            if (!audioCtx || audioCtx.state !== 'running') return;
-            const now = audioCtx.current
+                    <polygon points="10 9 15 12 10 15 1
