@@ -12,11 +12,13 @@
             box-sizing: border-box;
         }
 
+        /* পুরো স্ক্রিনজুড়ে কালার গ্লো ও মাঝামাঝিতে বাড়তি গ্লো লেয়ার */
         body {
             background:
-                radial-gradient(circle at 18% 22%, rgba(255, 115, 0, 0.24) 0%, transparent 45%),
-                radial-gradient(circle at 82% 78%, rgba(14, 165, 233, 0.22) 0%, transparent 48%),
-                radial-gradient(circle at 55% 45%, rgba(245, 158, 11, 0.12) 0%, transparent 55%),
+                radial-gradient(circle at 50% 48%, rgba(255, 118, 0, 0.24) 0%, rgba(245, 158, 11, 0.12) 34%, transparent 62%),
+                radial-gradient(circle at 22% 24%, rgba(255, 115, 0, 0.25) 0%, transparent 48%),
+                radial-gradient(circle at 78% 76%, rgba(14, 165, 233, 0.24) 0%, transparent 50%),
+                radial-gradient(circle at 50% 72%, rgba(2, 132, 199, 0.15) 0%, transparent 55%),
                 linear-gradient(135deg, #070b14 0%, #0d1528 52%, #060911 100%);
             color: #ffffff;
             font-family: 'Hind Siliguri', 'Poppins', sans-serif;
@@ -42,28 +44,30 @@
         .wide-glow-1 {
             top: -14vw;
             left: -8vw;
-            background: radial-gradient(circle, rgba(255, 106, 0, 0.20) 0%, transparent 72%);
+            background: radial-gradient(circle, rgba(255, 106, 0, 0.22) 0%, transparent 72%);
         }
         .wide-glow-2 {
             bottom: -16vw;
             right: -8vw;
-            background: radial-gradient(circle, rgba(14, 165, 233, 0.18) 0%, transparent 72%);
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.22) 0%, transparent 72%);
             animation-delay: -4s;
         }
+        /* মাঝামাঝির বাড়তি ওয়ার্ম অরেঞ্জ ও গোল্ড গ্লো */
         .wide-glow-3 {
-            top: 28%;
-            left: 32%;
-            width: 36vw;
-            height: 36vw;
-            background: radial-gradient(circle, rgba(255, 170, 0, 0.09) 0%, transparent 72%);
+            top: 22%;
+            left: 26%;
+            width: 48vw;
+            height: 48vw;
+            background: radial-gradient(circle, rgba(255, 125, 0, 0.20) 0%, rgba(255, 185, 0, 0.08) 45%, transparent 74%);
             animation-delay: -2s;
         }
 
         @keyframes floatWideGlow {
             0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(4%, 4%) scale(1.12); }
+            100% { transform: translate(4%, 4%) scale(1.14); }
         }
 
+        /* বর্ডার ও আলাদা বক্স ছাড়া মাঝের ক্রপ-এরিয়া */
         #reel-area {
             position: relative;
             height: 100vh;
@@ -603,225 +607,4 @@
     function playSound(type) {
         try {
             if (!audioCtx || audioCtx.state !== 'running') return;
-            const now = audioCtx.currentTime;
-
-            if (type === 'pop') {
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(360, now);
-                osc.frequency.exponentialRampToValueAtTime(780, now + 0.09);
-                gain.gain.setValueAtTime(0.22, now);
-                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                osc.start(now);
-                osc.stop(now + 0.13);
-            } else if (type === 'card') {
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.type = 'triangle';
-                osc.frequency.setValueAtTime(250, now);
-                osc.frequency.exponentialRampToValueAtTime(540, now + 0.13);
-                gain.gain.setValueAtTime(0.24, now);
-                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.16);
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                osc.start(now);
-                osc.stop(now + 0.17);
-            } else if (type === 'click') {
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(950, now);
-                osc.frequency.exponentialRampToValueAtTime(450, now + 0.055);
-                gain.gain.setValueAtTime(0.22, now);
-                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.065);
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                osc.start(now);
-                osc.stop(now + 0.075);
-            } else if (type === 'chime') {
-                [523.25, 659.25].forEach(function (freq, idx) {
-                    const osc = audioCtx.createOscillator();
-                    const gain = audioCtx.createGain();
-                    osc.type = 'sine';
-                    osc.frequency.setValueAtTime(freq, now + idx * 0.05);
-                    gain.gain.setValueAtTime(0.18, now + idx * 0.05);
-                    gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.05 + 0.3);
-                    osc.connect(gain);
-                    gain.connect(audioCtx.destination);
-                    osc.start(now + idx * 0.05);
-                    osc.stop(now + idx * 0.05 + 0.32);
-                });
-            } else if (type === 'whoosh') {
-                const bufferSize = Math.floor(audioCtx.sampleRate * 0.4);
-                const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-                const data = buffer.getChannelData(0);
-                for (let i = 0; i < bufferSize; i++) {
-                    data[i] = (Math.random() * 2 - 1) * Math.sin((i / bufferSize) * Math.PI);
-                }
-                const noise = audioCtx.createBufferSource();
-                noise.buffer = buffer;
-                const filter = audioCtx.createBiquadFilter();
-                filter.type = 'bandpass';
-                filter.frequency.setValueAtTime(280, now);
-                filter.frequency.exponentialRampToValueAtTime(1450, now + 0.18);
-                filter.frequency.exponentialRampToValueAtTime(320, now + 0.4);
-                filter.Q.value = 1.6;
-                const gain = audioCtx.createGain();
-                gain.gain.setValueAtTime(0.26, now);
-                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
-                noise.connect(filter);
-                filter.connect(gain);
-                gain.connect(audioCtx.destination);
-                noise.start(now);
-            }
-        } catch (e) {}
-    }
-
-    function $(id) { return document.getElementById(id); }
-
-    function show(id, soundType) {
-        const node = $(id);
-        if (node) node.classList.add('show-up');
-        if (soundType) playSound(soundType);
-    }
-
-    function highlight(id, on) {
-        const node = $(id);
-        if (!node) return;
-        if (on) node.classList.add('highlight');
-        else node.classList.remove('highlight');
-    }
-
-    function openScene(num) {
-        document.querySelectorAll('.scene').forEach(function (s) {
-            s.classList.remove('active');
-        });
-        const sc = $('scene-' + num);
-        if (sc) sc.classList.add('active');
-    }
-
-    function wipe() {
-        const w = $('wipe-overlay');
-        if (!w) return;
-        w.classList.remove('wipe-animate');
-        void w.offsetWidth;
-        w.classList.add('wipe-animate');
-        playSound('whoosh');
-    }
-
-    const events = [
-        { t: 0,     fn: function () { openScene(1); show('s1-hello', 'chime'); show('s1-orbit'); } },
-        { t: 800,   fn: function () { show('s1-name', 'card'); } },
-        { t: 1600,  fn: function () { show('s1-b1', 'pop'); } },
-        { t: 2300,  fn: function () { show('s1-b2', 'pop'); } },
-        { t: 3000,  fn: function () { show('s1-b3', 'pop'); } },
-        { t: 4100,  fn: function () { wipe(); } },
-
-        { t: 4600,  fn: function () { openScene(2); show('s2-c1', 'card'); } },
-        { t: 6800,  fn: function () { show('s2-c2', 'card'); } },
-        { t: 9500,  fn: function () { show('s2-arrow'); show('s2-t1', 'pop'); highlight('s2-t1', true); } },
-        { t: 10800, fn: function () { highlight('s2-t1', false); show('s2-t2', 'pop'); highlight('s2-t2', true); } },
-        { t: 12000, fn: function () { highlight('s2-t2', false); show('s2-t3', 'pop'); highlight('s2-t3', true); } },
-        { t: 13500, fn: function () { highlight('s2-t3', false); } },
-
-        { t: 15500, fn: function () { openScene(3); show('s3-gd', 'card'); show('s3-l1'); show('s3-q', 'pop'); } },
-        { t: 16800, fn: function () { show('s3-l2'); show('s3-ve', 'card'); } },
-        { t: 17800, fn: function () { show('s3-top', 'pop'); } },
-
-        { t: 20000, fn: function () { openScene(4); } },
-        { t: 20600, fn: function () { show('s4-sub', 'pop'); } },
-        { t: 21500, fn: function () { show('s4-title', 'chime'); } },
-        { t: 22600, fn: function () { show('s4-phone', 'card'); } },
-        { t: 24200, fn: function () { show('s4-brand', 'pop'); } },
-
-        { t: 26500, fn: function () { openScene(5); show('s5-head', 'chime'); } },
-        { t: 28500, fn: function () { show('s5-gd', 'pop'); } },
-        { t: 29800, fn: function () { show('s5-ve', 'pop'); } },
-        { t: 31200, fn: function () { show('s5-ai', 'card'); } },
-        { t: 33200, fn: function () { show('s5-tech', 'pop'); } },
-        { t: 34500, fn: function () { show('s5-more', 'pop'); } },
-        { t: 36000, fn: function () { wipe(); } },
-
-        { t: 36500, fn: function () { openScene(6); show('s6-phone', 'card'); show('s6-title', 'chime'); } },
-        { t: 38500, fn: function () { show('s6-c1', 'pop'); } },
-        { t: 39800, fn: function () { show('s6-c2', 'pop'); } },
-        { t: 41000, fn: function () { wipe(); } },
-
-        { t: 41600, fn: function () { openScene(7); show('s7-head', 'chime'); show('s7-bar', 'card'); } },
-        { t: 43000, fn: function () {
-            const btn = $('s7-fbtn');
-            if (btn) {
-                btn.classList.add('following');
-                btn.textContent = '✓ Following';
-            }
-            playSound('click');
-        } },
-        { t: 44200, fn: function () { show('s7-cbox', 'pop'); } },
-        { t: 46200, fn: function () { show('s7-cta', 'chime'); } }
-    ];
-
-    function reset() {
-        currentMs = 0;
-        fired.clear();
-        document.querySelectorAll('.show-up').forEach(function (n) {
-            n.classList.remove('show-up');
-        });
-        document.querySelectorAll('.topic-pill.highlight').forEach(function (n) {
-            n.classList.remove('highlight');
-        });
-        const btn = $('s7-fbtn');
-        if (btn) {
-            btn.classList.remove('following');
-            btn.textContent = 'Follow';
-        }
-    }
-
-    function tick() {
-        events.forEach(function (ev, i) {
-            if (currentMs >= ev.t && !fired.has(i)) {
-                fired.add(i);
-                ev.fn();
-            }
-        });
-        if (currentMs >= TOTAL_MS) {
-            clearInterval(timerId);
-            timerId = null;
-            return;
-        }
-        currentMs += STEP_MS;
-    }
-
-    function run() {
-        if (timerId) clearInterval(timerId);
-        reset();
-        tick();
-        timerId = setInterval(tick, STEP_MS);
-    }
-
-    const unlockBtn = $('sound-unlock');
-    if (unlockBtn) {
-        unlockBtn.addEventListener('click', function () {
-            unlockAudio();
-            unlockBtn.style.display = 'none';
-            run();
-            setTimeout(function () { playSound('chime'); }, 120);
-        });
-    }
-
-    document.addEventListener('pointerdown', function () {
-        unlockAudio();
-        if (unlockBtn) unlockBtn.style.display = 'none';
-    }, { once: true });
-
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', run);
-    } else {
-        run();
-    }
-})();
-</script>
-</body>
-</html>
+            const now = audioCtx.current
