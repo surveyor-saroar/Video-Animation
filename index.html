@@ -147,4 +147,661 @@
         .ve-icon { background: #2b1405; color: #ff8800; border: 2px solid #ff8800; width: 48px; height: 48px; padding: 9px; }
         .ve-icon svg { width: 100%; height: 100%; }
         .connect-line { width: 2px; height: 22px; background: linear-gradient(180deg, #ff7b00, #ffaa00); opacity: 0; }
-        .question-circle { width: 80px; height: 80px; border-radius: 50%; background: rgba(255, 106, 0, 0.2); border: 2px solid rgba(255,
+        .question-circle { width: 80px; height: 80px; border-radius: 50%; background: rgba(255, 106, 0, 0.2); border: 2px solid rgba(255, 120, 0, 0.6); display: flex; justify-content: center; align-items: center; font-size: 2.5rem; font-weight: 700; color: #ff9800; opacity: 0; transform: scale(0.5); }
+
+        /* সিন ৪ */
+        #scene-4.active { flex-direction: column; justify-content: center; gap: 30px; }
+        .s4-left { width: 100%; }
+        .s4-sub { font-size: clamp(1.18rem, 3.4vw, 1.7rem); color: #e2e8f0; margin-bottom: 8px; opacity: 0; }
+        .s4-title { font-size: clamp(1.9rem, 5.4vw, 2.95rem); font-weight: 700; line-height: 1.22; margin-bottom: 22px; opacity: 0; }
+        .s4-title span { color: #ff7700; }
+        .page-brand-row { display: flex; align-items: center; justify-content: center; gap: 14px; opacity: 0; transform: translateY(20px); }
+        .red-avatar-box { width: 56px; height: 56px; border-radius: 14px; background: #d91e18; border: 2px solid #ff5c5c; overflow: hidden; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .red-avatar-box img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+        .aix-brand-name { font-size: clamp(1.22rem, 3.5vw, 1.72rem); font-weight: 700; text-align: left; }
+        .phone-mockup { width: 252px; background: #ffffff; color: #111111; border-radius: 26px; border: 6px solid #2b2b2b; overflow: hidden; text-align: left; opacity: 0; transform: translateY(40px); }
+        .phone-cover { height: 78px; background: linear-gradient(135deg, #ff6a00, #1e3a8a); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.76rem; font-weight: 600; padding: 8px; text-align: center; }
+        .phone-body { padding: 13px 15px 17px; }
+        .phone-avatar { width: 52px; height: 52px; border-radius: 50%; background: #d91e18; overflow: hidden; border: 3px solid #fff; margin-top: -28px; margin-bottom: 7px; }
+        .phone-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+        .phone-btns { display: flex; gap: 8px; margin: 11px 0; }
+        .p-btn-blue { flex: 1; background: #1877f2; color: #fff; text-align: center; padding: 7px; border-radius: 6px; font-size: 0.76rem; font-weight: 600; }
+        .p-btn-gray { flex: 1; background: #e4e6eb; color: #050505; text-align: center; padding: 7px; border-radius: 6px; font-size: 0.76rem; font-weight: 600; }
+
+        /* সিন ৫ */
+        #scene-5.active { align-items: center; justify-content: center; gap: 22px; }
+        .free-heading { font-size: clamp(1.75rem, 5vw, 2.65rem); font-weight: 700; margin-bottom: 4px; opacity: 0; }
+        .free-heading span { color: #ff7700; border: 1.5px solid rgba(255, 119, 0, 0.55); background: rgba(255, 119, 0, 0.14); padding: 2px 14px; border-radius: 50px; }
+        .bento-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; width: 100%; }
+        .bento-card { background: rgba(30, 41, 59, 0.78); border: 1.5px solid rgba(255, 120, 0, 0.35); border-radius: 16px; padding: 16px 18px; display: flex; align-items: center; justify-content: space-between; gap: 10px; opacity: 0; transform: scale(0.92); }
+        .b-gd { grid-column: span 2; }
+        .b-ve { grid-column: span 2; }
+        .b-ai { grid-column: span 2; flex-direction: column; align-items: flex-start; gap: 12px; }
+        .b-tech { grid-column: span 1; flex-direction: column; justify-content: center; text-align: center; gap: 8px; padding: 18px 12px; }
+        .b-more { grid-column: span 1; flex-direction: column; justify-content: center; text-align: center; gap: 8px; padding: 18px 12px; }
+        .bento-title { font-size: clamp(1.02rem, 3vw, 1.42rem); font-weight: 600; }
+        .ai-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+        .ai-chip { background: #ffffff; color: #111111; padding: 6px 11px; border-radius: 8px; font-weight: 700; font-size: 0.86rem; display: inline-flex; align-items: center; gap: 5px; }
+
+        /* সিন ৬ */
+        #scene-6.active { flex-direction: column; justify-content: center; gap: 32px; }
+        .laptop-outline { width: 220px; display: flex; flex-direction: column; align-items: center; opacity: 0; transform: translateY(30px); }
+        .laptop-screen { width: 88%; height: 142px; border: 3px solid #ffffff; border-radius: 14px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 14px; background: rgba(30, 41, 59, 0.6); }
+        .laptop-base { width: 108%; height: 10px; border: 2.5px solid #ffffff; border-radius: 0 0 12px 12px; margin-top: 2px; }
+        .s6-right { width: 100%; display: flex; flex-direction: column; align-items: center; }
+        .s6-title { font-size: clamp(1.95rem, 5.4vw, 2.95rem); font-weight: 700; line-height: 1.2; margin-bottom: 24px; opacity: 0; }
+        .s6-title span { color: #ff9500; }
+        .check-pill { display: flex; align-items: center; justify-content: center; gap: 10px; width: 92%; background: rgba(30, 41, 59, 0.78); border: 1px solid rgba(255, 140, 0, 0.38); padding: 14px 18px; border-radius: 50px; font-size: clamp(0.98rem, 3vw, 1.38rem); margin-bottom: 14px; opacity: 0; transform: translateX(25px); }
+        .check-icon { width: 24px; height: 24px; border-radius: 50%; background: rgba(255, 140, 0, 0.22); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+        /* সিন ৭ */
+        #scene-7.active { gap: 24px; }
+        .follow-header { font-size: clamp(1.85rem, 5vw, 2.75rem); font-weight: 700; opacity: 0; }
+        .follow-header span { color: #ff7700; }
+        .follow-bar { width: 100%; background: rgba(30, 41, 59, 0.78); border: 1px solid rgba(255, 140, 50, 0.38); border-radius: 18px; padding: 16px 18px; display: flex; align-items: center; justify-content: space-between; gap: 10px; text-align: left; opacity: 0; transform: scale(0.95); }
+        .fb-info { display: flex; align-items: center; gap: 12px; }
+        .follow-btn { background: linear-gradient(135deg, #ff6200, #e03c00); color: #ffffff; padding: 9px 16px; border-radius: 50px; font-weight: 600; font-size: 0.92rem; flex-shrink: 0; }
+        .follow-btn.following { background: rgba(255, 255, 255, 0.14); border: 1.5px solid #ffffff; }
+        .comment-prompt-box { width: 100%; text-align: left; opacity: 0; transform: translateY(15px); }
+        .comment-label { font-size: 0.96rem; color: #cbd5e1; margin-bottom: 10px; }
+        .comment-input-bar { background: rgba(30, 41, 59, 0.78); border: 1px solid rgba(255, 140, 0, 0.35); border-radius: 50px; padding: 13px 18px; display: flex; justify-content: space-between; align-items: center; color: #cbd5e1; }
+        .final-cta { font-size: clamp(1.65rem, 4.8vw, 2.45rem); font-weight: 700; margin-top: 10px; opacity: 0; transform: translateY(20px); }
+        .final-cta span { color: #ff7700; }
+
+        .show-up {
+            opacity: 1 !important;
+            transform: translate(0, 0) scale(1) !important;
+            transition: all 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        #scene-2 .q-arrow.show-up {
+            transform: rotate(90deg) scale(1) !important;
+        }
+
+        #controls, #progress-line {
+            display: none !important;
+        }
+
+        #sound-unlock {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            background: rgba(255, 106, 0, 0.95);
+            color: #fff;
+            border: 1px solid #ffd166;
+            padding: 8px 14px;
+            border-radius: 30px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            z-index: 200;
+        }
+    </style>
+</head>
+<body>
+
+<div id="stage">
+    <div class="ambient-glow glow-1"></div>
+    <div class="ambient-glow glow-2"></div>
+    <div id="wipe-overlay"></div>
+    <button id="sound-unlock" type="button">🔊 সাউন্ড চালু করে শুরু করুন</button>
+
+    <!-- সিন ১ -->
+    <div id="scene-1" class="scene">
+        <div class="intro-left">
+            <div id="s1-hello" class="hello-text">Hello, আমি</div>
+            <div id="s1-name" class="name-text">মোঃ সরওয়ার আলম সবুজ</div>
+            <div class="badges-container">
+                <div id="s1-b1" class="prof-badge">
+                    <svg class="clear-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 19l7-7 3 3-7 7-3-3z"/>
+                        <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+                        <path d="M2 2l7.586 7.586"/>
+                    </svg>
+                    Graphics Designer
+                </div>
+                <div id="s1-b2" class="prof-badge">
+                    <svg class="clear-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="4" width="20" height="16" rx="2"/>
+                        <polygon points="10 9 15 12 10 15 10 9" fill="currentColor" stroke="none"/>
+                    </svg>
+                    Video Editor
+                </div>
+                <div id="s1-b3" class="prof-badge">
+                    <svg class="clear-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/>
+                        <line x1="9" y1="3" x2="9" y2="18"/>
+                        <line x1="15" y1="6" x2="15" y2="21"/>
+                    </svg>
+                    Land Surveyor
+                </div>
+            </div>
+        </div>
+
+        <div id="s1-orbit" class="orbit-wrapper">
+            <div class="orbit-glow"></div>
+            <div class="orbit-ring"><div class="orbit-dot"></div></div>
+            <div class="orbit-ring-2"></div>
+            <div class="video-box-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="5" width="20" height="14" rx="2.5"/>
+                    <polygon points="10 9 15.5 12 10 15 10 9" fill="#ffffff" stroke="none"/>
+                </svg>
+            </div>
+            <svg class="sparkle-star" viewBox="0 0 24 24" fill="#ffd000">
+                <path d="M12 2L14.8 9.2L22 12L14.8 14.8L12 22L9.2 14.8L2 12L9.2 9.2L12 2Z"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- সিন ২ -->
+    <div id="scene-2" class="scene">
+        <div class="q-left">
+            <div id="s2-c1" class="glass-card">
+                <div class="card-tag">
+                    <svg class="clear-icon sm-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    কমেন্ট
+                </div>
+                <div class="card-q-text">কীভাবে এই ভিডিও তৈরি করেন?</div>
+            </div>
+            <div id="s2-c2" class="glass-card">
+                <div class="card-tag">
+                    <svg class="clear-icon sm-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                    ইনবক্স
+                </div>
+                <div class="card-q-text">কীভাবে এগুলো তৈরি করেন?</div>
+            </div>
+        </div>
+
+        <div id="s2-arrow" class="q-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#ff9d00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+            </svg>
+        </div>
+
+        <div class="q-right">
+            <div id="s2-t1" class="topic-pill">
+                <svg class="clear-icon" viewBox="0 0 24 24" fill="#ffb84d">
+                    <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/>
+                </svg>
+                AI
+            </div>
+            <div id="s2-t2" class="topic-pill">
+                <svg class="clear-icon" viewBox="0 0 24 24" fill="none" stroke="#ffb84d" stroke-width="2.2" stroke-linejoin="round">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                    <line x1="12" y1="22.08" x2="12" y2="12"/>
+                </svg>
+                3D motion
+            </div>
+            <div id="s2-t3" class="topic-pill">
+                <svg class="clear-icon" viewBox="0 0 24 24" fill="none" stroke="#ffb84d" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                    <polygon points="10 9 15 12 10 15 10 9" fill="#ffb84d" stroke="none"/>
+                </svg>
+                Creative video
+            </div>
+        </div>
+    </div>
+
+    <!-- সিন ৩ -->
+    <div id="scene-3" class="scene">
+        <div id="s3-top" class="course-top-pill">
+            <svg class="clear-icon sm-icon" viewBox="0 0 24 24" fill="none" stroke="#ff9d42" stroke-width="2.2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+            কোনো course করাই কিনা?
+        </div>
+        <div class="course-flow">
+            <div id="s3-gd" class="skill-box">
+                <h3>Graphics Design</h3>
+                <div class="app-icons">
+                    <div class="adobe-icon ps-icon">Ps</div>
+                    <div class="adobe-icon ai-icon">Ai</div>
+                </div>
+            </div>
+            <div id="s3-l1" class="connect-line"></div>
+            <div id="s3-q" class="question-circle">?</div>
+            <div id="s3-l2" class="connect-line"></div>
+            <div id="s3-ve" class="skill-box">
+                <h3>Video Editing</h3>
+                <div class="app-icons">
+                    <div class="adobe-icon ve-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <rect x="2" y="4" width="20" height="16" rx="2"/>
+                            <polygon points="10 9 15 12 10 15 10 9" fill="currentColor" stroke="none"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- সিন ৪ -->
+    <div id="scene-4" class="scene">
+        <div class="s4-left">
+            <div id="s4-sub" class="s4-sub">আজ আপনাদের জন্য</div>
+            <div id="s4-title" class="s4-title">একটি <span>দারুণ পেজ</span></div>
+            <div id="s4-brand" class="page-brand-row">
+                <div class="red-avatar-box">
+                    <img src="saroar.png" alt="মোঃ সরওয়ার আলম সবুজ">
+                </div>
+                <div class="aix-brand-name">মোঃ সরওয়ার আলম সবুজ</div>
+            </div>
+        </div>
+
+        <div id="s4-phone" class="phone-mockup">
+            <div class="phone-cover">প্রযুক্তি ও দক্ষতার সাথে ভবিষ্যতের পথে</div>
+            <div class="phone-body">
+                <div class="phone-avatar">
+                    <img src="saroar.png" alt="মোঃ সরওয়ার আলম সবুজ">
+                </div>
+                <div style="font-weight: 700; font-size: 0.9rem;">মোঃ সরওয়ার আলম সবুজ</div>
+                <div style="font-size: 0.72rem; color: #65676b;">Digital Creator • Land Surveyor</div>
+                <div class="phone-btns">
+                    <div class="p-btn-blue">Message</div>
+                    <div class="p-btn-gray">Follow</div>
+                </div>
+                <div style="font-size: 0.72rem; color: #444; border-top: 1px solid #eee; padding-top: 8px; display: flex; align-items: center; gap: 5px;">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#d91e18" stroke-width="2.4">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                    Cumilla, Bangladesh
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- সিন ৫ -->
+    <div id="scene-5" class="scene">
+        <div id="s5-head" class="free-heading">সম্পূর্ণ <span>বিনামূল্যে</span></div>
+        <div class="bento-grid">
+            <div id="s5-gd" class="bento-card b-gd">
+                <div class="bento-title">Graphics Design</div>
+                <div class="app-icons">
+                    <div class="adobe-icon ps-icon">Ps</div>
+                    <div class="adobe-icon ai-icon">Ai</div>
+                </div>
+            </div>
+            <div id="s5-ve" class="bento-card b-ve">
+                <div class="bento-title">Video Editing</div>
+                <div class="adobe-icon ve-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                        <rect x="2" y="4" width="20" height="16" rx="2"/>
+                        <polygon points="10 9 15 12 10 15 10 9" fill="currentColor" stroke="none"/>
+                    </svg>
+                </div>
+            </div>
+            <div id="s5-ai" class="bento-card b-ai">
+                <div class="bento-title">বিভিন্ন AI tools</div>
+                <div class="ai-pills">
+                    <div class="ai-chip">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10a37f" stroke-width="2.4">
+                            <circle cx="12" cy="12" r="9"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                        ChatGPT
+                    </div>
+                    <div class="ai-chip">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#4285f4">
+                            <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/>
+                        </svg>
+                        Gemini
+                    </div>
+                    <div class="ai-chip">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#d97757" stroke-width="2.5" stroke-linecap="round">
+                            <line x1="12" y1="3" x2="12" y2="21"/>
+                            <line x1="4.2" y1="7.5" x2="19.8" y2="16.5"/>
+                            <line x1="19.8" y1="7.5" x2="4.2" y2="16.5"/>
+                        </svg>
+                        Claude
+                    </div>
+                </div>
+            </div>
+            <div id="s5-tech" class="bento-card b-tech">
+                <svg class="clear-icon lg-icon" viewBox="0 0 24 24" fill="none" stroke="#ff9d00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                </svg>
+                <div style="font-weight: 600;">নতুন নতুন technology</div>
+            </div>
+            <div id="s5-more" class="bento-card b-more">
+                <svg class="clear-icon lg-icon" viewBox="0 0 24 24" fill="none" stroke="#ff9d00" stroke-width="2.5" stroke-linecap="round">
+                    <line x1="12" y1="5" x2="12" y2="19"/>
+                    <line x1="5" y1="12" x2="19" y2="12"/>
+                </svg>
+                <div style="font-weight: 600;">আরও অনেক কিছু</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- সিন ৬ -->
+    <div id="scene-6" class="scene">
+        <div id="s6-phone" class="laptop-outline">
+            <div class="laptop-screen">
+                <svg width="34" height="34" viewBox="0 0 24 24" fill="#ffd000">
+                    <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/>
+                </svg>
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="23 4 23 10 17 10"/>
+                    <polyline points="1 20 1 14 7 14"/>
+                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+                </svg>
+            </div>
+            <div class="laptop-base"></div>
+        </div>
+        <div class="s6-right">
+            <div id="s6-title" class="s6-title"><span>ল্যাপটপ</span> দিয়ে</div>
+            <div id="s6-c1" class="check-pill">
+                <span class="check-icon">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ff9d00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                </span>
+                নতুন নতুন skill শিখুন
+            </div>
+            <div id="s6-c2" class="check-pill">
+                <span class="check-icon">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ff9d00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                </span>
+                নিজেকে update রাখুন
+            </div>
+        </div>
+    </div>
+
+    <!-- সিন ৭ -->
+    <div id="scene-7" class="scene">
+        <div id="s7-head" class="follow-header"><span>Follow</span> করুন</div>
+        <div id="s7-bar" class="follow-bar">
+            <div class="fb-info">
+                <div class="red-avatar-box">
+                    <img src="saroar.png" alt="মোঃ সরওয়ার আলম সবুজ">
+                </div>
+                <div>
+                    <div style="font-size: 1.15rem; font-weight: 700;">মোঃ সরওয়ার আলম সবুজ</div>
+                    <div style="font-size: 0.8rem; color: #cbd5e1;">Facebook পেজ</div>
+                </div>
+            </div>
+            <div id="s7-fbtn" class="follow-btn">Follow</div>
+        </div>
+
+        <div id="s7-cbox" class="comment-prompt-box">
+            <div class="comment-label">যেকোনো একটি ভিডিওতে কমেন্ট করুন</div>
+            <div class="comment-input-bar">
+                <span style="display: flex; align-items: center; gap: 8px;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#cbd5e1" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                    কমেন্ট লিখুন
+                </span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#ff7700">
+                    <line x1="22" y1="2" x2="11" y2="13" stroke="#ff7700" stroke-width="2.2"/>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                </svg>
+            </div>
+        </div>
+
+        <div id="s7-cta" class="final-cta">আপনি কী <span>শিখতে চান?</span></div>
+    </div>
+
+    <div id="controls">
+        <button id="replay-btn">↺ Replay (48s)</button>
+        <span id="time-display">00:00 / 00:48</span>
+    </div>
+    <div id="progress-line"></div>
+</div>
+
+<script>
+(function () {
+    const TOTAL_MS = 48000;
+    const STEP_MS = 50;
+    let currentMs = 0;
+    let timerId = null;
+    let fired = new Set();
+
+    let audioCtx = null;
+    function unlockAudio() {
+        try {
+            if (!audioCtx) {
+                const Ctx = window.AudioContext || window.webkitAudioContext;
+                if (Ctx) audioCtx = new Ctx();
+            }
+            if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        } catch (e) {}
+    }
+
+    function playSound(type) {
+        try {
+            if (!audioCtx || audioCtx.state !== 'running') return;
+            const now = audioCtx.currentTime;
+
+            if (type === 'pop') {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(360, now);
+                osc.frequency.exponentialRampToValueAtTime(780, now + 0.09);
+                gain.gain.setValueAtTime(0.22, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start(now);
+                osc.stop(now + 0.13);
+            } else if (type === 'card') {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(250, now);
+                osc.frequency.exponentialRampToValueAtTime(540, now + 0.13);
+                gain.gain.setValueAtTime(0.24, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.16);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start(now);
+                osc.stop(now + 0.17);
+            } else if (type === 'click') {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(950, now);
+                osc.frequency.exponentialRampToValueAtTime(450, now + 0.055);
+                gain.gain.setValueAtTime(0.22, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.065);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start(now);
+                osc.stop(now + 0.075);
+            } else if (type === 'chime') {
+                [523.25, 659.25].forEach(function (freq, idx) {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(freq, now + idx * 0.05);
+                    gain.gain.setValueAtTime(0.18, now + idx * 0.05);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.05 + 0.3);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now + idx * 0.05);
+                    osc.stop(now + idx * 0.05 + 0.32);
+                });
+            } else if (type === 'whoosh') {
+                const bufferSize = Math.floor(audioCtx.sampleRate * 0.4);
+                const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+                const data = buffer.getChannelData(0);
+                for (let i = 0; i < bufferSize; i++) {
+                    data[i] = (Math.random() * 2 - 1) * Math.sin((i / bufferSize) * Math.PI);
+                }
+                const noise = audioCtx.createBufferSource();
+                noise.buffer = buffer;
+                const filter = audioCtx.createBiquadFilter();
+                filter.type = 'bandpass';
+                filter.frequency.setValueAtTime(280, now);
+                filter.frequency.exponentialRampToValueAtTime(1450, now + 0.18);
+                filter.frequency.exponentialRampToValueAtTime(320, now + 0.4);
+                filter.Q.value = 1.6;
+                const gain = audioCtx.createGain();
+                gain.gain.setValueAtTime(0.26, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+                noise.connect(filter);
+                filter.connect(gain);
+                gain.connect(audioCtx.destination);
+                noise.start(now);
+            }
+        } catch (e) {}
+    }
+
+    function $(id) { return document.getElementById(id); }
+
+    function show(id, soundType) {
+        const node = $(id);
+        if (node) node.classList.add('show-up');
+        if (soundType) playSound(soundType);
+    }
+
+    function highlight(id, on) {
+        const node = $(id);
+        if (!node) return;
+        if (on) node.classList.add('highlight');
+        else node.classList.remove('highlight');
+    }
+
+    function openScene(num) {
+        document.querySelectorAll('.scene').forEach(function (s) {
+            s.classList.remove('active');
+        });
+        const sc = $('scene-' + num);
+        if (sc) sc.classList.add('active');
+    }
+
+    function wipe() {
+        const w = $('wipe-overlay');
+        if (!w) return;
+        w.classList.remove('wipe-animate');
+        void w.offsetWidth;
+        w.classList.add('wipe-animate');
+        playSound('whoosh');
+    }
+
+    const events = [
+        { t: 0,     fn: function () { openScene(1); show('s1-hello', 'chime'); show('s1-orbit'); } },
+        { t: 800,   fn: function () { show('s1-name', 'card'); } },
+        { t: 1600,  fn: function () { show('s1-b1', 'pop'); } },
+        { t: 2300,  fn: function () { show('s1-b2', 'pop'); } },
+        { t: 3000,  fn: function () { show('s1-b3', 'pop'); } },
+        { t: 4100,  fn: function () { wipe(); } },
+
+        { t: 4600,  fn: function () { openScene(2); show('s2-c1', 'card'); } },
+        { t: 6800,  fn: function () { show('s2-c2', 'card'); } },
+        { t: 9500,  fn: function () { show('s2-arrow'); show('s2-t1', 'pop'); highlight('s2-t1', true); } },
+        { t: 10800, fn: function () { highlight('s2-t1', false); show('s2-t2', 'pop'); highlight('s2-t2', true); } },
+        { t: 12000, fn: function () { highlight('s2-t2', false); show('s2-t3', 'pop'); highlight('s2-t3', true); } },
+        { t: 13500, fn: function () { highlight('s2-t3', false); } },
+
+        { t: 15500, fn: function () { openScene(3); show('s3-gd', 'card'); show('s3-l1'); show('s3-q', 'pop'); } },
+        { t: 16800, fn: function () { show('s3-l2'); show('s3-ve', 'card'); } },
+        { t: 17800, fn: function () { show('s3-top', 'pop'); } },
+
+        { t: 20000, fn: function () { openScene(4); } },
+        { t: 20600, fn: function () { show('s4-sub', 'pop'); } },
+        { t: 21500, fn: function () { show('s4-title', 'chime'); } },
+        { t: 22600, fn: function () { show('s4-phone', 'card'); } },
+        { t: 24200, fn: function () { show('s4-brand', 'pop'); } },
+
+        { t: 26500, fn: function () { openScene(5); show('s5-head', 'chime'); } },
+        { t: 28500, fn: function () { show('s5-gd', 'pop'); } },
+        { t: 29800, fn: function () { show('s5-ve', 'pop'); } },
+        { t: 31200, fn: function () { show('s5-ai', 'card'); } },
+        { t: 33200, fn: function () { show('s5-tech', 'pop'); } },
+        { t: 34500, fn: function () { show('s5-more', 'pop'); } },
+        { t: 36000, fn: function () { wipe(); } },
+
+        { t: 36500, fn: function () { openScene(6); show('s6-phone', 'card'); show('s6-title', 'chime'); } },
+        { t: 38500, fn: function () { show('s6-c1', 'pop'); } },
+        { t: 39800, fn: function () { show('s6-c2', 'pop'); } },
+        { t: 41000, fn: function () { wipe(); } },
+
+        { t: 41600, fn: function () { openScene(7); show('s7-head', 'chime'); show('s7-bar', 'card'); } },
+        { t: 43000, fn: function () {
+            const btn = $('s7-fbtn');
+            if (btn) {
+                btn.classList.add('following');
+                btn.textContent = '✓ Following';
+            }
+            playSound('click');
+        } },
+        { t: 44200, fn: function () { show('s7-cbox', 'pop'); } },
+        { t: 46200, fn: function () { show('s7-cta', 'chime'); } }
+    ];
+
+    function reset() {
+        currentMs = 0;
+        fired.clear();
+        document.querySelectorAll('.show-up').forEach(function (n) {
+            n.classList.remove('show-up');
+        });
+        document.querySelectorAll('.topic-pill.highlight').forEach(function (n) {
+            n.classList.remove('highlight');
+        });
+        const btn = $('s7-fbtn');
+        if (btn) {
+            btn.classList.remove('following');
+            btn.textContent = 'Follow';
+        }
+    }
+
+    function tick() {
+        events.forEach(function (ev, i) {
+            if (currentMs >= ev.t && !fired.has(i)) {
+                fired.add(i);
+                ev.fn();
+            }
+        });
+        if (currentMs >= TOTAL_MS) {
+            clearInterval(timerId);
+            timerId = null;
+            return;
+        }
+        currentMs += STEP_MS;
+    }
+
+    function run() {
+        if (timerId) clearInterval(timerId);
+        reset();
+        tick();
+        timerId = setInterval(tick, STEP_MS);
+    }
+
+    const unlockBtn = $('sound-unlock');
+    if (unlockBtn) {
+        unlockBtn.addEventListener('click', function () {
+            unlockAudio();
+            unlockBtn.style.display = 'none';
+            run();
+            setTimeout(function () { playSound('chime'); }, 120);
+        });
+    }
+
+    document.addEventListener('pointerdown', function () {
+        unlockAudio();
+        if (unlockBtn) unlockBtn.style.display = 'none';
+    }, { once: true });
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', run);
+    } else {
+        run();
+    }
+})();
+</script>
+</body>
+</html>
