@@ -1,141 +1,162 @@
-const TOTAL_DURATION = 48000;
-let startTime = null;
-let triggeredEvents = new Set();
-let animFrameId = null;
+(function () {
+    const TOTAL_MS = 48000;
+    const STEP_MS = 50;
 
-function el(id) {
-    return document.getElementById(id);
-}
+    let currentMs = 0;
+    let intervalId = null;
+    let firedSet = new Set();
 
-function addShowClass(id) {
-    const node = el(id);
-    if (node) node.classList.add('show-up');
-}
+    const byId = (id) => document.getElementById(id);
 
-function removeClass(id, className) {
-    const node = el(id);
-    if (node) node.classList.remove(className);
-}
+    function showItem(id) {
+        const node = byId(id);
+        if (node) node.classList.add('show-up');
+    }
 
-function addClass(id, className) {
-    const node = el(id);
-    if (node) node.classList.add(className);
-}
+    function setHighlight(id, active) {
+        const node = byId(id);
+        if (!node) return;
+        if (active) {
+            node.classList.add('highlight');
+        } else {
+            node.classList.remove('highlight');
+        }
+    }
 
-function showScene(sceneNum) {
-    document.querySelectorAll('.scene').forEach((s) => s.classList.remove('active'));
-    if (sceneNum) {
-        const target = el(`scene-${sceneNum}`);
+    function activateScene(num) {
+        document.querySelectorAll('.scene').forEach((scene) => {
+            scene.classList.remove('active');
+        });
+        const target = byId(`scene-${num}`);
         if (target) target.classList.add('active');
     }
-}
 
-function triggerWipe() {
-    const wipe = el('wipe-overlay');
-    if (!wipe) return;
-    wipe.classList.remove('wipe-animate');
-    void wipe.offsetWidth;
-    wipe.classList.add('wipe-animate');
-}
+    function playWipe() {
+        const wipe = byId('wipe-overlay');
+        if (!wipe) return;
+        wipe.classList.remove('wipe-animate');
+        void wipe.offsetWidth;
+        wipe.classList.add('wipe-animate');
+    }
 
-const timeline = [
-    { t: 0,     fn: () => { showScene(1); addShowClass('s1-hello'); addShowClass('s1-orbit'); } },
-    { t: 800,   fn: () => addShowClass('s1-name') },
-    { t: 1600,  fn: () => addShowClass('s1-b1') },
-    { t: 2300,  fn: () => addShowClass('s1-b2') },
-    { t: 3000,  fn: () => addShowClass('s1-b3') },
-    { t: 4100,  fn: () => triggerWipe() },
+    const cues = [
+        { at: 0,     run: () => { activateScene(1); showItem('s1-hello'); showItem('s1-orbit'); } },
+        { at: 800,   run: () => showItem('s1-name') },
+        { at: 1600,  run: () => showItem('s1-b1') },
+        { at: 2300,  run: () => showItem('s1-b2') },
+        { at: 3000,  run: () => showItem('s1-b3') },
+        { at: 4100,  run: () => playWipe() },
 
-    { t: 4600,  fn: () => { showScene(2); addShowClass('s2-c1'); } },
-    { t: 6800,  fn: () => addShowClass('s2-c2') },
-    { t: 9500,  fn: () => { addShowClass('s2-arrow'); addShowClass('s2-t1'); addClass('s2-t1', 'highlight'); } },
-    { t: 10800, fn: () => { removeClass('s2-t1', 'highlight'); addShowClass('s2-t2'); addClass('s2-t2', 'highlight'); } },
-    { t: 12000, fn: () => { removeClass('s2-t2', 'highlight'); addShowClass('s2-t3'); addClass('s2-t3', 'highlight'); } },
-    { t: 13500, fn: () => removeClass('s2-t3', 'highlight') },
+        { at: 4600,  run: () => { activateScene(2); showItem('s2-c1'); } },
+        { at: 6800,  run: () => showItem('s2-c2') },
+        { at: 9500,  run: () => { showItem('s2-arrow'); showItem('s2-t1'); setHighlight('s2-t1', true); } },
+        { at: 10800, run: () => { setHighlight('s2-t1', false); showItem('s2-t2'); setHighlight('s2-t2', true); } },
+        { at: 12000, run: () => { setHighlight('s2-t2', false); showItem('s2-t3'); setHighlight('s2-t3', true); } },
+        { at: 13500, run: () => setHighlight('s2-t3', false) },
 
-    { t: 15500, fn: () => { showScene(3); addShowClass('s3-gd'); addShowClass('s3-l1'); addShowClass('s3-q'); } },
-    { t: 16800, fn: () => { addShowClass('s3-l2'); addShowClass('s3-ve'); } },
-    { t: 17800, fn: () => addShowClass('s3-top') },
+        { at: 15500, run: () => { activateScene(3); showItem('s3-gd'); showItem('s3-l1'); showItem('s3-q'); } },
+        { at: 16800, run: () => { showItem('s3-l2'); showItem('s3-ve'); } },
+        { at: 17800, run: () => showItem('s3-top') },
 
-    { t: 20000, fn: () => showScene(4) },
-    { t: 20600, fn: () => addShowClass('s4-sub') },
-    { t: 21500, fn: () => addShowClass('s4-title') },
-    { t: 22600, fn: () => addShowClass('s4-phone') },
-    { t: 24200, fn: () => addShowClass('s4-brand') },
+        { at: 20000, run: () => activateScene(4) },
+        { at: 20600, run: () => showItem('s4-sub') },
+        { at: 21500, run: () => showItem('s4-title') },
+        { at: 22600, run: () => showItem('s4-phone') },
+        { at: 24200, run: () => showItem('s4-brand') },
 
-    { t: 26500, fn: () => { showScene(5); addShowClass('s5-head'); } },
-    { t: 28500, fn: () => addShowClass('s5-gd') },
-    { t: 29800, fn: () => addShowClass('s5-ve') },
-    { t: 31200, fn: () => addShowClass('s5-ai') },
-    { t: 33200, fn: () => addShowClass('s5-tech') },
-    { t: 34500, fn: () => addShowClass('s5-more') },
-    { t: 36000, fn: () => triggerWipe() },
+        { at: 26500, run: () => { activateScene(5); showItem('s5-head'); } },
+        { at: 28500, run: () => showItem('s5-gd') },
+        { at: 29800, run: () => showItem('s5-ve') },
+        { at: 31200, run: () => showItem('s5-ai') },
+        { at: 33200, run: () => showItem('s5-tech') },
+        { at: 34500, run: () => showItem('s5-more') },
+        { at: 36000, run: () => playWipe() },
 
-    { t: 36500, fn: () => { showScene(6); addShowClass('s6-phone'); addShowClass('s6-title'); } },
-    { t: 38500, fn: () => addShowClass('s6-c1') },
-    { t: 39800, fn: () => addShowClass('s6-c2') },
-    { t: 41000, fn: () => triggerWipe() },
+        { at: 36500, run: () => { activateScene(6); showItem('s6-phone'); showItem('s6-title'); } },
+        { at: 38500, run: () => showItem('s6-c1') },
+        { at: 39800, run: () => showItem('s6-c2') },
+        { at: 41000, run: () => playWipe() },
 
-    { t: 41600, fn: () => { showScene(7); addShowClass('s7-head'); addShowClass('s7-bar'); } },
-    { t: 43000, fn: () => {
-        const btn = el('s7-fbtn');
+        { at: 41600, run: () => { activateScene(7); showItem('s7-head'); showItem('s7-bar'); } },
+        { at: 43000, run: () => {
+            const btn = byId('s7-fbtn');
+            if (btn) {
+                btn.classList.add('following');
+                btn.textContent = '✓ Following';
+            }
+        } },
+        { at: 44200, run: () => showItem('s7-cbox') },
+        { at: 46200, run: () => showItem('s7-cta') }
+    ];
+
+    function renderBar() {
+        const clamped = Math.min(currentMs, TOTAL_MS);
+        const bar = byId('progress-line');
+        if (bar) {
+            bar.style.width = `${(clamped / TOTAL_MS) * 100}%`;
+        }
+        const label = byId('time-display');
+        if (label) {
+            const sec = Math.floor(clamped / 1000);
+            label.textContent = `00:${String(sec).padStart(2, '0')} / 00:48`;
+        }
+    }
+
+    function resetState() {
+        currentMs = 0;
+        firedSet.clear();
+
+        document.querySelectorAll('.show-up').forEach((el) => el.classList.remove('show-up'));
+        document.querySelectorAll('.topic-pill.highlight').forEach((el) => el.classList.remove('highlight'));
+
+        const btn = byId('s7-fbtn');
         if (btn) {
-            btn.classList.add('following');
-            btn.textContent = '✓ Following';
+            btn.classList.remove('following');
+            btn.textContent = 'Follow';
         }
-    }},
-    { t: 44200, fn: () => addShowClass('s7-cbox') },
-    { t: 46200, fn: () => addShowClass('s7-cta') }
-];
 
-function resetAll() {
-    triggeredEvents.clear();
-    document.querySelectorAll('.show-up').forEach((node) => node.classList.remove('show-up'));
-    const btn = el('s7-fbtn');
-    if (btn) {
-        btn.classList.remove('following');
-        btn.textContent = 'Follow';
+        renderBar();
     }
-    startTime = performance.now();
-}
 
-function updateLoop(now) {
-    if (!startTime) startTime = now;
-    const elapsed = now - startTime;
+    function stepTimeline() {
+        cues.forEach((cue, index) => {
+            if (currentMs >= cue.at && !firedSet.has(index)) {
+                firedSet.add(index);
+                cue.run();
+            }
+        });
 
-    timeline.forEach((item, idx) => {
-        if (elapsed >= item.t && !triggeredEvents.has(idx)) {
-            triggeredEvents.add(idx);
-            item.fn();
+        renderBar();
+
+        if (currentMs >= TOTAL_MS) {
+            clearInterval(intervalId);
+            intervalId = null;
+            return;
         }
-    });
 
-    const clamped = Math.min(elapsed, TOTAL_DURATION);
-    const progressLine = el('progress-line');
-    if (progressLine) progressLine.style.width = `${(clamped / TOTAL_DURATION) * 100}%`;
-
-    const timeDisplay = el('time-display');
-    if (timeDisplay) {
-        const sec = Math.floor(clamped / 1000);
-        timeDisplay.textContent = `00:${sec.toString().padStart(2, '0')} / 00:48`;
+        currentMs += STEP_MS;
     }
 
-    if (elapsed < TOTAL_DURATION) {
-        animFrameId = requestAnimationFrame(updateLoop);
+    function start() {
+        if (intervalId) {
+            clearInterval(intervalId);
+        }
+        resetState();
+        stepTimeline();
+        intervalId = setInterval(stepTimeline, STEP_MS);
     }
-}
 
-function startAnimation() {
-    if (animFrameId) cancelAnimationFrame(animFrameId);
-    resetAll();
-    animFrameId = requestAnimationFrame(updateLoop);
-}
+    function boot() {
+        const replay = byId('replay-btn');
+        if (replay) {
+            replay.addEventListener('click', start);
+        }
+        start();
+    }
 
-const replayBtn = el('replay-btn');
-if (replayBtn) replayBtn.addEventListener('click', startAnimation);
-
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', startAnimation);
-} else {
-    startAnimation();
-}
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', boot);
+    } else {
+        boot();
+    }
+})();
