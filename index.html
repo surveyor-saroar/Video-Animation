@@ -12,8 +12,9 @@
             box-sizing: border-box;
         }
 
+        /* পুরো ল্যাপটপ স্ক্রিনজুড়ে ওয়াইড ব্যাকগ্রাউন্ড */
         body {
-            background-color: #060911;
+            background: radial-gradient(circle at 25% 20%, #1e293b 0%, #0d1322 52%, #06080f 100%);
             color: #ffffff;
             font-family: 'Hind Siliguri', 'Poppins', sans-serif;
             overflow: hidden;
@@ -23,40 +24,46 @@
             height: 100vh;
             width: 100vw;
             user-select: none;
-        }
-
-        #stage {
             position: relative;
-            height: 94vh;
-            aspect-ratio: 9 / 16;
-            max-width: 96vw;
-            background: radial-gradient(circle at 20% 18%, #1e293b 0%, #0d1322 52%, #06080f 100%);
-            border: 1px solid rgba(255, 136, 0, 0.25);
-            border-radius: 18px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
         }
 
-        .ambient-glow {
-            position: absolute;
-            width: 65%;
-            height: 45%;
-            background: radial-gradient(circle, rgba(255, 106, 0, 0.18) 0%, transparent 72%);
+        .wide-glow {
+            position: fixed;
+            width: 45vw;
+            height: 45vw;
             border-radius: 50%;
             pointer-events: none;
-            animation: floatGlow 7s infinite alternate ease-in-out;
+            z-index: 0;
+            animation: floatWideGlow 8s infinite alternate ease-in-out;
         }
-        .glow-1 { top: -8%; left: -12%; }
-        .glow-2 {
-            bottom: -10%;
-            right: -12%;
-            background: radial-gradient(circle, rgba(14, 165, 233, 0.16) 0%, transparent 72%);
-            animation-delay: -3.5s;
+        .wide-glow-1 {
+            top: -15vw;
+            left: -10vw;
+            background: radial-gradient(circle, rgba(255, 106, 0, 0.16) 0%, transparent 72%);
+        }
+        .wide-glow-2 {
+            bottom: -18vw;
+            right: -10vw;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.14) 0%, transparent 72%);
+            animation-delay: -4s;
         }
 
-        @keyframes floatGlow {
+        @keyframes floatWideGlow {
             0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(5%, 5%) scale(1.12); }
+            100% { transform: translate(4%, 4%) scale(1.1); }
+        }
+
+        /* মাঝখানে 9:16 রিলস ফ্রেম (After Effects ক্রপ/স্ক্রিন রেকর্ডিংয়ের জন্য পরিষ্কার) */
+        #reel-area {
+            position: relative;
+            height: 100vh;
+            aspect-ratio: 9 / 16;
+            max-width: 100vw;
+            background: rgba(8, 12, 22, 0.45);
+            border-left: 1px solid rgba(255, 136, 0, 0.18);
+            border-right: 1px solid rgba(255, 136, 0, 0.18);
+            overflow: hidden;
+            z-index: 2;
         }
 
         .clear-icon { width: 20px; height: 20px; flex-shrink: 0; }
@@ -70,7 +77,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 10% 6.5%;
+            padding: 9% 6%;
             z-index: 2;
             text-align: center;
         }
@@ -105,107 +112,108 @@
         }
 
         /* সিন ১ */
-        #scene-1.active { flex-direction: column; justify-content: center; gap: 38px; }
+        #scene-1.active { flex-direction: column; justify-content: center; gap: 34px; }
         .intro-left { width: 100%; z-index: 2; }
-        .hello-text { font-size: clamp(1.35rem, 3.8vw, 2.05rem); font-weight: 600; margin-bottom: 10px; opacity: 0; transform: translateY(20px); }
-        .name-text { font-size: clamp(1.95rem, 5.6vw, 3.05rem); font-weight: 700; line-height: 1.25; background: linear-gradient(90deg, #ff6a00 0%, #ffaa00 60%, #ffd000 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 24px; opacity: 0; transform: translateY(25px); }
-        .badges-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
-        .prof-badge { display: inline-flex; align-items: center; gap: 7px; padding: 9px 15px; background: rgba(255, 115, 0, 0.14); border: 1px solid rgba(255, 145, 0, 0.45); border-radius: 50px; font-size: clamp(0.88rem, 2.5vw, 1.15rem); color: #f8fafc; opacity: 0; transform: scale(0.85) translateY(15px); }
+        .hello-text { font-size: clamp(1.3rem, 3.6vh, 1.9rem); font-weight: 600; margin-bottom: 8px; white-space: nowrap; opacity: 0; transform: translateY(20px); }
+        .name-text { font-size: clamp(1.75rem, 4.8vh, 2.75rem); font-weight: 700; line-height: 1.25; background: linear-gradient(90deg, #ff6a00 0%, #ffaa00 60%, #ffd000 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; white-space: nowrap; opacity: 0; transform: translateY(25px); }
+        .badges-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+        .prof-badge { display: inline-flex; align-items: center; gap: 7px; padding: 8px 14px; background: rgba(255, 115, 0, 0.14); border: 1px solid rgba(255, 145, 0, 0.45); border-radius: 50px; font-size: clamp(0.85rem, 2vh, 1.08rem); color: #f8fafc; white-space: nowrap; opacity: 0; transform: scale(0.85) translateY(15px); }
         .prof-badge .clear-icon { color: #ff9800; }
 
-        .orbit-wrapper { position: relative; width: 180px; height: 180px; display: flex; justify-content: center; align-items: center; margin-top: 8px; opacity: 0; transform: scale(0.8); }
+        .orbit-wrapper { position: relative; width: 170px; height: 170px; display: flex; justify-content: center; align-items: center; margin-top: 6px; opacity: 0; transform: scale(0.8); }
         .orbit-glow { position: absolute; width: 78%; height: 78%; background: radial-gradient(circle, rgba(255, 110, 0, 0.35) 0%, transparent 70%); border-radius: 50%; }
         .orbit-ring { position: absolute; width: 100%; height: 42%; border: 1.5px solid rgba(255, 255, 255, 0.35); border-radius: 50%; transform: rotate(-28deg); }
         .orbit-ring-2 { position: absolute; width: 90%; height: 36%; border: 1px solid rgba(255, 165, 0, 0.35); border-radius: 50%; transform: rotate(35deg); }
         .orbit-dot { position: absolute; top: -5px; right: 20%; width: 10px; height: 10px; background: #ffaa00; border-radius: 50%; }
-        .video-box-icon { width: 70px; height: 52px; border: 2.5px solid #ffffff; border-radius: 14px; display: flex; justify-content: center; align-items: center; background: rgba(15, 23, 42, 0.9); z-index: 2; padding: 11px; }
+        .video-box-icon { width: 68px; height: 50px; border: 2.5px solid #ffffff; border-radius: 14px; display: flex; justify-content: center; align-items: center; background: rgba(15, 23, 42, 0.9); z-index: 2; padding: 11px; }
         .video-box-icon svg { width: 100%; height: 100%; }
         .sparkle-star { position: absolute; top: 8%; right: 8%; width: 26px; height: 26px; }
 
         /* সিন ২ */
-        #scene-2.active { flex-direction: column; justify-content: center; gap: 22px; }
-        .q-left { display: flex; flex-direction: column; gap: 16px; width: 100%; }
-        .glass-card { background: rgba(30, 41, 59, 0.78); border: 1px solid rgba(255, 145, 50, 0.32); border-radius: 16px; padding: 17px 20px; text-align: left; opacity: 0; transform: translateY(25px); }
-        .card-tag { display: inline-flex; align-items: center; gap: 7px; font-size: 0.95rem; color: #ff9d42; margin-bottom: 6px; }
-        .card-q-text { font-size: clamp(1.12rem, 3.4vw, 1.62rem); font-weight: 600; }
-        .q-arrow { width: 38px; height: 38px; transform: rotate(90deg) scale(0.5); display: flex; align-items: center; justify-content: center; margin: 4px 0; opacity: 0; }
+        #scene-2.active { flex-direction: column; justify-content: center; gap: 20px; }
+        .q-left { display: flex; flex-direction: column; gap: 14px; width: 100%; }
+        .glass-card { background: rgba(30, 41, 59, 0.78); border: 1px solid rgba(255, 145, 50, 0.32); border-radius: 16px; padding: 15px 18px; text-align: left; opacity: 0; transform: translateY(25px); }
+        .card-tag { display: inline-flex; align-items: center; gap: 7px; font-size: 0.92rem; color: #ff9d42; margin-bottom: 5px; }
+        .card-q-text { font-size: clamp(1.05rem, 2.8vh, 1.45rem); font-weight: 600; white-space: nowrap; }
+        .q-arrow { width: 34px; height: 34px; transform: rotate(90deg) scale(0.5); display: flex; align-items: center; justify-content: center; margin: 2px 0; opacity: 0; }
         .q-arrow svg { width: 100%; height: 100%; }
-        .q-right { display: flex; flex-direction: column; gap: 15px; width: 100%; }
-        .topic-pill { display: flex; align-items: center; gap: 12px; padding: 15px 20px; background: rgba(30, 41, 59, 0.78); border: 1.5px solid rgba(255, 115, 0, 0.38); border-radius: 14px; font-size: clamp(1.12rem, 3.2vw, 1.52rem); font-weight: 600; color: #ffb84d; opacity: 0; transform: translateX(30px); }
+        .q-right { display: flex; flex-direction: column; gap: 13px; width: 100%; }
+        .topic-pill { display: flex; align-items: center; gap: 12px; padding: 14px 18px; background: rgba(30, 41, 59, 0.78); border: 1.5px solid rgba(255, 115, 0, 0.38); border-radius: 14px; font-size: clamp(1.08rem, 2.8vh, 1.45rem); font-weight: 600; color: #ffb84d; white-space: nowrap; opacity: 0; transform: translateX(30px); }
         .topic-pill.highlight { border-color: #ff6a00; background: rgba(255, 106, 0, 0.16); }
 
         /* সিন ৩ */
-        #scene-3.active { gap: 28px; }
-        .course-top-pill { display: inline-flex; align-items: center; gap: 8px; padding: 11px 20px; background: rgba(30, 41, 59, 0.85); border: 1px solid rgba(255, 145, 50, 0.35); border-radius: 14px; font-size: clamp(1.02rem, 3vw, 1.42rem); font-weight: 600; opacity: 0; transform: translateY(-20px); }
-        .course-flow { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; gap: 14px; }
-        .skill-box { background: rgba(30, 41, 59, 0.78); border: 1px solid rgba(255, 140, 50, 0.35); border-radius: 18px; padding: 18px 22px; text-align: center; width: 90%; opacity: 0; }
-        .skill-box h3 { font-size: clamp(1.08rem, 3vw, 1.42rem); margin-bottom: 12px; }
+        #scene-3.active { gap: 24px; }
+        .course-top-pill { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: rgba(30, 41, 59, 0.85); border: 1px solid rgba(255, 145, 50, 0.35); border-radius: 14px; font-size: clamp(1rem, 2.5vh, 1.3rem); font-weight: 600; white-space: nowrap; opacity: 0; transform: translateY(-20px); }
+        .course-flow { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; gap: 12px; }
+        .skill-box { background: rgba(30, 41, 59, 0.78); border: 1px solid rgba(255, 140, 50, 0.35); border-radius: 18px; padding: 16px 20px; text-align: center; width: 92%; opacity: 0; }
+        .skill-box h3 { font-size: clamp(1.05rem, 2.6vh, 1.35rem); margin-bottom: 10px; white-space: nowrap; }
         .app-icons { display: flex; justify-content: center; gap: 12px; }
-        .adobe-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; justify-content: center; align-items: center; font-weight: 700; font-size: 1.2rem; }
+        .adobe-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; justify-content: center; align-items: center; font-weight: 700; font-size: 1.15rem; }
         .ps-icon { background: #001e36; color: #31a8ff; border: 2px solid #31a8ff; }
         .ai-icon { background: #330000; color: #ff9a00; border: 2px solid #ff9a00; }
-        .ve-icon { background: #2b1405; color: #ff8800; border: 2px solid #ff8800; width: 48px; height: 48px; padding: 9px; }
+        .ve-icon { background: #2b1405; color: #ff8800; border: 2px solid #ff8800; width: 46px; height: 46px; padding: 8px; }
         .ve-icon svg { width: 100%; height: 100%; }
-        .connect-line { width: 2px; height: 22px; background: linear-gradient(180deg, #ff7b00, #ffaa00); opacity: 0; }
-        .question-circle { width: 80px; height: 80px; border-radius: 50%; background: rgba(255, 106, 0, 0.2); border: 2px solid rgba(255, 120, 0, 0.6); display: flex; justify-content: center; align-items: center; font-size: 2.5rem; font-weight: 700; color: #ff9800; opacity: 0; transform: scale(0.5); }
+        .connect-line { width: 2px; height: 20px; background: linear-gradient(180deg, #ff7b00, #ffaa00); opacity: 0; }
+        .question-circle { width: 74px; height: 74px; border-radius: 50%; background: rgba(255, 106, 0, 0.2); border: 2px solid rgba(255, 120, 0, 0.6); display: flex; justify-content: center; align-items: center; font-size: 2.3rem; font-weight: 700; color: #ff9800; opacity: 0; transform: scale(0.5); }
 
         /* সিন ৪ */
-        #scene-4.active { flex-direction: column; justify-content: center; gap: 30px; }
+        #scene-4.active { flex-direction: column; justify-content: center; gap: 26px; }
         .s4-left { width: 100%; }
-        .s4-sub { font-size: clamp(1.18rem, 3.4vw, 1.7rem); color: #e2e8f0; margin-bottom: 8px; opacity: 0; }
-        .s4-title { font-size: clamp(1.9rem, 5.4vw, 2.95rem); font-weight: 700; line-height: 1.22; margin-bottom: 22px; opacity: 0; }
+        .s4-sub { font-size: clamp(1.12rem, 2.8vh, 1.55rem); color: #e2e8f0; margin-bottom: 6px; white-space: nowrap; opacity: 0; }
+        .s4-title { font-size: clamp(1.75rem, 4.5vh, 2.65rem); font-weight: 700; line-height: 1.22; margin-bottom: 18px; white-space: nowrap; opacity: 0; }
         .s4-title span { color: #ff7700; }
-        .page-brand-row { display: flex; align-items: center; justify-content: center; gap: 14px; opacity: 0; transform: translateY(20px); }
-        .red-avatar-box { width: 56px; height: 56px; border-radius: 14px; background: #d91e18; border: 2px solid #ff5c5c; overflow: hidden; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .page-brand-row { display: flex; align-items: center; justify-content: center; gap: 12px; opacity: 0; transform: translateY(20px); }
+        .red-avatar-box { width: 52px; height: 52px; border-radius: 14px; background: #d91e18; border: 2px solid #ff5c5c; overflow: hidden; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
         .red-avatar-box img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
-        .aix-brand-name { font-size: clamp(1.22rem, 3.5vw, 1.72rem); font-weight: 700; text-align: left; }
-        .phone-mockup { width: 252px; background: #ffffff; color: #111111; border-radius: 26px; border: 6px solid #2b2b2b; overflow: hidden; text-align: left; opacity: 0; transform: translateY(40px); }
-        .phone-cover { height: 78px; background: linear-gradient(135deg, #ff6a00, #1e3a8a); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.76rem; font-weight: 600; padding: 8px; text-align: center; }
-        .phone-body { padding: 13px 15px 17px; }
-        .phone-avatar { width: 52px; height: 52px; border-radius: 50%; background: #d91e18; overflow: hidden; border: 3px solid #fff; margin-top: -28px; margin-bottom: 7px; }
+        .aix-brand-name { font-size: clamp(1.15rem, 3vh, 1.55rem); font-weight: 700; text-align: left; white-space: nowrap; }
+        .phone-mockup { width: 245px; background: #ffffff; color: #111111; border-radius: 26px; border: 6px solid #2b2b2b; overflow: hidden; text-align: left; opacity: 0; transform: translateY(40px); }
+        .phone-cover { height: 74px; background: linear-gradient(135deg, #ff6a00, #1e3a8a); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.75rem; font-weight: 600; padding: 8px; text-align: center; }
+        .phone-body { padding: 12px 14px 16px; }
+        .phone-avatar { width: 50px; height: 50px; border-radius: 50%; background: #d91e18; overflow: hidden; border: 3px solid #fff; margin-top: -28px; margin-bottom: 6px; }
         .phone-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
-        .phone-btns { display: flex; gap: 8px; margin: 11px 0; }
-        .p-btn-blue { flex: 1; background: #1877f2; color: #fff; text-align: center; padding: 7px; border-radius: 6px; font-size: 0.76rem; font-weight: 600; }
-        .p-btn-gray { flex: 1; background: #e4e6eb; color: #050505; text-align: center; padding: 7px; border-radius: 6px; font-size: 0.76rem; font-weight: 600; }
+        .phone-btns { display: flex; gap: 8px; margin: 10px 0; }
+        .p-btn-blue { flex: 1; background: #1877f2; color: #fff; text-align: center; padding: 6px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; }
+        .p-btn-gray { flex: 1; background: #e4e6eb; color: #050505; text-align: center; padding: 6px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; }
 
         /* সিন ৫ */
-        #scene-5.active { align-items: center; justify-content: center; gap: 22px; }
-        .free-heading { font-size: clamp(1.75rem, 5vw, 2.65rem); font-weight: 700; margin-bottom: 4px; opacity: 0; }
+        #scene-5.active { align-items: center; justify-content: center; gap: 18px; }
+        .free-heading { font-size: clamp(1.65rem, 4.2vh, 2.45rem); font-weight: 700; margin-bottom: 4px; white-space: nowrap; opacity: 0; }
         .free-heading span { color: #ff7700; border: 1.5px solid rgba(255, 119, 0, 0.55); background: rgba(255, 119, 0, 0.14); padding: 2px 14px; border-radius: 50px; }
-        .bento-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; width: 100%; }
-        .bento-card { background: rgba(30, 41, 59, 0.78); border: 1.5px solid rgba(255, 120, 0, 0.35); border-radius: 16px; padding: 16px 18px; display: flex; align-items: center; justify-content: space-between; gap: 10px; opacity: 0; transform: scale(0.92); }
+        .bento-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 13px; width: 100%; }
+        .bento-card { background: rgba(30, 41, 59, 0.78); border: 1.5px solid rgba(255, 120, 0, 0.35); border-radius: 16px; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; gap: 10px; opacity: 0; transform: scale(0.92); }
         .b-gd { grid-column: span 2; }
         .b-ve { grid-column: span 2; }
-        .b-ai { grid-column: span 2; flex-direction: column; align-items: flex-start; gap: 12px; }
-        .b-tech { grid-column: span 1; flex-direction: column; justify-content: center; text-align: center; gap: 8px; padding: 18px 12px; }
-        .b-more { grid-column: span 1; flex-direction: column; justify-content: center; text-align: center; gap: 8px; padding: 18px 12px; }
-        .bento-title { font-size: clamp(1.02rem, 3vw, 1.42rem); font-weight: 600; }
+        .b-ai { grid-column: span 2; flex-direction: column; align-items: flex-start; gap: 10px; }
+        .b-tech { grid-column: span 1; flex-direction: column; justify-content: center; text-align: center; gap: 7px; padding: 15px 10px; }
+        .b-more { grid-column: span 1; flex-direction: column; justify-content: center; text-align: center; gap: 7px; padding: 15px 10px; }
+        .bento-title { font-size: clamp(1rem, 2.5vh, 1.3rem); font-weight: 600; white-space: nowrap; }
         .ai-pills { display: flex; gap: 8px; flex-wrap: wrap; }
-        .ai-chip { background: #ffffff; color: #111111; padding: 6px 11px; border-radius: 8px; font-weight: 700; font-size: 0.86rem; display: inline-flex; align-items: center; gap: 5px; }
+        .ai-chip { background: #ffffff; color: #111111; padding: 5px 10px; border-radius: 8px; font-weight: 700; font-size: 0.84rem; display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; }
 
         /* সিন ৬ */
-        #scene-6.active { flex-direction: column; justify-content: center; gap: 32px; }
-        .laptop-outline { width: 220px; display: flex; flex-direction: column; align-items: center; opacity: 0; transform: translateY(30px); }
-        .laptop-screen { width: 88%; height: 142px; border: 3px solid #ffffff; border-radius: 14px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 14px; background: rgba(30, 41, 59, 0.6); }
+        #scene-6.active { flex-direction: column; justify-content: center; gap: 28px; }
+        .laptop-outline { width: 210px; display: flex; flex-direction: column; align-items: center; opacity: 0; transform: translateY(30px); }
+        .laptop-screen { width: 88%; height: 135px; border: 3px solid #ffffff; border-radius: 14px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 12px; background: rgba(30, 41, 59, 0.6); }
         .laptop-base { width: 108%; height: 10px; border: 2.5px solid #ffffff; border-radius: 0 0 12px 12px; margin-top: 2px; }
         .s6-right { width: 100%; display: flex; flex-direction: column; align-items: center; }
-        .s6-title { font-size: clamp(1.95rem, 5.4vw, 2.95rem); font-weight: 700; line-height: 1.2; margin-bottom: 24px; opacity: 0; }
+        .s6-title { font-size: clamp(1.8rem, 4.5vh, 2.7rem); font-weight: 700; line-height: 1.2; margin-bottom: 20px; white-space: nowrap; opacity: 0; }
         .s6-title span { color: #ff9500; }
-        .check-pill { display: flex; align-items: center; justify-content: center; gap: 10px; width: 92%; background: rgba(30, 41, 59, 0.78); border: 1px solid rgba(255, 140, 0, 0.38); padding: 14px 18px; border-radius: 50px; font-size: clamp(0.98rem, 3vw, 1.38rem); margin-bottom: 14px; opacity: 0; transform: translateX(25px); }
+        .check-pill { display: flex; align-items: center; justify-content: center; gap: 10px; width: 92%; background: rgba(30, 41, 59, 0.78); border: 1px solid rgba(255, 140, 0, 0.38); padding: 13px 16px; border-radius: 50px; font-size: clamp(0.95rem, 2.4vh, 1.28rem); margin-bottom: 12px; white-space: nowrap; opacity: 0; transform: translateX(25px); }
         .check-icon { width: 24px; height: 24px; border-radius: 50%; background: rgba(255, 140, 0, 0.22); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 
         /* সিন ৭ */
-        #scene-7.active { gap: 24px; }
-        .follow-header { font-size: clamp(1.85rem, 5vw, 2.75rem); font-weight: 700; opacity: 0; }
+        #scene-7.active { gap: 20px; }
+        .follow-header { font-size: clamp(1.75rem, 4.4vh, 2.6rem); font-weight: 700; white-space: nowrap; opacity: 0; }
         .follow-header span { color: #ff7700; }
-        .follow-bar { width: 100%; background: rgba(30, 41, 59, 0.78); border: 1px solid rgba(255, 140, 50, 0.38); border-radius: 18px; padding: 16px 18px; display: flex; align-items: center; justify-content: space-between; gap: 10px; text-align: left; opacity: 0; transform: scale(0.95); }
-        .fb-info { display: flex; align-items: center; gap: 12px; }
-        .follow-btn { background: linear-gradient(135deg, #ff6200, #e03c00); color: #ffffff; padding: 9px 16px; border-radius: 50px; font-weight: 600; font-size: 0.92rem; flex-shrink: 0; }
+        .follow-bar { width: 100%; background: rgba(30, 41, 59, 0.78); border: 1px solid rgba(255, 140, 0, 0.38); border-radius: 18px; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; gap: 10px; text-align: left; opacity: 0; transform: scale(0.95); }
+        .fb-info { display: flex; align-items: center; gap: 11px; }
+        .fb-name { font-size: clamp(1.02rem, 2.5vh, 1.28rem); font-weight: 700; white-space: nowrap; }
+        .follow-btn { background: linear-gradient(135deg, #ff6200, #e03c00); color: #ffffff; padding: 8px 15px; border-radius: 50px; font-weight: 600; font-size: 0.88rem; white-space: nowrap; flex-shrink: 0; }
         .follow-btn.following { background: rgba(255, 255, 255, 0.14); border: 1.5px solid #ffffff; }
         .comment-prompt-box { width: 100%; text-align: left; opacity: 0; transform: translateY(15px); }
-        .comment-label { font-size: 0.96rem; color: #cbd5e1; margin-bottom: 10px; }
-        .comment-input-bar { background: rgba(30, 41, 59, 0.78); border: 1px solid rgba(255, 140, 0, 0.35); border-radius: 50px; padding: 13px 18px; display: flex; justify-content: space-between; align-items: center; color: #cbd5e1; }
-        .final-cta { font-size: clamp(1.65rem, 4.8vw, 2.45rem); font-weight: 700; margin-top: 10px; opacity: 0; transform: translateY(20px); }
+        .comment-label { font-size: 0.92rem; color: #cbd5e1; margin-bottom: 8px; }
+        .comment-input-bar { background: rgba(30, 41, 59, 0.78); border: 1px solid rgba(255, 140, 0, 0.35); border-radius: 50px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; color: #cbd5e1; }
+        .final-cta { font-size: clamp(1.6rem, 4vh, 2.3rem); font-weight: 700; margin-top: 8px; white-space: nowrap; opacity: 0; transform: translateY(20px); }
         .final-cta span { color: #ff7700; }
 
         .show-up {
@@ -222,7 +230,7 @@
         }
 
         #sound-unlock {
-            position: absolute;
+            position: fixed;
             top: 14px;
             right: 14px;
             background: rgba(255, 106, 0, 0.95);
@@ -239,11 +247,12 @@
 </head>
 <body>
 
-<div id="stage">
-    <div class="ambient-glow glow-1"></div>
-    <div class="ambient-glow glow-2"></div>
+<div class="wide-glow wide-glow-1"></div>
+<div class="wide-glow wide-glow-2"></div>
+<button id="sound-unlock" type="button">🔊 সাউন্ড চালু করে শুরু করুন</button>
+
+<div id="reel-area">
     <div id="wipe-overlay"></div>
-    <button id="sound-unlock" type="button">🔊 সাউন্ড চালু করে শুরু করুন</button>
 
     <!-- সিন ১ -->
     <div id="scene-1" class="scene">
@@ -358,450 +367,4 @@
             কোনো course করাই কিনা?
         </div>
         <div class="course-flow">
-            <div id="s3-gd" class="skill-box">
-                <h3>Graphics Design</h3>
-                <div class="app-icons">
-                    <div class="adobe-icon ps-icon">Ps</div>
-                    <div class="adobe-icon ai-icon">Ai</div>
-                </div>
-            </div>
-            <div id="s3-l1" class="connect-line"></div>
-            <div id="s3-q" class="question-circle">?</div>
-            <div id="s3-l2" class="connect-line"></div>
-            <div id="s3-ve" class="skill-box">
-                <h3>Video Editing</h3>
-                <div class="app-icons">
-                    <div class="adobe-icon ve-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                            <rect x="2" y="4" width="20" height="16" rx="2"/>
-                            <polygon points="10 9 15 12 10 15 10 9" fill="currentColor" stroke="none"/>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- সিন ৪ -->
-    <div id="scene-4" class="scene">
-        <div class="s4-left">
-            <div id="s4-sub" class="s4-sub">আজ আপনাদের জন্য</div>
-            <div id="s4-title" class="s4-title">একটি <span>দারুণ পেজ</span></div>
-            <div id="s4-brand" class="page-brand-row">
-                <div class="red-avatar-box">
-                    <img src="saroar.png" alt="মোঃ সরওয়ার আলম সবুজ">
-                </div>
-                <div class="aix-brand-name">মোঃ সরওয়ার আলম সবুজ</div>
-            </div>
-        </div>
-
-        <div id="s4-phone" class="phone-mockup">
-            <div class="phone-cover">প্রযুক্তি ও দক্ষতার সাথে ভবিষ্যতের পথে</div>
-            <div class="phone-body">
-                <div class="phone-avatar">
-                    <img src="saroar.png" alt="মোঃ সরওয়ার আলম সবুজ">
-                </div>
-                <div style="font-weight: 700; font-size: 0.9rem;">মোঃ সরওয়ার আলম সবুজ</div>
-                <div style="font-size: 0.72rem; color: #65676b;">Digital Creator • Land Surveyor</div>
-                <div class="phone-btns">
-                    <div class="p-btn-blue">Message</div>
-                    <div class="p-btn-gray">Follow</div>
-                </div>
-                <div style="font-size: 0.72rem; color: #444; border-top: 1px solid #eee; padding-top: 8px; display: flex; align-items: center; gap: 5px;">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#d91e18" stroke-width="2.4">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                        <circle cx="12" cy="10" r="3"/>
-                    </svg>
-                    Cumilla, Bangladesh
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- সিন ৫ -->
-    <div id="scene-5" class="scene">
-        <div id="s5-head" class="free-heading">সম্পূর্ণ <span>বিনামূল্যে</span></div>
-        <div class="bento-grid">
-            <div id="s5-gd" class="bento-card b-gd">
-                <div class="bento-title">Graphics Design</div>
-                <div class="app-icons">
-                    <div class="adobe-icon ps-icon">Ps</div>
-                    <div class="adobe-icon ai-icon">Ai</div>
-                </div>
-            </div>
-            <div id="s5-ve" class="bento-card b-ve">
-                <div class="bento-title">Video Editing</div>
-                <div class="adobe-icon ve-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                        <rect x="2" y="4" width="20" height="16" rx="2"/>
-                        <polygon points="10 9 15 12 10 15 10 9" fill="currentColor" stroke="none"/>
-                    </svg>
-                </div>
-            </div>
-            <div id="s5-ai" class="bento-card b-ai">
-                <div class="bento-title">বিভিন্ন AI tools</div>
-                <div class="ai-pills">
-                    <div class="ai-chip">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10a37f" stroke-width="2.4">
-                            <circle cx="12" cy="12" r="9"/>
-                            <circle cx="12" cy="12" r="3"/>
-                        </svg>
-                        ChatGPT
-                    </div>
-                    <div class="ai-chip">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#4285f4">
-                            <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/>
-                        </svg>
-                        Gemini
-                    </div>
-                    <div class="ai-chip">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#d97757" stroke-width="2.5" stroke-linecap="round">
-                            <line x1="12" y1="3" x2="12" y2="21"/>
-                            <line x1="4.2" y1="7.5" x2="19.8" y2="16.5"/>
-                            <line x1="19.8" y1="7.5" x2="4.2" y2="16.5"/>
-                        </svg>
-                        Claude
-                    </div>
-                </div>
-            </div>
-            <div id="s5-tech" class="bento-card b-tech">
-                <svg class="clear-icon lg-icon" viewBox="0 0 24 24" fill="none" stroke="#ff9d00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-                </svg>
-                <div style="font-weight: 600;">নতুন নতুন technology</div>
-            </div>
-            <div id="s5-more" class="bento-card b-more">
-                <svg class="clear-icon lg-icon" viewBox="0 0 24 24" fill="none" stroke="#ff9d00" stroke-width="2.5" stroke-linecap="round">
-                    <line x1="12" y1="5" x2="12" y2="19"/>
-                    <line x1="5" y1="12" x2="19" y2="12"/>
-                </svg>
-                <div style="font-weight: 600;">আরও অনেক কিছু</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- সিন ৬ -->
-    <div id="scene-6" class="scene">
-        <div id="s6-phone" class="laptop-outline">
-            <div class="laptop-screen">
-                <svg width="34" height="34" viewBox="0 0 24 24" fill="#ffd000">
-                    <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/>
-                </svg>
-                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="23 4 23 10 17 10"/>
-                    <polyline points="1 20 1 14 7 14"/>
-                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
-                </svg>
-            </div>
-            <div class="laptop-base"></div>
-        </div>
-        <div class="s6-right">
-            <div id="s6-title" class="s6-title"><span>ল্যাপটপ</span> দিয়ে</div>
-            <div id="s6-c1" class="check-pill">
-                <span class="check-icon">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ff9d00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="20 6 9 17 4 12"/>
-                    </svg>
-                </span>
-                নতুন নতুন skill শিখুন
-            </div>
-            <div id="s6-c2" class="check-pill">
-                <span class="check-icon">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ff9d00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="20 6 9 17 4 12"/>
-                    </svg>
-                </span>
-                নিজেকে update রাখুন
-            </div>
-        </div>
-    </div>
-
-    <!-- সিন ৭ -->
-    <div id="scene-7" class="scene">
-        <div id="s7-head" class="follow-header"><span>Follow</span> করুন</div>
-        <div id="s7-bar" class="follow-bar">
-            <div class="fb-info">
-                <div class="red-avatar-box">
-                    <img src="saroar.png" alt="মোঃ সরওয়ার আলম সবুজ">
-                </div>
-                <div>
-                    <div style="font-size: 1.15rem; font-weight: 700;">মোঃ সরওয়ার আলম সবুজ</div>
-                    <div style="font-size: 0.8rem; color: #cbd5e1;">Facebook পেজ</div>
-                </div>
-            </div>
-            <div id="s7-fbtn" class="follow-btn">Follow</div>
-        </div>
-
-        <div id="s7-cbox" class="comment-prompt-box">
-            <div class="comment-label">যেকোনো একটি ভিডিওতে কমেন্ট করুন</div>
-            <div class="comment-input-bar">
-                <span style="display: flex; align-items: center; gap: 8px;">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#cbd5e1" stroke-width="2">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                        <circle cx="12" cy="7" r="4"/>
-                    </svg>
-                    কমেন্ট লিখুন
-                </span>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="#ff7700">
-                    <line x1="22" y1="2" x2="11" y2="13" stroke="#ff7700" stroke-width="2.2"/>
-                    <polygon points="22 2 15 22 11 13 2 9 22 2"/>
-                </svg>
-            </div>
-        </div>
-
-        <div id="s7-cta" class="final-cta">আপনি কী <span>শিখতে চান?</span></div>
-    </div>
-
-    <div id="controls">
-        <button id="replay-btn">↺ Replay (48s)</button>
-        <span id="time-display">00:00 / 00:48</span>
-    </div>
-    <div id="progress-line"></div>
-</div>
-
-<script>
-(function () {
-    const TOTAL_MS = 48000;
-    const STEP_MS = 50;
-    let currentMs = 0;
-    let timerId = null;
-    let fired = new Set();
-
-    let audioCtx = null;
-    function unlockAudio() {
-        try {
-            if (!audioCtx) {
-                const Ctx = window.AudioContext || window.webkitAudioContext;
-                if (Ctx) audioCtx = new Ctx();
-            }
-            if (audioCtx && audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
-        } catch (e) {}
-    }
-
-    function playSound(type) {
-        try {
-            if (!audioCtx || audioCtx.state !== 'running') return;
-            const now = audioCtx.currentTime;
-
-            if (type === 'pop') {
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(360, now);
-                osc.frequency.exponentialRampToValueAtTime(780, now + 0.09);
-                gain.gain.setValueAtTime(0.22, now);
-                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                osc.start(now);
-                osc.stop(now + 0.13);
-            } else if (type === 'card') {
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.type = 'triangle';
-                osc.frequency.setValueAtTime(250, now);
-                osc.frequency.exponentialRampToValueAtTime(540, now + 0.13);
-                gain.gain.setValueAtTime(0.24, now);
-                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.16);
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                osc.start(now);
-                osc.stop(now + 0.17);
-            } else if (type === 'click') {
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(950, now);
-                osc.frequency.exponentialRampToValueAtTime(450, now + 0.055);
-                gain.gain.setValueAtTime(0.22, now);
-                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.065);
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                osc.start(now);
-                osc.stop(now + 0.075);
-            } else if (type === 'chime') {
-                [523.25, 659.25].forEach(function (freq, idx) {
-                    const osc = audioCtx.createOscillator();
-                    const gain = audioCtx.createGain();
-                    osc.type = 'sine';
-                    osc.frequency.setValueAtTime(freq, now + idx * 0.05);
-                    gain.gain.setValueAtTime(0.18, now + idx * 0.05);
-                    gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.05 + 0.3);
-                    osc.connect(gain);
-                    gain.connect(audioCtx.destination);
-                    osc.start(now + idx * 0.05);
-                    osc.stop(now + idx * 0.05 + 0.32);
-                });
-            } else if (type === 'whoosh') {
-                const bufferSize = Math.floor(audioCtx.sampleRate * 0.4);
-                const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-                const data = buffer.getChannelData(0);
-                for (let i = 0; i < bufferSize; i++) {
-                    data[i] = (Math.random() * 2 - 1) * Math.sin((i / bufferSize) * Math.PI);
-                }
-                const noise = audioCtx.createBufferSource();
-                noise.buffer = buffer;
-                const filter = audioCtx.createBiquadFilter();
-                filter.type = 'bandpass';
-                filter.frequency.setValueAtTime(280, now);
-                filter.frequency.exponentialRampToValueAtTime(1450, now + 0.18);
-                filter.frequency.exponentialRampToValueAtTime(320, now + 0.4);
-                filter.Q.value = 1.6;
-                const gain = audioCtx.createGain();
-                gain.gain.setValueAtTime(0.26, now);
-                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
-                noise.connect(filter);
-                filter.connect(gain);
-                gain.connect(audioCtx.destination);
-                noise.start(now);
-            }
-        } catch (e) {}
-    }
-
-    function $(id) { return document.getElementById(id); }
-
-    function show(id, soundType) {
-        const node = $(id);
-        if (node) node.classList.add('show-up');
-        if (soundType) playSound(soundType);
-    }
-
-    function highlight(id, on) {
-        const node = $(id);
-        if (!node) return;
-        if (on) node.classList.add('highlight');
-        else node.classList.remove('highlight');
-    }
-
-    function openScene(num) {
-        document.querySelectorAll('.scene').forEach(function (s) {
-            s.classList.remove('active');
-        });
-        const sc = $('scene-' + num);
-        if (sc) sc.classList.add('active');
-    }
-
-    function wipe() {
-        const w = $('wipe-overlay');
-        if (!w) return;
-        w.classList.remove('wipe-animate');
-        void w.offsetWidth;
-        w.classList.add('wipe-animate');
-        playSound('whoosh');
-    }
-
-    const events = [
-        { t: 0,     fn: function () { openScene(1); show('s1-hello', 'chime'); show('s1-orbit'); } },
-        { t: 800,   fn: function () { show('s1-name', 'card'); } },
-        { t: 1600,  fn: function () { show('s1-b1', 'pop'); } },
-        { t: 2300,  fn: function () { show('s1-b2', 'pop'); } },
-        { t: 3000,  fn: function () { show('s1-b3', 'pop'); } },
-        { t: 4100,  fn: function () { wipe(); } },
-
-        { t: 4600,  fn: function () { openScene(2); show('s2-c1', 'card'); } },
-        { t: 6800,  fn: function () { show('s2-c2', 'card'); } },
-        { t: 9500,  fn: function () { show('s2-arrow'); show('s2-t1', 'pop'); highlight('s2-t1', true); } },
-        { t: 10800, fn: function () { highlight('s2-t1', false); show('s2-t2', 'pop'); highlight('s2-t2', true); } },
-        { t: 12000, fn: function () { highlight('s2-t2', false); show('s2-t3', 'pop'); highlight('s2-t3', true); } },
-        { t: 13500, fn: function () { highlight('s2-t3', false); } },
-
-        { t: 15500, fn: function () { openScene(3); show('s3-gd', 'card'); show('s3-l1'); show('s3-q', 'pop'); } },
-        { t: 16800, fn: function () { show('s3-l2'); show('s3-ve', 'card'); } },
-        { t: 17800, fn: function () { show('s3-top', 'pop'); } },
-
-        { t: 20000, fn: function () { openScene(4); } },
-        { t: 20600, fn: function () { show('s4-sub', 'pop'); } },
-        { t: 21500, fn: function () { show('s4-title', 'chime'); } },
-        { t: 22600, fn: function () { show('s4-phone', 'card'); } },
-        { t: 24200, fn: function () { show('s4-brand', 'pop'); } },
-
-        { t: 26500, fn: function () { openScene(5); show('s5-head', 'chime'); } },
-        { t: 28500, fn: function () { show('s5-gd', 'pop'); } },
-        { t: 29800, fn: function () { show('s5-ve', 'pop'); } },
-        { t: 31200, fn: function () { show('s5-ai', 'card'); } },
-        { t: 33200, fn: function () { show('s5-tech', 'pop'); } },
-        { t: 34500, fn: function () { show('s5-more', 'pop'); } },
-        { t: 36000, fn: function () { wipe(); } },
-
-        { t: 36500, fn: function () { openScene(6); show('s6-phone', 'card'); show('s6-title', 'chime'); } },
-        { t: 38500, fn: function () { show('s6-c1', 'pop'); } },
-        { t: 39800, fn: function () { show('s6-c2', 'pop'); } },
-        { t: 41000, fn: function () { wipe(); } },
-
-        { t: 41600, fn: function () { openScene(7); show('s7-head', 'chime'); show('s7-bar', 'card'); } },
-        { t: 43000, fn: function () {
-            const btn = $('s7-fbtn');
-            if (btn) {
-                btn.classList.add('following');
-                btn.textContent = '✓ Following';
-            }
-            playSound('click');
-        } },
-        { t: 44200, fn: function () { show('s7-cbox', 'pop'); } },
-        { t: 46200, fn: function () { show('s7-cta', 'chime'); } }
-    ];
-
-    function reset() {
-        currentMs = 0;
-        fired.clear();
-        document.querySelectorAll('.show-up').forEach(function (n) {
-            n.classList.remove('show-up');
-        });
-        document.querySelectorAll('.topic-pill.highlight').forEach(function (n) {
-            n.classList.remove('highlight');
-        });
-        const btn = $('s7-fbtn');
-        if (btn) {
-            btn.classList.remove('following');
-            btn.textContent = 'Follow';
-        }
-    }
-
-    function tick() {
-        events.forEach(function (ev, i) {
-            if (currentMs >= ev.t && !fired.has(i)) {
-                fired.add(i);
-                ev.fn();
-            }
-        });
-        if (currentMs >= TOTAL_MS) {
-            clearInterval(timerId);
-            timerId = null;
-            return;
-        }
-        currentMs += STEP_MS;
-    }
-
-    function run() {
-        if (timerId) clearInterval(timerId);
-        reset();
-        tick();
-        timerId = setInterval(tick, STEP_MS);
-    }
-
-    const unlockBtn = $('sound-unlock');
-    if (unlockBtn) {
-        unlockBtn.addEventListener('click', function () {
-            unlockAudio();
-            unlockBtn.style.display = 'none';
-            run();
-            setTimeout(function () { playSound('chime'); }, 120);
-        });
-    }
-
-    document.addEventListener('pointerdown', function () {
-        unlockAudio();
-        if (unlockBtn) unlockBtn.style.display = 'none';
-    }, { once: true });
-
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', run);
-    } else {
-        run();
-    }
-})();
-</script>
-</body>
-</html>
+            <div id="s3-
