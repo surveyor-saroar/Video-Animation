@@ -81,7 +81,45 @@
         }
 
         .hello-text { font-size: clamp(1.3rem, 3.6vh, 1.9rem); font-weight: 600; margin-bottom: 8px; }
-        .name-text { font-size: clamp(1.75rem, 4.8vh, 2.75rem); font-weight: 700; line-height: 1.25; color: #ffaa00; margin-bottom: 20px; }
+
+        .name-row {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .name-circle {
+            width: clamp(54px, 8.2vh, 72px);
+            height: clamp(54px, 8.2vh, 72px);
+            border-radius: 50%;
+            border: 2.5px solid #ffaa00;
+            box-shadow: 0 0 18px rgba(255, 145, 0, 0.45);
+            background: linear-gradient(135deg, #ff6a00, #d93800);
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            position: relative;
+            font-weight: 700;
+            color: #ffffff;
+        }
+        .name-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            display: block;
+        }
+        .name-text {
+            font-size: clamp(1.6rem, 4.4vh, 2.5rem);
+            font-weight: 700;
+            line-height: 1.25;
+            color: #ffaa00;
+        }
+
         .badges-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
         .prof-badge {
             display: inline-flex;
@@ -133,6 +171,55 @@
             justify-content: space-between;
             gap: 10px;
             font-weight: 600;
+        }
+
+        .profile-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+        }
+        .avatar-circle {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: 2.5px solid #ff9d42;
+            background: linear-gradient(135deg, #ff6a00, #d93800);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            position: relative;
+            font-weight: 700;
+            color: #ffffff;
+        }
+        .avatar-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            display: block;
+        }
+        .avatar-fallback {
+            display: none;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+        }
+        .broken .avatar-fallback {
+            display: inline-block;
+        }
+        .profile-text {
+            text-align: left;
+        }
+        .profile-name {
+            font-weight: 700;
+            font-size: clamp(1rem, 2.4vh, 1.25rem);
+            color: #ffffff;
+        }
+        .profile-sub {
+            font-size: 0.84rem;
+            color: #cbd5e1;
         }
 
         .pill-box {
@@ -195,7 +282,13 @@
     <!-- সিন ১ -->
     <div id="scene-1" class="scene active">
         <div id="e1" class="hello-text anim-item show">Hello, আমি</div>
-        <div id="e2" class="name-text anim-item">মোঃ সরওয়ার আলম সবুজ</div>
+        <div id="e2" class="name-row anim-item">
+            <div class="name-circle">
+                <img class="saroar-photo" src="saroar01.png" alt="মোঃ সরওয়ার আলম সবুজ">
+                <span class="avatar-fallback">SA</span>
+            </div>
+            <div class="name-text">মোঃ সরওয়ার আলম সবুজ</div>
+        </div>
         <div class="badges-container">
             <div id="e3" class="prof-badge anim-item">
                 <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -334,15 +427,15 @@
             <span>একটি দারুণ পেজ</span>
         </div>
         <div id="e16" class="card-box anim-item">
-            <div class="card-main">
-                <span class="pill-left">
-                    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#ff9d42" stroke-width="2.2">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                        <circle cx="12" cy="7" r="4"/>
-                    </svg>
-                    <span>মোঃ সরওয়ার আলম সবুজ</span>
-                </span>
-                <span class="mini-tag">CREATOR</span>
+            <div class="profile-row">
+                <div class="avatar-circle">
+                    <img class="saroar-photo" src="saroar01.png" alt="মোঃ সরওয়ার আলম সবুজ">
+                    <span class="avatar-fallback">SA</span>
+                </div>
+                <div class="profile-text">
+                    <div class="profile-name">মোঃ সরওয়ার আলম সবুজ</div>
+                    <div class="profile-sub">Digital Creator • Land Surveyor</div>
+                </div>
             </div>
         </div>
         <div id="e17" class="card-box anim-item">
@@ -448,14 +541,15 @@
             <span>Follow করুন</span>
         </div>
         <div id="e27" class="card-box anim-item">
-            <div class="card-main">
-                <span class="pill-left">
-                    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#ff9d42" stroke-width="2.2">
-                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
-                    </svg>
-                    <span>মোঃ সরওয়ার আলম সবুজ — Facebook পেজ</span>
-                </span>
-                <span class="mini-tag">PAGE</span>
+            <div class="profile-row">
+                <div class="avatar-circle">
+                    <img class="saroar-photo" src="saroar01.png" alt="মোঃ সরওয়ার আলম সবুজ">
+                    <span class="avatar-fallback">SA</span>
+                </div>
+                <div class="profile-text">
+                    <div class="profile-name">মোঃ সরওয়ার আলম সবুজ</div>
+                    <div class="profile-sub">Facebook পেজ</div>
+                </div>
             </div>
         </div>
         <div id="e28" class="follow-btn anim-item">
@@ -484,144 +578,25 @@
 
     function byId(id) { return document.getElementById(id); }
 
+    function bindPhotoFallbacks() {
+        var candidates = ['saroar01.png', 'saroar01.jpg', 'saroar01.jpeg', 'saroar01.webp', 'saroar.png'];
+        var imgs = document.querySelectorAll('.saroar-photo');
+        for (var i = 0; i < imgs.length; i++) {
+            (function (img) {
+                var idx = 0;
+                img.onerror = function () {
+                    idx++;
+                    if (idx < candidates.length) {
+                        img.src = candidates[idx];
+                    } else {
+                        img.style.display = 'none';
+                        if (img.parentNode) img.parentNode.className += ' broken';
+                    }
+                };
+            })(imgs[i]);
+        }
+    }
+
     function initSound() {
         try {
             var AC = window.AudioContext || window.webkitAudioContext;
-            if (!AC) return;
-            if (!actx) actx = new AC();
-            if (actx.state === 'suspended') actx.resume();
-        } catch (err) {}
-    }
-
-    function tone(freq, dur) {
-        try {
-            if (!actx || actx.state !== 'running') return;
-            var t = actx.currentTime;
-            var osc = actx.createOscillator();
-            var gain = actx.createGain();
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(freq, t);
-            gain.gain.setValueAtTime(0.18, t);
-            gain.gain.exponentialRampToValueAtTime(0.001, t + dur);
-            osc.connect(gain);
-            gain.connect(actx.destination);
-            osc.start(t);
-            osc.stop(t + dur);
-        } catch (err) {}
-    }
-
-    function showScene(n) {
-        var list = document.querySelectorAll('.scene');
-        for (var i = 0; i < list.length; i++) {
-            list[i].className = 'scene';
-        }
-        var sc = byId('scene-' + n);
-        if (sc) sc.className = 'scene active';
-    }
-
-    function showEl(id, hz) {
-        var el = byId(id);
-        if (el && el.className.indexOf('show') === -1) {
-            el.className = el.className + ' show';
-        }
-        if (hz) tone(hz, 0.14);
-    }
-
-    function doWipe() {
-        var w = byId('wipe-overlay');
-        if (!w) return;
-        w.className = '';
-        void w.offsetWidth;
-        w.className = 'wipe-animate';
-        tone(320, 0.22);
-    }
-
-    var timeline = [
-        [0,     function () { showScene(1); showEl('e1'); showEl('e6'); }],
-        [800,   function () { showEl('e2', 520); }],
-        [1600,  function () { showEl('e3', 620); }],
-        [2300,  function () { showEl('e4', 680); }],
-        [3000,  function () { showEl('e5', 740); }],
-        [4100,  function () { doWipe(); }],
-
-        [4600,  function () { showScene(2); showEl('e7', 500); }],
-        [6800,  function () { showEl('e8', 560); }],
-        [9500,  function () { showEl('e9', 640); }],
-        [10800, function () { showEl('e10', 700); }],
-        [12000, function () { showEl('e11', 760); }],
-        [15000, function () { doWipe(); }],
-
-        [15500, function () { showScene(3); showEl('e12', 580); }],
-        [16800, function () { showEl('e13', 640); }],
-        [17800, function () { showEl('e14', 700); }],
-        [19500, function () { doWipe(); }],
-
-        [20000, function () { showScene(4); showEl('e15', 540); }],
-        [21500, function () { showEl('e16', 620); }],
-        [23000, function () { showEl('e17', 680); }],
-        [26000, function () { doWipe(); }],
-
-        [26500, function () { showScene(5); showEl('e18', 560); }],
-        [28500, function () { showEl('e19', 620); }],
-        [29800, function () { showEl('e20', 660); }],
-        [31200, function () { showEl('e21', 720); }],
-        [33200, function () { showEl('e22', 780); }],
-        [36000, function () { doWipe(); }],
-
-        [36500, function () { showScene(6); showEl('e23', 580); }],
-        [38500, function () { showEl('e24', 660); }],
-        [39800, function () { showEl('e25', 740); }],
-        [41000, function () { doWipe(); }],
-
-        [41600, function () { showScene(7); showEl('e26', 580); }],
-        [42500, function () { showEl('e27', 640); }],
-        [43200, function () {
-            showEl('e28', 820);
-            var b = byId('e28');
-            if (b) { b.className = 'follow-btn show done'; b.innerHTML = '✓ Following'; }
-        }],
-        [45500, function () { showEl('e29', 880); }]
-    ];
-
-    function resetAll() {
-        nowMs = 0;
-        ran = {};
-        var items = document.querySelectorAll('.anim-item');
-        for (var i = 0; i < items.length; i++) {
-            items[i].className = items[i].className.replace(/\s*show\b/g, '');
-        }
-        var btn = byId('e28');
-        if (btn) {
-            btn.className = 'follow-btn anim-item';
-            btn.innerHTML = '<svg class="ic-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg><span>Follow</span>';
-        }
-        showScene(1);
-        showEl('e1');
-        showEl('e6');
-    }
-
-    function loopTick() {
-        for (var i = 0; i < timeline.length; i++) {
-            if (!ran[i] && nowMs >= timeline[i][0]) {
-                ran[i] = true;
-                timeline[i][1]();
-            }
-        }
-        nowMs += STEP;
-        if (nowMs > TOTAL) {
-            resetAll();
-        }
-    }
-
-    document.addEventListener('pointerdown', function () {
-        initSound();
-        tone(600, 0.08);
-    });
-
-    initSound();
-    showScene(1);
-    setInterval(loopTick, STEP);
-})();
-</script>
-</body>
-</html>
