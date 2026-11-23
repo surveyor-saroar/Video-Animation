@@ -571,10 +571,13 @@
 <script>
 (function () {
     var TOTAL = 48000;
-    var STEP = 100;
-    var nowMs = 0;
+    var cycleStart = (window.performance && performance.now) ? performance.now() : Date.now();
     var ran = {};
     var actx = null;
+
+    function nowClock() {
+        return (window.performance && performance.now) ? performance.now() : Date.now();
+    }
 
     function byId(id) { return document.getElementById(id); }
 
@@ -590,7 +593,9 @@
                         img.src = candidates[idx];
                     } else {
                         img.style.display = 'none';
-                        if (img.parentNode) img.parentNode.className += ' broken';
+                        if (img.parentNode && img.parentNode.className.indexOf('broken') === -1) {
+                            img.parentNode.className += ' broken';
+                        }
                     }
                 };
             })(imgs[i]);
@@ -600,3 +605,86 @@
     function initSound() {
         try {
             var AC = window.AudioContext || window.webkitAudioContext;
+            if (!AC) return;
+            if (!actx) actx = new AC();
+            if (actx.state === 'suspended') actx.resume();
+        } catch (err) {}
+    }
+
+    function tone(freq, dur) {
+        try {
+            if (!actx || actx.state !== 'running') return;
+            var t = actx.currentTime;
+            var osc = actx.createOscillator();
+            var gain = actx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, t);
+            gain.gain.setValueAtTime(0.18, t);
+            gain.gain.exponentialRampToValueAtTime(0.001, t + dur);
+            osc.connect(gain);
+            gain.connect(actx.destination);
+            osc.start(t);
+            osc.stop(t + dur);
+        } catch (err) {}
+    }
+
+    function showScene(n) {
+        var list = document.querySelectorAll('.scene');
+        for (var i = 0; i < list.length; i++) {
+            list[i].className = 'scene';
+        }
+        var sc = byId('scene-' + n);
+        if (sc) sc.className = 'scene active';
+    }
+
+    function showEl(id, hz) {
+        var el = byId(id);
+        if (el && el.className.indexOf('show') === -1) {
+            el.className = el.className + ' show';
+        }
+        if (hz) tone(hz, 0.14);
+    }
+
+    function doWipe() {
+        var w = byId('wipe-overlay');
+        if (!w) return;
+        w.className = '';
+        void w.offsetWidth;
+        w.className = 'wipe-animate';
+        tone(320, 0.22);
+    }
+
+    var timeline = [
+        [0,     function () { showScene(1); showEl('e1'); showEl('e6'); }],
+        [800,   function () { showEl('e2', 520); }],
+        [1600,  function () { showEl('e3', 620); }],
+        [2300,  function () { showEl('e4', 680); }],
+        [3000,  function () { showEl('e5', 740); }],
+        [4100,  function () { doWipe(); }],
+
+        [4600,  function () { showScene(2); showEl('e7', 500); }],
+        [6800,  function () { showEl('e8', 560); }],
+        [9500,  function () { showEl('e9', 640); }],
+        [10800, function () { showEl('e10', 700); }],
+        [12000, function () { showEl('e11', 760); }],
+        [15000, function () { doWipe(); }],
+
+        [15500, function () { showScene(3); showEl('e12', 580); }],
+        [16800, function () { showEl('e13', 640); }],
+        [17800, function () { showEl('e14', 700); }],
+        [19500, function () { doWipe(); }],
+
+        [20000, function () { showScene(4); showEl('e15', 540); }],
+        [21500, function () { showEl('e16', 620); }],
+        [23000, function () { showEl('e17', 680); }],
+        [26000, function () { doWipe(); }],
+
+        [26500, function () { showScene(5); showEl('e18', 560); }],
+        [28500, function () { showEl('e19', 620); }],
+        [29800, function () { showEl('e20', 660); }],
+        [31200, function () { showEl('e21', 720); }],
+        [33200, function () { showEl('e22', 780); }],
+        [36000, function () { doWipe(); }],
+
+        [36500, function () { showScene(6); showEl('e23', 580); }],
+        [385
