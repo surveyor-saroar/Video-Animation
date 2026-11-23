@@ -6,18 +6,12 @@
     <title>মোঃ সরওয়ার আলম সবুজ - রিলস মোশন গ্রাফিক্স</title>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             background:
                 radial-gradient(circle at 50% 48%, rgba(255, 118, 0, 0.24) 0%, rgba(245, 158, 11, 0.12) 34%, transparent 62%),
                 radial-gradient(circle at 22% 24%, rgba(255, 115, 0, 0.25) 0%, transparent 48%),
                 radial-gradient(circle at 78% 76%, rgba(14, 165, 233, 0.24) 0%, transparent 50%),
-                radial-gradient(circle at 50% 72%, rgba(2, 132, 199, 0.15) 0%, transparent 55%),
                 linear-gradient(135deg, #070b14 0%, #0d1528 52%, #060911 100%);
             color: #ffffff;
             font-family: 'Hind Siliguri', 'Poppins', sans-serif;
@@ -30,55 +24,12 @@
             user-select: none;
             position: relative;
         }
-
-        .wide-glow {
-            position: fixed;
-            width: 46vw;
-            height: 46vw;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 0;
-            animation: floatWideGlow 8s infinite alternate ease-in-out;
-        }
-        .wide-glow-1 {
-            top: -14vw;
-            left: -8vw;
-            background: radial-gradient(circle, rgba(255, 106, 0, 0.22) 0%, transparent 72%);
-        }
-        .wide-glow-2 {
-            bottom: -16vw;
-            right: -8vw;
-            background: radial-gradient(circle, rgba(14, 165, 233, 0.22) 0%, transparent 72%);
-            animation-delay: -4s;
-        }
-        .wide-glow-3 {
-            top: 22%;
-            left: 26%;
-            width: 48vw;
-            height: 48vw;
-            background: radial-gradient(circle, rgba(255, 125, 0, 0.20) 0%, rgba(255, 185, 0, 0.08) 45%, transparent 74%);
-            animation-delay: -2s;
-        }
-
-        @keyframes floatWideGlow {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(4%, 4%) scale(1.14); }
-        }
-
         #reel-area {
             position: relative;
             height: 100vh;
             width: min(100vw, 56.25vh);
-            background: transparent;
-            border: none;
-            overflow: visible;
             z-index: 2;
         }
-
-        .clear-icon { width: 20px; height: 20px; flex-shrink: 0; }
-        .sm-icon { width: 17px; height: 17px; }
-        .lg-icon { width: 32px; height: 32px; }
-
         .scene {
             position: absolute;
             inset: 0;
@@ -87,14 +38,9 @@
             justify-content: center;
             align-items: center;
             padding: 9% 5%;
-            z-index: 5;
             text-align: center;
         }
-
-        .scene.active {
-            display: flex;
-            z-index: 10;
-        }
+        .scene.active { display: flex; z-index: 10; }
 
         #wipe-overlay {
             position: fixed;
@@ -109,12 +55,10 @@
             pointer-events: none;
             opacity: 0;
         }
-
         .wipe-animate {
-            opacity: 1 !important;
+            opacity: 1;
             animation: screenWipe 0.8s cubic-bezier(0.77, 0, 0.175, 1) forwards;
         }
-
         @keyframes screenWipe {
             0% { left: -140%; opacity: 1; }
             45% { left: -10%; opacity: 1; }
@@ -122,88 +66,231 @@
             100% { left: 130%; opacity: 0; }
         }
 
-        /* সিন ১ */
-        #scene-1.active { flex-direction: column; justify-content: center; gap: 34px; }
-        .intro-left { width: 100%; z-index: 2; }
-        .hello-text { font-size: clamp(1.3rem, 3.6vh, 1.9rem); font-weight: 600; margin-bottom: 8px; white-space: nowrap; opacity: 0; transform: translateY(20px); }
-        .name-text { font-size: clamp(1.75rem, 4.8vh, 2.75rem); font-weight: 700; line-height: 1.25; background: linear-gradient(90deg, #ff6a00 0%, #ffaa00 60%, #ffd000 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; white-space: nowrap; opacity: 0; transform: translateY(25px); }
+        .anim-item {
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            transition: opacity 0.55s ease, transform 0.55s ease;
+        }
+        .anim-item.show {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .hello-text { font-size: clamp(1.3rem, 3.6vh, 1.9rem); font-weight: 600; margin-bottom: 8px; }
+        .name-text { font-size: clamp(1.75rem, 4.8vh, 2.75rem); font-weight: 700; line-height: 1.25; color: #ffaa00; margin-bottom: 20px; }
         .badges-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
-        .prof-badge { display: inline-flex; align-items: center; gap: 7px; padding: 8px 14px; background: rgba(255, 115, 0, 0.15); border: 1px solid rgba(255, 145, 0, 0.48); border-radius: 50px; font-size: clamp(0.85rem, 2vh, 1.08rem); color: #f8fafc; white-space: nowrap; opacity: 0; transform: scale(0.85) translateY(15px); }
-        .prof-badge .clear-icon { color: #ff9800; }
+        .prof-badge { padding: 8px 14px; background: rgba(255, 115, 0, 0.16); border: 1px solid rgba(255, 145, 0, 0.5); border-radius: 50px; font-size: clamp(0.88rem, 2vh, 1.08rem); }
+        .orbit-box { width: 120px; height: 120px; border-radius: 50%; border: 2px solid rgba(255, 170, 0, 0.6); display: flex; align-items: center; justify-content: center; margin-top: 24px; background: rgba(255, 106, 0, 0.12); font-weight: 700; }
 
-        .orbit-wrapper { position: relative; width: 170px; height: 170px; display: flex; justify-content: center; align-items: center; margin-top: 6px; opacity: 0; transform: scale(0.8); }
-        .orbit-glow { position: absolute; width: 78%; height: 78%; background: radial-gradient(circle, rgba(255, 110, 0, 0.35) 0%, transparent 70%); border-radius: 50%; }
-        .orbit-ring { position: absolute; width: 100%; height: 42%; border: 1.5px solid rgba(255, 255, 255, 0.35); border-radius: 50%; transform: rotate(-28deg); }
-        .orbit-ring-2 { position: absolute; width: 90%; height: 36%; border: 1px solid rgba(255, 165, 0, 0.35); border-radius: 50%; transform: rotate(35deg); }
-        .orbit-dot { position: absolute; top: -5px; right: 20%; width: 10px; height: 10px; background: #ffaa00; border-radius: 50%; }
-        .video-box-icon { width: 68px; height: 50px; border: 2.5px solid #ffffff; border-radius: 14px; display: flex; justify-content: center; align-items: center; background: rgba(15, 23, 42, 0.9); z-index: 2; padding: 11px; }
-        .video-box-icon svg { width: 100%; height: 100%; }
-        .sparkle-star { position: absolute; top: 8%; right: 8%; width: 26px; height: 26px; }
+        .card-box { width: 100%; background: rgba(23, 35, 56, 0.85); border: 1px solid rgba(255, 145, 50, 0.36); border-radius: 16px; padding: 15px 18px; margin-bottom: 12px; text-align: left; }
+        .pill-box { width: 100%; background: rgba(23, 35, 56, 0.85); border: 1px solid rgba(255, 145, 50, 0.36); border-radius: 14px; padding: 13px 16px; margin-bottom: 10px; font-weight: 600; color: #ffb84d; }
+        .title-lg { font-size: clamp(1.6rem, 4.2vh, 2.5rem); font-weight: 700; margin-bottom: 16px; color: #ff9500; }
+        .follow-btn { margin-top: 12px; padding: 10px 22px; border-radius: 50px; background: #ff6200; color: #fff; font-weight: 700; display: inline-block; }
+        .follow-btn.done { background: #16a34a; }
+    </style>
+</head>
+<body>
+<div id="reel-area">
+    <div id="wipe-overlay"></div>
 
-        /* সিন ২ */
-        #scene-2.active { flex-direction: column; justify-content: center; gap: 20px; }
-        .q-left { display: flex; flex-direction: column; gap: 14px; width: 100%; }
-        .glass-card { background: rgba(23, 35, 56, 0.82); border: 1px solid rgba(255, 145, 50, 0.34); border-radius: 16px; padding: 15px 18px; text-align: left; opacity: 0; transform: translateY(25px); }
-        .card-tag { display: inline-flex; align-items: center; gap: 7px; font-size: 0.92rem; color: #ff9d42; margin-bottom: 5px; }
-        .card-q-text { font-size: clamp(1.05rem, 2.8vh, 1.45rem); font-weight: 600; white-space: nowrap; }
-        .q-arrow { width: 34px; height: 34px; transform: rotate(90deg) scale(0.5); display: flex; align-items: center; justify-content: center; margin: 2px 0; opacity: 0; }
-        .q-arrow svg { width: 100%; height: 100%; }
-        .q-right { display: flex; flex-direction: column; gap: 13px; width: 100%; }
-        .topic-pill { display: flex; align-items: center; gap: 12px; padding: 14px 18px; background: rgba(23, 35, 56, 0.82); border: 1.5px solid rgba(255, 115, 0, 0.38); border-radius: 14px; font-size: clamp(1.08rem, 2.8vh, 1.45rem); font-weight: 600; color: #ffb84d; white-space: nowrap; opacity: 0; transform: translateX(30px); }
-        .topic-pill.highlight { border-color: #ff6a00; background: rgba(255, 106, 0, 0.18); }
+    <div id="scene-1" class="scene active">
+        <div id="e1" class="hello-text anim-item show">Hello, আমি</div>
+        <div id="e2" class="name-text anim-item">মোঃ সরওয়ার আলম সবুজ</div>
+        <div class="badges-container">
+            <div id="e3" class="prof-badge anim-item">Graphics Designer</div>
+            <div id="e4" class="prof-badge anim-item">Video Editor</div>
+            <div id="e5" class="prof-badge anim-item">Land Surveyor</div>
+        </div>
+        <div id="e6" class="orbit-box anim-item show">▶ REELS</div>
+    </div>
 
-        /* সিন ৩ */
-        #scene-3.active { gap: 24px; }
-        .course-top-pill { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: rgba(23, 35, 56, 0.88); border: 1px solid rgba(255, 145, 50, 0.36); border-radius: 14px; font-size: clamp(1rem, 2.5vh, 1.3rem); font-weight: 600; white-space: nowrap; opacity: 0; transform: translateY(-20px); }
-        .course-flow { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; gap: 12px; }
-        .skill-box { background: rgba(23, 35, 56, 0.82); border: 1px solid rgba(255, 140, 50, 0.36); border-radius: 18px; padding: 16px 20px; text-align: center; width: 92%; opacity: 0; }
-        .skill-box h3 { font-size: clamp(1.05rem, 2.6vh, 1.35rem); margin-bottom: 10px; white-space: nowrap; }
-        .app-icons { display: flex; justify-content: center; gap: 12px; }
-        .adobe-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; justify-content: center; align-items: center; font-weight: 700; font-size: 1.15rem; }
-        .ps-icon { background: #001e36; color: #31a8ff; border: 2px solid #31a8ff; }
-        .ai-icon { background: #330000; color: #ff9a00; border: 2px solid #ff9a00; }
-        .ve-icon { background: #2b1405; color: #ff8800; border: 2px solid #ff8800; width: 46px; height: 46px; padding: 8px; }
-        .ve-icon svg { width: 100%; height: 100%; }
-        .connect-line { width: 2px; height: 20px; background: linear-gradient(180deg, #ff7b00, #ffaa00); opacity: 0; }
-        .question-circle { width: 74px; height: 74px; border-radius: 50%; background: rgba(255, 106, 0, 0.22); border: 2px solid rgba(255, 120, 0, 0.65); display: flex; justify-content: center; align-items: center; font-size: 2.3rem; font-weight: 700; color: #ff9800; opacity: 0; transform: scale(0.5); }
+    <div id="scene-2" class="scene">
+        <div id="e7" class="card-box anim-item">কমেন্ট: কীভাবে এই ভিডিও তৈরি করেন?</div>
+        <div id="e8" class="card-box anim-item">ইনবক্স: কীভাবে এগুলো তৈরি করেন?</div>
+        <div id="e9" class="pill-box anim-item">✦ AI</div>
+        <div id="e10" class="pill-box anim-item">❖ 3D motion</div>
+        <div id="e11" class="pill-box anim-item">▶ Creative video</div>
+    </div>
 
-        /* সিন ৪ */
-        #scene-4.active { flex-direction: column; justify-content: center; gap: 26px; }
-        .s4-left { width: 100%; }
-        .s4-sub { font-size: clamp(1.12rem, 2.8vh, 1.55rem); color: #e2e8f0; margin-bottom: 6px; white-space: nowrap; opacity: 0; }
-        .s4-title { font-size: clamp(1.75rem, 4.5vh, 2.65rem); font-weight: 700; line-height: 1.22; margin-bottom: 18px; white-space: nowrap; opacity: 0; }
-        .s4-title span { color: #ff7700; }
-        .page-brand-row { display: flex; align-items: center; justify-content: center; gap: 12px; opacity: 0; transform: translateY(20px); }
-        .red-avatar-box { width: 52px; height: 52px; border-radius: 14px; background: #d91e18; border: 2px solid #ff5c5c; overflow: hidden; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-        .red-avatar-box img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
-        .aix-brand-name { font-size: clamp(1.15rem, 3vh, 1.55rem); font-weight: 700; text-align: left; white-space: nowrap; }
-        .phone-mockup { width: 245px; background: #ffffff; color: #111111; border-radius: 26px; border: 6px solid #2b2b2b; overflow: hidden; text-align: left; opacity: 0; transform: translateY(40px); }
-        .phone-cover { height: 74px; background: linear-gradient(135deg, #ff6a00, #1e3a8a); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.75rem; font-weight: 600; padding: 8px; text-align: center; }
-        .phone-body { padding: 12px 14px 16px; }
-        .phone-avatar { width: 50px; height: 50px; border-radius: 50%; background: #d91e18; overflow: hidden; border: 3px solid #fff; margin-top: -28px; margin-bottom: 6px; }
-        .phone-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
-        .phone-btns { display: flex; gap: 8px; margin: 10px 0; }
-        .p-btn-blue { flex: 1; background: #1877f2; color: #fff; text-align: center; padding: 6px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; }
-        .p-btn-gray { flex: 1; background: #e4e6eb; color: #050505; text-align: center; padding: 6px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; }
+    <div id="scene-3" class="scene">
+        <div id="e12" class="title-lg anim-item">কোনো course করাই কিনা?</div>
+        <div id="e13" class="card-box anim-item">Graphics Design — Ps, Ai</div>
+        <div id="e14" class="card-box anim-item">Video Editing — Motion &amp; Cut</div>
+    </div>
 
-        /* সিন ৫ */
-        #scene-5.active { align-items: center; justify-content: center; gap: 18px; }
-        .free-heading { font-size: clamp(1.65rem, 4.2vh, 2.45rem); font-weight: 700; margin-bottom: 4px; white-space: nowrap; opacity: 0; }
-        .free-heading span { color: #ff7700; border: 1.5px solid rgba(255, 119, 0, 0.55); background: rgba(255, 119, 0, 0.14); padding: 2px 14px; border-radius: 50px; }
-        .bento-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 13px; width: 100%; }
-        .bento-card { background: rgba(23, 35, 56, 0.82); border: 1.5px solid rgba(255, 120, 0, 0.36); border-radius: 16px; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; gap: 10px; opacity: 0; transform: scale(0.92); }
-        .b-gd { grid-column: span 2; }
-        .b-ve { grid-column: span 2; }
-        .b-ai { grid-column: span 2; flex-direction: column; align-items: flex-start; gap: 10px; }
-        .b-tech { grid-column: span 1; flex-direction: column; justify-content: center; text-align: center; gap: 7px; padding: 15px 10px; }
-        .b-more { grid-column: span 1; flex-direction: column; justify-content: center; text-align: center; gap: 7px; padding: 15px 10px; }
-        .bento-title { font-size: clamp(1rem, 2.5vh, 1.3rem); font-weight: 600; white-space: nowrap; }
-        .ai-pills { display: flex; gap: 8px; flex-wrap: wrap; }
-        .ai-chip { background: #ffffff; color: #111111; padding: 5px 10px; border-radius: 8px; font-weight: 700; font-size: 0.84rem; display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; }
+    <div id="scene-4" class="scene">
+        <div id="e15" class="title-lg anim-item">একটি দারুণ পেজ</div>
+        <div id="e16" class="card-box anim-item">মোঃ সরওয়ার আলম সবুজ — Digital Creator • Land Surveyor</div>
+        <div id="e17" class="card-box anim-item">Cumilla, Bangladesh</div>
+    </div>
 
-        /* সিন ৬ */
-        #scene-6.active { flex-direction: column; justify-content: center; gap: 28px; }
-        .laptop-outline { width: 210px; display: flex; flex-direction: column; align-items: center; opacity: 0; transform: translateY(30px); }
-        .laptop-screen { width: 88%; height: 135px; border: 3px solid #ffffff; border-radius: 14px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 12px; background: rgba(23, 35, 56, 0.72); }
-        .laptop-base { width: 108%; height: 10px; border: 2.5px solid #ffffff; border-radius: 0 0 12px 12px; margin-top: 2px; }
-        .s6-right { width: 100%; display: flex; flex-direction: column; align-items: center;
+    <div id="scene-5" class="scene">
+        <div id="e18" class="title-lg anim-item">সম্পূর্ণ বিনামূল্যে</div>
+        <div id="e19" class="pill-box anim-item">Graphics Design (Ps, Ai)</div>
+        <div id="e20" class="pill-box anim-item">Video Editing</div>
+        <div id="e21" class="pill-box anim-item">বিভিন্ন AI tools — ChatGPT, Gemini, Claude</div>
+        <div id="e22" class="pill-box anim-item">নতুন নতুন technology ও আরও অনেক কিছু</div>
+    </div>
+
+    <div id="scene-6" class="scene">
+        <div id="e23" class="title-lg anim-item">ল্যাপটপ দিয়ে</div>
+        <div id="e24" class="pill-box anim-item">✓ নতুন নতুন skill শিখুন</div>
+        <div id="e25" class="pill-box anim-item">✓ নিজেকে update রাখুন</div>
+    </div>
+
+    <div id="scene-7" class="scene">
+        <div id="e26" class="title-lg anim-item">Follow করুন</div>
+        <div id="e27" class="card-box anim-item">মোঃ সরওয়ার আলম সবুজ — Facebook পেজ</div>
+        <div id="e28" class="follow-btn anim-item">Follow</div>
+        <div id="e29" class="title-lg anim-item" style="margin-top:18px;">আপনি কী শিখতে চান?</div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var TOTAL = 48000;
+    var STEP = 100;
+    var nowMs = 0;
+    var ran = {};
+    var actx = null;
+
+    function byId(id) { return document.getElementById(id); }
+
+    function initSound() {
+        try {
+            var AC = window.AudioContext || window.webkitAudioContext;
+            if (!AC) return;
+            if (!actx) actx = new AC();
+            if (actx.state === 'suspended') actx.resume();
+        } catch (err) {}
+    }
+
+    function tone(freq, dur) {
+        try {
+            if (!actx || actx.state !== 'running') return;
+            var t = actx.currentTime;
+            var osc = actx.createOscillator();
+            var gain = actx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, t);
+            gain.gain.setValueAtTime(0.18, t);
+            gain.gain.exponentialRampToValueAtTime(0.001, t + dur);
+            osc.connect(gain);
+            gain.connect(actx.destination);
+            osc.start(t);
+            osc.stop(t + dur);
+        } catch (err) {}
+    }
+
+    function showScene(n) {
+        var list = document.querySelectorAll('.scene');
+        for (var i = 0; i < list.length; i++) {
+            list[i].className = 'scene';
+        }
+        var sc = byId('scene-' + n);
+        if (sc) sc.className = 'scene active';
+    }
+
+    function showEl(id, hz) {
+        var el = byId(id);
+        if (el && el.className.indexOf('show') === -1) {
+            el.className = el.className + ' show';
+        }
+        if (hz) tone(hz, 0.14);
+    }
+
+    function doWipe() {
+        var w = byId('wipe-overlay');
+        if (!w) return;
+        w.className = '';
+        void w.offsetWidth;
+        w.className = 'wipe-animate';
+        tone(320, 0.22);
+    }
+
+    var timeline = [
+        [0,     function () { showScene(1); showEl('e1'); showEl('e6'); }],
+        [800,   function () { showEl('e2', 520); }],
+        [1600,  function () { showEl('e3', 620); }],
+        [2300,  function () { showEl('e4', 680); }],
+        [3000,  function () { showEl('e5', 740); }],
+        [4100,  function () { doWipe(); }],
+
+        [4600,  function () { showScene(2); showEl('e7', 500); }],
+        [6800,  function () { showEl('e8', 560); }],
+        [9500,  function () { showEl('e9', 640); }],
+        [10800, function () { showEl('e10', 700); }],
+        [12000, function () { showEl('e11', 760); }],
+        [15000, function () { doWipe(); }],
+
+        [15500, function () { showScene(3); showEl('e12', 580); }],
+        [16800, function () { showEl('e13', 640); }],
+        [17800, function () { showEl('e14', 700); }],
+        [19500, function () { doWipe(); }],
+
+        [20000, function () { showScene(4); showEl('e15', 540); }],
+        [21500, function () { showEl('e16', 620); }],
+        [23000, function () { showEl('e17', 680); }],
+        [26000, function () { doWipe(); }],
+
+        [26500, function () { showScene(5); showEl('e18', 560); }],
+        [28500, function () { showEl('e19', 620); }],
+        [29800, function () { showEl('e20', 660); }],
+        [31200, function () { showEl('e21', 720); }],
+        [33200, function () { showEl('e22', 780); }],
+        [36000, function () { doWipe(); }],
+
+        [36500, function () { showScene(6); showEl('e23', 580); }],
+        [38500, function () { showEl('e24', 660); }],
+        [39800, function () { showEl('e25', 740); }],
+        [41000, function () { doWipe(); }],
+
+        [41600, function () { showScene(7); showEl('e26', 580); }],
+        [42500, function () { showEl('e27', 640); }],
+        [43200, function () {
+            showEl('e28', 820);
+            var b = byId('e28');
+            if (b) { b.className = 'follow-btn show done'; b.innerHTML = '✓ Following'; }
+        }],
+        [45500, function () { showEl('e29', 880); }]
+    ];
+
+    function resetAll() {
+        nowMs = 0;
+        ran = {};
+        var items = document.querySelectorAll('.anim-item');
+        for (var i = 0; i < items.length; i++) {
+            items[i].className = items[i].className.replace(/\s*show\b/g, '');
+        }
+        var btn = byId('e28');
+        if (btn) { btn.className = 'follow-btn anim-item'; btn.innerHTML = 'Follow'; }
+        showScene(1);
+        showEl('e1');
+        showEl('e6');
+    }
+
+    function loopTick() {
+        for (var i = 0; i < timeline.length; i++) {
+            if (!ran[i] && nowMs >= timeline[i][0]) {
+                ran[i] = true;
+                timeline[i][1]();
+            }
+        }
+        nowMs += STEP;
+        if (nowMs > TOTAL) {
+            resetAll();
+        }
+    }
+
+    document.addEventListener('pointerdown', function () {
+        initSound();
+        tone(600, 0.08);
+    });
+
+    initSound();
+    showScene(1);
+    setInterval(loopTick, STEP);
+})();
+</script>
+</body>
+</html>
