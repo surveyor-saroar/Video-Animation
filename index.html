@@ -104,9 +104,13 @@
         }
 
         .anim-item {
+            opacity: 0;
+            transform: translateY(22px) scale(0.95);
+            transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1), transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .anim-item.show {
             opacity: 1;
             transform: translateY(0) scale(1);
-            transition: opacity 0.35s ease, transform 0.35s ease;
         }
 
         .hello-text {
@@ -604,10 +608,57 @@
 (function () {
     var currentScene = 1;
     var totalScenes = 7;
-    var sceneDurations = [4500, 10500, 4500, 6000, 9500, 4500, 7000];
-    var sceneNotes = [523.25, 587.33, 659.25, 698.46, 783.99, 880.00, 987.77];
-    var timerId = null;
+    var sceneTimer = null;
+    var stepTimers = [];
     var actx = null;
+
+    var sceneSequences = {
+        1: [
+            { id: 'e1', delay: 0,    freq: 523.25 },
+            { id: 'e2', delay: 750,  freq: 587.33 },
+            { id: 'e3', delay: 1500, freq: 659.25 },
+            { id: 'e4', delay: 2200, freq: 698.46 },
+            { id: 'e5', delay: 2900, freq: 783.99 }
+        ],
+        2: [
+            { id: 'e7',  delay: 0,    freq: 523.25 },
+            { id: 'e8',  delay: 1900, freq: 587.33 },
+            { id: 'e9',  delay: 3800, freq: 659.25 },
+            { id: 'e10', delay: 5400, freq: 698.46 },
+            { id: 'e11', delay: 7000, freq: 783.99 }
+        ],
+        3: [
+            { id: 'e12', delay: 0,    freq: 587.33 },
+            { id: 'e13', delay: 1100, freq: 659.25 },
+            { id: 'e14', delay: 2200, freq: 783.99 }
+        ],
+        4: [
+            { id: 'e15',  delay: 0,    freq: 523.25 },
+            { id: 'e16',  delay: 1100, freq: 587.33 },
+            { id: 'e17',  delay: 2200, freq: 659.25 },
+            { id: 'e17b', delay: 3300, freq: 783.99 }
+        ],
+        5: [
+            { id: 'e18', delay: 0,    freq: 523.25 },
+            { id: 'e19', delay: 1400, freq: 587.33 },
+            { id: 'e20', delay: 2800, freq: 659.25 },
+            { id: 'e21', delay: 4200, freq: 698.46 },
+            { id: 'e22', delay: 5600, freq: 783.99 }
+        ],
+        6: [
+            { id: 'e23', delay: 0,    freq: 587.33 },
+            { id: 'e24', delay: 1200, freq: 698.46 },
+            { id: 'e25', delay: 2400, freq: 880.00 }
+        ],
+        7: [
+            { id: 'e26', delay: 0,    freq: 587.33 },
+            { id: 'e27', delay: 1000, freq: 659.25 },
+            { id: 'e28', delay: 2000, freq: 880.00, follow: true },
+            { id: 'e29', delay: 3000, freq: 987.77 }
+        ]
+    };
+
+    var sceneDurations = [4600, 9500, 4400, 5600, 8200, 4400, 6200];
 
     function unlockAudio() {
         try {
@@ -629,11 +680,11 @@
             osc.type = 'sine';
             osc.frequency.setValueAtTime(freq, now);
             gain.gain.setValueAtTime(vol || 0.22, now);
-            gain.gain.exponentialRampToValueAtTime(0.001, now + (dur || 0.22));
+            gain.gain.exponentialRampToValueAtTime(0.001, now + (dur || 0.2));
             osc.connect(gain);
             gain.connect(actx.destination);
             osc.start(now);
-            osc.stop(now + (dur || 0.22));
+            osc.stop(now + (dur || 0.2));
         } catch (err) {}
     }
 
@@ -658,34 +709,75 @@
         }
     }
 
+    function clearAllStepTimers() {
+        for (var i = 0; i < stepTimers.length; i++) {
+            clearTimeout(stepTimers[i]);
+        }
+        stepTimers = [];
+        clearTimeout(sceneTimer);
+    }
+
+    function resetSceneItems(sceneEl) {
+        var items = sceneEl.querySelectorAll('.anim-item');
+        for (var i = 0; i < items.length; i++) {
+            items[i].className = items[i].className.replace(/\s*show\b/g, '');
+        }
+        var btn = document.getElementById('e28');
+        if (btn) {
+            btn.className = 'follow-btn anim-item';
+            btn.innerHTML = '<svg class="ic-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg><span>Follow</span>';
+        }
+    }
+
+    function revealItem(item) {
+        var el = document.getElementById(item.id);
+        if (el && el.className.indexOf('show') === -1) {
+            el.className = el.className + ' show';
+        }
+        if (item.follow && el) {
+            el.className = 'follow-btn anim-item show done';
+            el.innerHTML = '✓ Following';
+        }
+        if (item.freq) {
+            playTone(item.freq, 0.22, 0.22);
+        }
+    }
+
     function wipe() {
         var w = document.getElementById('wipe-overlay');
         if (!w) return;
         w.className = '';
         void w.offsetWidth;
         w.className = 'wipe-animate';
-        playTone(349.23, 0.25, 0.2);
+        playTone(349.23, 0.24, 0.2);
     }
 
     function openScene(num) {
+        clearAllStepTimers();
         currentScene = num;
+
         var scenes = document.querySelectorAll('.scene');
         for (var i = 0; i < scenes.length; i++) {
             scenes[i].className = 'scene';
         }
-        var target = document.getElementById('scene-' + num);
-        if (target) target.className = 'scene active';
 
-        var btn = document.getElementById('e28');
-        if (btn && num === 7) {
-            btn.className = 'follow-btn anim-item done';
-            btn.innerHTML = '✓ Following';
+        var target = document.getElementById('scene-' + num);
+        if (!target) return;
+
+        resetSceneItems(target);
+        target.className = 'scene active';
+
+        var seq = sceneSequences[num] || [];
+        for (var j = 0; j < seq.length; j++) {
+            (function (step) {
+                var tid = setTimeout(function () {
+                    revealItem(step);
+                }, step.delay);
+                stepTimers.push(tid);
+            })(seq[j]);
         }
 
-        playTone(sceneNotes[num - 1] || 587.33, 0.28, 0.24);
-
-        clearTimeout(timerId);
-        timerId = setTimeout(function () {
+        sceneTimer = setTimeout(function () {
             wipe();
             var next = currentScene + 1;
             if (next > totalScenes) next = 1;
@@ -695,15 +787,12 @@
 
     document.addEventListener('pointerdown', function () {
         unlockAudio();
-        playTone(659.25, 0.14, 0.22);
     });
     document.addEventListener('click', function () {
         unlockAudio();
-        playTone(659.25, 0.14, 0.22);
     });
     document.addEventListener('touchstart', function () {
         unlockAudio();
-        playTone(659.25, 0.14, 0.22);
     });
 
     setupPhotos();
