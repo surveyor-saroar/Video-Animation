@@ -92,12 +92,9 @@
             pointer-events: none;
             opacity: 0;
         }
-        .wipe-animate {
+        .wipe-run {
             opacity: 1;
             animation: screenWipe 0.85s cubic-bezier(0.77, 0, 0.175, 1) forwards;
-        }
-        body.paused .wipe-animate {
-            animation-play-state: paused;
         }
         @keyframes screenWipe {
             0% { left: -140%; opacity: 1; }
@@ -113,31 +110,38 @@
             z-index: 50;
             padding: 6px 14px;
             border-radius: 999px;
-            background: rgba(15, 23, 42, 0.85);
-            border: 1px solid rgba(255, 170, 0, 0.65);
+            background: rgba(15, 23, 42, 0.88);
+            border: 1px solid rgba(255, 170, 0, 0.7);
             color: #fde047;
             font-size: 0.9rem;
             font-weight: 700;
             display: none;
-            align-items: center;
-            gap: 6px;
             pointer-events: none;
         }
         body.paused #pause-badge {
-            display: inline-flex;
+            display: inline-block;
         }
 
         .anim-item {
             opacity: 0;
-            transform: translateY(22px) scale(0.95);
-            transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1), transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+            transform: translateY(24px) scale(0.95);
         }
-        .anim-item.show {
-            opacity: 1;
-            transform: translateY(0) scale(1);
+        .anim-item.pop-in {
+            animation: itemPopIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
-        body.paused .anim-item {
-            transition: none;
+        body.paused .anim-item.pop-in,
+        body.paused .wipe-run {
+            animation-play-state: paused;
+        }
+        @keyframes itemPopIn {
+            0% {
+                opacity: 0;
+                transform: translateY(24px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
 
         .hello-text {
@@ -333,7 +337,7 @@
     </style>
 </head>
 <body>
-<div id="pause-badge">❚❚ থামানো হয়েছে (ক্লিক করলে চলবে)</div>
+<div id="pause-badge">❚❚ থামানো হয়েছে</div>
 <div id="reel-area">
     <div id="wipe-overlay"></div>
 
@@ -399,4 +403,510 @@
                 <span>ইনবক্স</span>
             </div>
             <div class="card-main">
-                <span>ক
+                <span>কীভাবে এগুলো তৈরি করেন<span class="q-mark">?</span></span>
+                <svg class="ic" viewBox="0 0 24 24" fill="#ffb84d">
+                    <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/>
+                </svg>
+            </div>
+        </div>
+        <div id="e9" class="pill-box anim-item">
+            <span class="pill-left">
+                <svg class="ic" viewBox="0 0 24 24" fill="#ffb84d">
+                    <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/>
+                </svg>
+                <span>AI</span>
+            </span>
+            <span class="mini-tag">TOOLS</span>
+        </div>
+        <div id="e10" class="pill-box anim-item">
+            <span class="pill-left">
+                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#ffb84d" stroke-width="2.2">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                </svg>
+                <span>3D motion</span>
+            </span>
+            <span class="mini-tag">MOTION</span>
+        </div>
+        <div id="e11" class="pill-box anim-item">
+            <span class="pill-left">
+                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#ffb84d" stroke-width="2.2">
+                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                    <polygon points="10 9 15 12 10 15 10 9" fill="#ffb84d" stroke="none"/>
+                </svg>
+                <span>Creative video</span>
+            </span>
+            <span class="mini-tag">REELS</span>
+        </div>
+    </div>
+
+    <!-- সিন ৩ -->
+    <div id="scene-3" class="scene">
+        <div id="e12" class="title-lg anim-item">
+            <svg class="ic-question" viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+            <span>কোনো course করাই কিনা<span class="q-mark">?</span></span>
+        </div>
+        <div id="e13" class="card-box anim-item">
+            <div class="card-main">
+                <span class="pill-left">
+                    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#31a8ff" stroke-width="2.2">
+                        <rect x="3" y="3" width="18" height="18" rx="4"/>
+                    </svg>
+                    <span>Graphics Design — Ps, Ai</span>
+                </span>
+                <span class="mini-tag">Ps • Ai</span>
+            </div>
+        </div>
+        <div id="e14" class="card-box anim-item">
+            <div class="card-main">
+                <span class="pill-left">
+                    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#ff9a00" stroke-width="2.2">
+                        <rect x="2" y="4" width="20" height="16" rx="2"/>
+                        <polygon points="10 9 15 12 10 15 10 9" fill="#ff9a00" stroke="none"/>
+                    </svg>
+                    <span>Video Editing — Motion &amp; Cut</span>
+                </span>
+                <span class="mini-tag">VIDEO</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- সিন ৪ -->
+    <div id="scene-4" class="scene">
+        <div id="e15" class="title-lg anim-item">
+            <svg class="ic-lg" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            <span>যোগাযোগ করুন</span>
+        </div>
+        <div id="e16" class="card-box anim-item">
+            <div class="profile-row">
+                <div class="avatar-circle">
+                    <img class="saroar01-photo" src="saroar01.png" alt="মোঃ সরওয়ার আলম সবুজ">
+                    <span class="avatar-fallback">SA</span>
+                </div>
+                <div class="profile-text">
+                    <div class="profile-name">মোঃ সরওয়ার আলম সবুজ</div>
+                    <div class="profile-sub">Digital Creator • Land Surveyor</div>
+                </div>
+            </div>
+        </div>
+        <div id="e17" class="card-box anim-item">
+            <div class="card-main">
+                <span class="pill-left">
+                    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                    <span>কাদুটি বাজার, চান্দিনা, কুমিল্লা</span>
+                </span>
+                <span class="mini-tag">ADDRESS</span>
+            </div>
+        </div>
+        <div id="e17b" class="card-box anim-item">
+            <div class="card-main">
+                <span class="pill-left">
+                    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="6" y="2" width="12" height="20" rx="2"/>
+                        <line x1="11" y1="18" x2="13" y2="18"/>
+                    </svg>
+                    <span>মোবাইল - 01817068114</span>
+                </span>
+                <span class="mini-tag">MOBILE</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- সিন ৫ -->
+    <div id="scene-5" class="scene">
+        <div id="e18" class="title-lg anim-item">
+            <span class="check-badge">✓</span>
+            <span>আপনি শিখুন নিজেকে আপডেট রাখুন</span>
+        </div>
+        <div id="e19" class="pill-box anim-item">
+            <span class="pill-left">
+                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#31a8ff" stroke-width="2.2">
+                    <path d="M12 19l7-7 3 3-7 7-3-3z"/>
+                </svg>
+                <span>Graphics Design (Ps, Ai)</span>
+            </span>
+            <span class="mini-tag">FREE</span>
+        </div>
+        <div id="e20" class="pill-box anim-item">
+            <span class="pill-left">
+                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#ff9a00" stroke-width="2.2">
+                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                    <polygon points="10 9 15 12 10 15 10 9" fill="#ff9a00" stroke="none"/>
+                </svg>
+                <span>Video Editing</span>
+            </span>
+            <span class="mini-tag">FREE</span>
+        </div>
+        <div id="e21" class="pill-box anim-item">
+            <span class="pill-left">
+                <svg class="ic" viewBox="0 0 24 24" fill="#ffb84d">
+                    <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/>
+                </svg>
+                <span>বিভিন্ন AI tools — ChatGPT, Gemini, Claude</span>
+            </span>
+            <span class="mini-tag">AI</span>
+        </div>
+        <div id="e22" class="pill-box anim-item">
+            <span class="pill-left">
+                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#ffb84d" stroke-width="2.2">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                </svg>
+                <span>নতুন নতুন technology ও আরও অনেক কিছু</span>
+            </span>
+            <span class="mini-tag">+ MORE</span>
+        </div>
+    </div>
+
+    <!-- সিন ৬ -->
+    <div id="scene-6" class="scene">
+        <div id="e23" class="title-lg anim-item">
+            <svg class="ic-laptop" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="12" rx="2"/>
+                <line x1="1" y1="19" x2="23" y2="19"/>
+            </svg>
+            <span>ল্যাপটপ দিয়ে</span>
+        </div>
+        <div id="e24" class="pill-box anim-item">
+            <span class="pill-left">
+                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#ffb84d" stroke-width="2.5">
+                    <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                <span>নতুন নতুন skill শিখুন</span>
+            </span>
+            <span class="mini-tag">SKILL</span>
+        </div>
+        <div id="e25" class="pill-box anim-item">
+            <span class="pill-left">
+                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#ffb84d" stroke-width="2.2">
+                    <polyline points="23 4 23 10 17 10"/>
+                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10"/>
+                </svg>
+                <span>নিজেকে update রাখুন</span>
+            </span>
+            <span class="mini-tag">UPDATE</span>
+        </div>
+    </div>
+
+    <!-- সিন ৭ -->
+    <div id="scene-7" class="scene">
+        <div id="e26" class="title-lg anim-item">
+            <svg class="ic-lg" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.4">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="8.5" cy="7" r="4"/>
+                <line x1="20" y1="8" x2="20" y2="14"/>
+                <line x1="23" y1="11" x2="17" y2="11"/>
+            </svg>
+            <span>Follow করুন</span>
+        </div>
+        <div id="e27" class="card-box anim-item">
+            <div class="profile-row">
+                <div class="avatar-circle">
+                    <img class="saroar01-photo" src="saroar01.png" alt="মোঃ সরওয়ার আলম সবুজ">
+                    <span class="avatar-fallback">SA</span>
+                </div>
+                <div class="profile-text">
+                    <div class="profile-name">মোঃ সরওয়ার আলম সবুজ</div>
+                    <div class="profile-sub">Facebook পেজ</div>
+                </div>
+            </div>
+        </div>
+        <div id="e28" class="follow-btn anim-item">
+            <svg class="ic-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+            <span>Follow</span>
+        </div>
+        <div id="e29" class="title-lg anim-item" style="margin-top:18px;">
+            <svg class="ic-question" viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+            <span>আপনি কি জানতে চান<span class="q-mark">?</span></span>
+        </div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var currentScene = 1;
+    var totalScenes = 7;
+    var paused = false;
+    var actx = null;
+    var activeTimers = [];
+
+    var scenesData = {
+        1: {
+            duration: 4600,
+            items: [
+                { id: 'e1', at: 0,    freq: 523.25 },
+                { id: 'e2', at: 750,  freq: 587.33 },
+                { id: 'e3', at: 1500, freq: 659.25 },
+                { id: 'e4', at: 2200, freq: 698.46 },
+                { id: 'e5', at: 2900, freq: 783.99 }
+            ]
+        },
+        2: {
+            duration: 9200,
+            items: [
+                { id: 'e7',  at: 0,    freq: 523.25 },
+                { id: 'e8',  at: 1800, freq: 587.33 },
+                { id: 'e9',  at: 3600, freq: 659.25 },
+                { id: 'e10', at: 5200, freq: 698.46 },
+                { id: 'e11', at: 6800, freq: 783.99 }
+            ]
+        },
+        3: {
+            duration: 4400,
+            items: [
+                { id: 'e12', at: 0,    freq: 587.33 },
+                { id: 'e13', at: 1100, freq: 659.25 },
+                { id: 'e14', at: 2200, freq: 783.99 }
+            ]
+        },
+        4: {
+            duration: 5600,
+            items: [
+                { id: 'e15',  at: 0,    freq: 523.25 },
+                { id: 'e16',  at: 1100, freq: 587.33 },
+                { id: 'e17',  at: 2200, freq: 659.25 },
+                { id: 'e17b', at: 3300, freq: 783.99 }
+            ]
+        },
+        5: {
+            duration: 8000,
+            items: [
+                { id: 'e18', at: 0,    freq: 523.25 },
+                { id: 'e19', at: 1350, freq: 587.33 },
+                { id: 'e20', at: 2700, freq: 659.25 },
+                { id: 'e21', at: 4050, freq: 698.46 },
+                { id: 'e22', at: 5400, freq: 783.99 }
+            ]
+        },
+        6: {
+            duration: 4400,
+            items: [
+                { id: 'e23', at: 0,    freq: 587.33 },
+                { id: 'e24', at: 1200, freq: 698.46 },
+                { id: 'e25', at: 2400, freq: 880.00 }
+            ]
+        },
+        7: {
+            duration: 6200,
+            items: [
+                { id: 'e26', at: 0,    freq: 587.33 },
+                { id: 'e27', at: 1000, freq: 659.25 },
+                { id: 'e28', at: 2000, freq: 880.00, isFollow: true },
+                { id: 'e29', at: 3000, freq: 987.77 }
+            ]
+        }
+    };
+
+    function clearTimers() {
+        for (var i = 0; i < activeTimers.length; i++) {
+            clearTimeout(activeTimers[i]);
+        }
+        activeTimers = [];
+    }
+
+    function schedule(fn, ms) {
+        var id = setTimeout(function () {
+            if (!paused) {
+                fn();
+            }
+        }, ms);
+        activeTimers.push(id);
+    }
+
+    function ensureAudio() {
+        try {
+            var AC = window.AudioContext || window.webkitAudioContext;
+            if (!AC) return;
+            if (!actx) actx = new AC();
+            if (actx.state === 'suspended') {
+                actx.resume();
+            }
+        } catch (err) {}
+    }
+
+    function playTone(freq, dur, vol) {
+        try {
+            if (!actx || actx.state !== 'running' || paused) return;
+            var now = actx.currentTime;
+            var osc = actx.createOscillator();
+            var gain = actx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, now);
+            gain.gain.setValueAtTime(vol || 0.22, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + (dur || 0.2));
+            osc.connect(gain);
+            gain.connect(actx.destination);
+            osc.start(now);
+            osc.stop(now + (dur || 0.2));
+        } catch (err) {}
+    }
+
+    function playWindBlow(dur) {
+        try {
+            if (!actx || actx.state !== 'running' || paused) return;
+            var duration = dur || 0.85;
+            var sr = actx.sampleRate;
+            var len = Math.floor(sr * duration);
+            var buf = actx.createBuffer(1, len, sr);
+            var ch = buf.getChannelData(0);
+            var prev = 0;
+            for (var i = 0; i < len; i++) {
+                var w = Math.random() * 2 - 1;
+                ch[i] = (prev + 0.04 * w) / 1.04;
+                prev = ch[i];
+                ch[i] *= 2.8;
+            }
+            var src = actx.createBufferSource();
+            src.buffer = buf;
+
+            var filter = actx.createBiquadFilter();
+            filter.type = 'bandpass';
+            filter.Q.setValueAtTime(1.4, actx.currentTime);
+            filter.frequency.setValueAtTime(190, actx.currentTime);
+            filter.frequency.exponentialRampToValueAtTime(680, actx.currentTime + duration * 0.45);
+            filter.frequency.exponentialRampToValueAtTime(220, actx.currentTime + duration);
+
+            var gain = actx.createGain();
+            var now = actx.currentTime;
+            gain.gain.setValueAtTime(0.001, now);
+            gain.gain.linearRampToValueAtTime(0.32, now + duration * 0.35);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+
+            src.connect(filter);
+            filter.connect(gain);
+            gain.connect(actx.destination);
+
+            src.start(now);
+            src.stop(now + duration);
+        } catch (err) {}
+    }
+
+    function setupPhotos() {
+        var exts = ['saroar01.png', 'saroar01.jpg', 'saroar01.jpeg', 'saroar01.webp'];
+        var imgs = document.querySelectorAll('.saroar01-photo');
+        for (var i = 0; i < imgs.length; i++) {
+            (function (img) {
+                var idx = 0;
+                img.onerror = function () {
+                    idx++;
+                    if (idx < exts.length) {
+                        img.src = exts[idx];
+                    } else {
+                        img.style.display = 'none';
+                        if (img.parentNode && img.parentNode.className.indexOf('broken') === -1) {
+                            img.parentNode.className += ' broken';
+                        }
+                    }
+                };
+            })(imgs[i]);
+        }
+    }
+
+    function runWipe() {
+        var w = document.getElementById('wipe-overlay');
+        if (!w) return;
+        w.className = '';
+        void w.offsetWidth;
+        w.className = 'wipe-run';
+        playWindBlow(0.85);
+    }
+
+    function resetScene(el) {
+        var items = el.querySelectorAll('.anim-item');
+        for (var i = 0; i < items.length; i++) {
+            items[i].className = items[i].className.replace(/\s*pop-in\b/g, '').replace(/\s*done\b/g, '');
+        }
+        var btn = document.getElementById('e28');
+        if (btn) {
+            btn.className = 'follow-btn anim-item';
+            btn.innerHTML = '<svg class="ic-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg><span>Follow</span>';
+        }
+    }
+
+    function showItem(item) {
+        var el = document.getElementById(item.id);
+        if (!el) return;
+        if (el.className.indexOf('pop-in') === -1) {
+            el.className = el.className + ' pop-in';
+        }
+        if (item.isFollow) {
+            el.className = 'follow-btn anim-item pop-in done';
+            el.innerHTML = '✓ Following';
+        }
+        if (item.freq) {
+            playTone(item.freq, 0.22, 0.22);
+        }
+    }
+
+    function playScene(num) {
+        clearTimers();
+        currentScene = num;
+
+        var list = document.querySelectorAll('.scene');
+        for (var i = 0; i < list.length; i++) {
+            list[i].className = 'scene';
+        }
+
+        var sc = document.getElementById('scene-' + num);
+        var cfg = scenesData[num];
+        if (!sc || !cfg) return;
+
+        resetScene(sc);
+        sc.className = 'scene active';
+
+        for (var j = 0; j < cfg.items.length; j++) {
+            (function (it) {
+                schedule(function () {
+                    showItem(it);
+                }, it.at);
+            })(cfg.items[j]);
+        }
+
+        schedule(function () {
+            runWipe();
+        }, Math.max(400, cfg.duration - 450));
+
+        schedule(function () {
+            var next = currentScene + 1;
+            if (next > totalScenes) next = 1;
+            playScene(next);
+        }, cfg.duration);
+    }
+
+    document.addEventListener('click', function () {
+        ensureAudio();
+        paused = !paused;
+        if (paused) {
+            document.body.className = 'paused';
+            if (actx && actx.state === 'running') {
+                actx.suspend();
+            }
+        } else {
+            document.body.className = '';
+            if (actx && actx.state === 'suspended') {
+                actx.resume();
+            }
+            playTone(620, 0.08, 0.14);
+        }
+    });
+
+    setupPhotos();
+    playScene(1);
+})();
+</script>
+</body>
+</html>
