@@ -23,6 +23,7 @@
             width: 100vw;
             user-select: none;
             position: relative;
+            cursor: pointer;
         }
         #reel-area {
             position: relative;
@@ -45,7 +46,16 @@
         .ic { width: 18px; height: 18px; flex-shrink: 0; }
         .ic-sm { width: 15px; height: 15px; flex-shrink: 0; }
         .ic-lg { width: 22px; height: 22px; flex-shrink: 0; }
+        .ic-question { width: 34px; height: 34px; flex-shrink: 0; }
         .ic-laptop { width: 42px; height: 42px; flex-shrink: 0; }
+
+        .q-mark {
+            font-size: 1.38em;
+            font-weight: 800;
+            line-height: 1;
+            display: inline-block;
+            color: #ffbe3b;
+        }
 
         #wipe-overlay {
             position: fixed;
@@ -63,6 +73,9 @@
         .wipe-animate {
             opacity: 1;
             animation: screenWipe 0.8s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+        }
+        body.paused .wipe-animate {
+            animation-play-state: paused;
         }
         @keyframes screenWipe {
             0% { left: -140%; opacity: 1; }
@@ -262,7 +275,7 @@
         .follow-btn.done { background: #16a34a; }
     </style>
 </head>
-<body>
+<body class="paused">
 <div id="reel-area">
     <div id="wipe-overlay"></div>
 
@@ -312,7 +325,7 @@
                 <span>কমেন্ট</span>
             </div>
             <div class="card-main">
-                <span>কীভাবে এই ভিডিও তৈরি করেন?</span>
+                <span>কীভাবে এই ভিডিও তৈরি করেন<span class="q-mark">?</span></span>
                 <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#ff9d42" stroke-width="2.2">
                     <rect x="2" y="4" width="20" height="16" rx="2"/>
                     <polygon points="10 9 15 12 10 15 10 9" fill="#ff9d42" stroke="none"/>
@@ -328,7 +341,7 @@
                 <span>ইনবক্স</span>
             </div>
             <div class="card-main">
-                <span>কীভাবে এগুলো তৈরি করেন?</span>
+                <span>কীভাবে এগুলো তৈরি করেন<span class="q-mark">?</span></span>
                 <svg class="ic" viewBox="0 0 24 24" fill="#ffb84d">
                     <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/>
                 </svg>
@@ -367,12 +380,12 @@
     <!-- সিন ৩ -->
     <div id="scene-3" class="scene">
         <div id="e12" class="title-lg anim-item">
-            <svg class="ic-lg" viewBox="0 0 24 24" fill="none" stroke="#ff9500" stroke-width="2.2">
+            <svg class="ic-question" viewBox="0 0 24 24" fill="none" stroke="#ff9500" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="10"/>
                 <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
                 <line x1="12" y1="17" x2="12.01" y2="17"/>
             </svg>
-            <span>কোনো course করাই কিনা?</span>
+            <span>কোনো course করাই কিনা<span class="q-mark">?</span></span>
         </div>
         <div id="e13" class="card-box anim-item">
             <div class="card-main">
@@ -434,95 +447,4 @@
         <div id="e17b" class="card-box anim-item">
             <div class="card-main">
                 <span class="pill-left">
-                    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="6" y="2" width="12" height="20" rx="2"/>
-                        <line x1="11" y1="18" x2="13" y2="18"/>
-                    </svg>
-                    <span>মোবাইল - 01817068114</span>
-                </span>
-                <span class="mini-tag">MOBILE</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- সিন ৫ -->
-    <div id="scene-5" class="scene">
-        <div id="e18" class="title-lg anim-item">
-            <svg class="ic-lg" viewBox="0 0 24 24" fill="none" stroke="#ff9500" stroke-width="2.2">
-                <polyline points="20 6 9 17 4 12"/>
-            </svg>
-            <span>সম্পূর্ণ বিনামূল্যে</span>
-        </div>
-        <div id="e19" class="pill-box anim-item">
-            <span class="pill-left">
-                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#31a8ff" stroke-width="2.2">
-                    <path d="M12 19l7-7 3 3-7 7-3-3z"/>
-                </svg>
-                <span>Graphics Design (Ps, Ai)</span>
-            </span>
-            <span class="mini-tag">FREE</span>
-        </div>
-        <div id="e20" class="pill-box anim-item">
-            <span class="pill-left">
-                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#ff9a00" stroke-width="2.2">
-                    <rect x="2" y="4" width="20" height="16" rx="2"/>
-                    <polygon points="10 9 15 12 10 15 10 9" fill="#ff9a00" stroke="none"/>
-                </svg>
-                <span>Video Editing</span>
-            </span>
-            <span class="mini-tag">FREE</span>
-        </div>
-        <div id="e21" class="pill-box anim-item">
-            <span class="pill-left">
-                <svg class="ic" viewBox="0 0 24 24" fill="#ffb84d">
-                    <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/>
-                </svg>
-                <span>বিভিন্ন AI tools — ChatGPT, Gemini, Claude</span>
-            </span>
-            <span class="mini-tag">AI</span>
-        </div>
-        <div id="e22" class="pill-box anim-item">
-            <span class="pill-left">
-                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#ffb84d" stroke-width="2.2">
-                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-                </svg>
-                <span>নতুন নতুন technology ও আরও অনেক কিছু</span>
-            </span>
-            <span class="mini-tag">+ MORE</span>
-        </div>
-    </div>
-
-    <!-- সিন ৬ -->
-    <div id="scene-6" class="scene">
-        <div id="e23" class="title-lg anim-item">
-            <svg class="ic-laptop" viewBox="0 0 24 24" fill="none" stroke="#ff9500" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="4" width="18" height="12" rx="2"/>
-                <line x1="1" y1="19" x2="23" y2="19"/>
-            </svg>
-            <span>ল্যাপটপ দিয়ে</span>
-        </div>
-        <div id="e24" class="pill-box anim-item">
-            <span class="pill-left">
-                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#ffb84d" stroke-width="2.5">
-                    <polyline points="20 6 9 17 4 12"/>
-                </svg>
-                <span>নতুন নতুন skill শিখুন</span>
-            </span>
-            <span class="mini-tag">SKILL</span>
-        </div>
-        <div id="e25" class="pill-box anim-item">
-            <span class="pill-left">
-                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#ffb84d" stroke-width="2.2">
-                    <polyline points="23 4 23 10 17 10"/>
-                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10"/>
-                </svg>
-                <span>নিজেকে update রাখুন</span>
-            </span>
-            <span class="mini-tag">UPDATE</span>
-        </div>
-    </div>
-
-    <!-- সিন ৭ -->
-    <div id="scene-7" class="scene">
-        <div id="e26" class="title-lg anim-item">
-            <svg class="
+                    <svg class="ic" viewBox="0
