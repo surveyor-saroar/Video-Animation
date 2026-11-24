@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>মোঃ সরওয়ার আলম সবুজ - রিলস অ্যানিমেশন ও ক্যাপশন</title>
+    <title>মোঃ সরওয়ার আলম সবুজ - মুভিং ওয়ার্ড হাইলাইট রিলস</title>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -304,45 +304,48 @@
         }
         .follow-btn.done { background: #16a34a; }
 
-        /* হালকা ও কমপ্যাক্ট বটম ক্যাপশন বক্স */
+        /* হালকা বটম ক্যাপশন বক্স + উজ্জ্বল হলুদ ব্লকের ভেতরে সাদা লেখা */
         #bottom-caption {
             position: absolute;
-            left: 6%;
-            right: 6%;
+            left: 5%;
+            right: 5%;
             bottom: 4.5%;
             z-index: 25;
             text-align: center;
             pointer-events: none;
-            padding: 5px 8px;
-            border-radius: 10px;
+            padding: 6px 8px;
+            border-radius: 12px;
             background: rgba(6, 10, 20, 0.24);
             backdrop-filter: blur(2px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.06);
         }
         .cap-line {
-            font-size: clamp(1rem, 2.5vh, 1.35rem);
+            font-size: clamp(0.98rem, 2.45vh, 1.32rem);
             font-weight: 700;
-            line-height: 1.4;
+            line-height: 1.55;
+            color: #f8fafc;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.92);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+        .cap-word {
+            display: inline-block;
+            padding: 1px 8px;
+            border-radius: 7px;
+            background: transparent;
+            color: #f8fafc;
+            transition: background-color 0.22s ease, color 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease, text-shadow 0.22s ease;
+        }
+        .cap-word.active-word {
+            background: linear-gradient(135deg, #facc15 0%, #eab308 100%);
             color: #ffffff;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95), 0 0 4px rgba(0, 0, 0, 0.9);
-        }
-        .cap-hi {
-            display: inline-block;
-            padding: 1px 7px;
-            margin: 0 2px;
-            border-radius: 6px;
-            background: #fde047;
-            color: #090d16;
             font-weight: 800;
-        }
-        .cap-hi-green {
-            display: inline-block;
-            padding: 1px 7px;
-            margin: 0 2px;
-            border-radius: 6px;
-            background: #4ade80;
-            color: #06120b;
-            font-weight: 800;
+            transform: translateY(-2px) scale(1.06);
+            box-shadow: 0 4px 16px rgba(250, 204, 21, 0.65);
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85), 0 0 2px rgba(0, 0, 0, 0.9);
         }
     </style>
 </head>
@@ -520,9 +523,9 @@
         </div>
     </div>
 
-    <!-- একদম নিচের হাইলাইটেড ক্যাপশন -->
+    <!-- একদম নিচের মুভিং হলুদ-ব্লক সাদা-লেখা ওয়ার্ড ক্যাপশন -->
     <div id="bottom-caption">
-        <div id="capLine" class="cap-line">হ্যালো, আমি <span class="cap-hi">মোঃ সরওয়ার আলম সবুজ</span>।</div>
+        <div id="capLine" class="cap-line"></div>
     </div>
 </div>
 
@@ -537,65 +540,159 @@
 
     var scenesData = {
         1: {
-            duration: 5600,
+            duration: 6200,
             items: [
-                { id: 'e1', at: 0,    freq: 523.25, cap: 'হ্যালো, আমি <span class="cap-hi">মোঃ সরওয়ার আলম সবুজ</span>।' },
-                { id: 'e2', at: 1100, freq: 587.33 },
-                { id: 'e3', at: 2200, freq: 659.25, cap: 'একজন <span class="cap-hi">গ্রাফিক্স ডিজাইনার</span>,' },
-                { id: 'e4', at: 3400, freq: 698.46, cap: '<span class="cap-hi">ভিডিও এডিটর</span> এবং <span class="cap-hi-green">ল্যান্ড সার্ভেয়ার</span>।' },
-                { id: 'e5', at: 4400, freq: 783.99 }
+                { id: 'e1', at: 0,    freq: 523.25 },
+                { id: 'e2', at: 1200, freq: 587.33 },
+                { id: 'e3', at: 2400, freq: 659.25 },
+                { id: 'e4', at: 3600, freq: 698.46 },
+                { id: 'e5', at: 4700, freq: 783.99 }
+            ],
+            captions: [
+                {
+                    at: 0,
+                    words: ['হ্যালো,', 'আমি', 'মোঃ সরওয়ার আলম', 'সবুজ।'],
+                    stepMs: 550
+                },
+                {
+                    at: 2300,
+                    words: ['একজন', 'গ্রাফিক্স ডিজাইনার,', 'ভিডিও এডিটর', 'এবং', 'ল্যান্ড সার্ভেয়ার।'],
+                    stepMs: 680
+                }
             ]
         },
         2: {
-            duration: 9000,
+            duration: 9400,
             items: [
-                { id: 'e7',  at: 0,    freq: 523.25, cap: 'অনেকেই কমেন্টে বা ইনবক্সে জানতে চান— <span class="cap-hi">কীভাবে এই ভিডিও</span> তৈরি করি?' },
-                { id: 'e9',  at: 3000, freq: 659.25, cap: 'মূলত <span class="cap-hi">এআই টুলস</span>, <span class="cap-hi-green">থ্রিডি মোশন</span>' },
-                { id: 'e10', at: 5200, freq: 698.46, cap: 'এবং <span class="cap-hi">ক্রিয়েটিভ ভিডিওর</span> কাজের মাধ্যমে।' },
-                { id: 'e11', at: 7000, freq: 783.99 }
+                { id: 'e7',  at: 0,    freq: 523.25 },
+                { id: 'e9',  at: 3200, freq: 659.25 },
+                { id: 'e10', at: 5500, freq: 698.46 },
+                { id: 'e11', at: 7400, freq: 783.99 }
+            ],
+            captions: [
+                {
+                    at: 0,
+                    words: ['অনেকেই', 'কমেন্টে', 'বা ইনবক্সে', 'জানতে চান—', 'কীভাবে এই ভিডিও', 'তৈরি করি?'],
+                    stepMs: 520
+                },
+                {
+                    at: 3300,
+                    words: ['মূলত', 'এআই টুলস,', 'থ্রিডি মোশন', 'এবং', 'ক্রিয়েটিভ ভিডিওর', 'কাজের মাধ্যমে।'],
+                    stepMs: 920
+                }
             ]
         },
         3: {
-            duration: 8200,
+            duration: 8600,
             items: [
-                { id: 'e12', at: 0,    freq: 587.33, cap: 'অনেকের প্রশ্ন থাকে, আমি কোনো কোর্স করাই কি না— <span class="cap-hi">না</span>।' },
-                { id: 'e13', at: 2600, freq: 659.25, cap: 'তবে <span class="cap-hi">ফটোশপ, ইলাস্ট্রেটর, আফটার ইফেক্ট</span> ও গ্রাফিক্স ডিজাইন' },
-                { id: 'e14', at: 5400, freq: 783.99, cap: 'কিংবা <span class="cap-hi-green">ওয়েবসাইট তৈরীতে</span> সহায়তা করি।' }
+                { id: 'e12', at: 0,    freq: 587.33 },
+                { id: 'e13', at: 2800, freq: 659.25 },
+                { id: 'e14', at: 5800, freq: 783.99 }
+            ],
+            captions: [
+                {
+                    at: 0,
+                    words: ['অনেকের প্রশ্ন থাকে,', 'আমি কোনো', 'কোর্স করাই কি না—', 'না।'],
+                    stepMs: 650
+                },
+                {
+                    at: 2700,
+                    words: ['তবে', 'ফটোশপ,', 'ইলাস্ট্রেটর,', 'আফটার ইফেক্ট', 'ও গ্রাফিক্স ডিজাইন'],
+                    stepMs: 560
+                },
+                {
+                    at: 5600,
+                    words: ['কিংবা', 'ওয়েবসাইট তৈরীতে', 'সহায়তা করি।'],
+                    stepMs: 750
+                }
             ]
         },
         4: {
-            duration: 5600,
+            duration: 6000,
             items: [
-                { id: 'e15',  at: 0,    freq: 523.25, cap: '<span class="cap-hi">সরাসরি যোগাযোগ</span> করতে চাইলে' },
-                { id: 'e16',  at: 1400, freq: 587.33, cap: 'আমার <span class="cap-hi-green">নিচের ঠিকানায়</span> যোগাযোগ করুন।' },
-                { id: 'e17',  at: 2800, freq: 659.25, cap: '<span class="cap-hi">কাদুটি বাজার, চান্দিনা, কুমিল্লা</span>' },
-                { id: 'e17b', at: 4100, freq: 783.99, cap: 'মোবাইল: <span class="cap-hi-green">01817068114</span>' }
+                { id: 'e15',  at: 0,    freq: 523.25 },
+                { id: 'e16',  at: 1400, freq: 587.33 },
+                { id: 'e17',  at: 2800, freq: 659.25 },
+                { id: 'e17b', at: 4200, freq: 783.99 }
+            ],
+            captions: [
+                {
+                    at: 0,
+                    words: ['সরাসরি', 'যোগাযোগ করতে চাইলে', 'আমার নিচের ঠিকানায়', 'যোগাযোগ করুন।'],
+                    stepMs: 650
+                },
+                {
+                    at: 2700,
+                    words: ['কাদুটি বাজার,', 'চান্দিনা,', 'কুমিল্লা', '— 01817068114'],
+                    stepMs: 720
+                }
             ]
         },
         5: {
-            duration: 8600,
+            duration: 8800,
             items: [
-                { id: 'e18', at: 0,    freq: 523.25, cap: '<span class="cap-hi">আপনি নিজেও শিখুন</span> এবং নিজেকে আপডেট রাখুন।' },
-                { id: 'e19', at: 2200, freq: 587.33, cap: '<span class="cap-hi">গ্রাফিক্স ডিজাইন</span>, <span class="cap-hi-green">ভিডিও এডিটিং</span>,' },
-                { id: 'e21', at: 4400, freq: 698.46, cap: '<span class="cap-hi">চ্যাটজিপিটি, জেমিনি বা ক্লডের</span> মতো এআই টুলস' },
-                { id: 'e22', at: 6500, freq: 783.99, cap: 'আর <span class="cap-hi-green">নতুন টেকনোলজি</span>—সবই শেখার সুযোগ আছে।' }
+                { id: 'e18', at: 0,    freq: 523.25 },
+                { id: 'e19', at: 2200, freq: 587.33 },
+                { id: 'e21', at: 4500, freq: 698.46 },
+                { id: 'e22', at: 6700, freq: 783.99 }
+            ],
+            captions: [
+                {
+                    at: 0,
+                    words: ['আপনি নিজেও', 'শিখুন', 'এবং নিজেকে', 'আপডেট রাখুন।'],
+                    stepMs: 520
+                },
+                {
+                    at: 2150,
+                    words: ['গ্রাফিক্স ডিজাইন,', 'ভিডিও এডিটিং,', 'চ্যাটজিপিটি, জেমিনি', 'বা ক্লডের মতো', 'এআই টুলস'],
+                    stepMs: 850
+                },
+                {
+                    at: 6500,
+                    words: ['আর নতুন', 'টেকনোলজি—', 'সবই শেখার', 'সুযোগ আছে।'],
+                    stepMs: 520
+                }
             ]
         },
         6: {
-            duration: 4800,
+            duration: 5000,
             items: [
-                { id: 'e23', at: 0,    freq: 587.33, cap: 'একটি <span class="cap-hi">ল্যাপটপ দিয়েই</span> নতুন নতুন স্কিল শিখুন' },
-                { id: 'e24', at: 1600, freq: 698.46, cap: 'আর নিজেকে <span class="cap-hi-green">সবসময় আপডেট</span> রাখুন।' },
-                { id: 'e25', at: 3100, freq: 880.00 }
+                { id: 'e23', at: 0,    freq: 587.33 },
+                { id: 'e24', at: 1600, freq: 698.46 },
+                { id: 'e25', at: 3200, freq: 880.00 }
+            ],
+            captions: [
+                {
+                    at: 0,
+                    words: ['একটি', 'ল্যাপটপ দিয়েই', 'নতুন নতুন স্কিল', 'শিখুন'],
+                    stepMs: 560
+                },
+                {
+                    at: 2300,
+                    words: ['আর নিজেকে', 'সবসময়', 'আপডেট রাখুন।'],
+                    stepMs: 650
+                }
             ]
         },
         7: {
-            duration: 5600,
+            duration: 6000,
             items: [
-                { id: 'e26', at: 0,    freq: 587.33, cap: 'সব আপডেট পেতে <span class="cap-hi">পেজটি ফলো করুন</span>।' },
+                { id: 'e26', at: 0,    freq: 587.33 },
                 { id: 'e27', at: 1400, freq: 659.25 },
-                { id: 'e28', at: 2400, freq: 880.00, isFollow: true },
-                { id: 'e29', at: 3300, freq: 987.77, cap: 'আর <span class="cap-hi-green">কী জানতে চান</span>, কমেন্টে জানান?' }
+                { id: 'e28', at: 2500, freq: 880.00, isFollow: true },
+                { id: 'e29', at: 3500, freq: 987.77 }
+            ],
+            captions: [
+                {
+                    at: 0,
+                    words: ['সব আপডেট পেতে', 'পেজটি', 'ফলো করুন।'],
+                    stepMs: 750
+                },
+                {
+                    at: 2400,
+                    words: ['আর', 'কী জানতে চান,', 'কমেন্টে জানান?'],
+                    stepMs: 720
+                }
             ]
         }
     };
@@ -630,12 +727,12 @@
             var gain = actx.createGain();
             osc.type = 'sine';
             osc.frequency.setValueAtTime(freq, now);
-            gain.gain.setValueAtTime(vol || 0.16, now);
-            gain.gain.exponentialRampToValueAtTime(0.001, now + (dur || 0.18));
+            gain.gain.setValueAtTime(vol || 0.14, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + (dur || 0.16));
             osc.connect(gain);
             gain.connect(actx.destination);
             osc.start(now);
-            osc.stop(now + (dur || 0.18));
+            osc.stop(now + (dur || 0.16));
         } catch (err) {}
     }
 
@@ -719,10 +816,31 @@
         }
     }
 
-    function setCaption(html) {
-        if (!html) return;
-        var cap = document.getElementById('capLine');
-        if (cap) cap.innerHTML = html;
+    function renderMovingCaption(capObj) {
+        var capLine = document.getElementById('capLine');
+        if (!capLine || !capObj || !capObj.words) return;
+
+        var html = '';
+        for (var i = 0; i < capObj.words.length; i++) {
+            html += '<span id="cw-' + i + '" class="cap-word">' + capObj.words[i] + '</span>';
+        }
+        capLine.innerHTML = html;
+
+        var step = capObj.stepMs || 550;
+        for (var w = 0; w < capObj.words.length; w++) {
+            (function (wordIdx) {
+                schedule(function () {
+                    var all = capLine.querySelectorAll('.cap-word');
+                    for (var k = 0; k < all.length; k++) {
+                        all[k].className = 'cap-word';
+                    }
+                    var target = document.getElementById('cw-' + wordIdx);
+                    if (target) {
+                        target.className = 'cap-word active-word';
+                    }
+                }, wordIdx * step);
+            })(w);
+        }
     }
 
     function showItem(item) {
@@ -734,8 +852,7 @@
             el.className = 'follow-btn anim-item pop-in done';
             el.innerHTML = '✓ Following';
         }
-        if (item.cap) setCaption(item.cap);
-        if (item.freq) playTone(item.freq, 0.18, 0.16);
+        if (item.freq) playTone(item.freq, 0.16, 0.14);
     }
 
     function startBarProgress(num, duration) {
@@ -780,6 +897,14 @@
             (function (it) {
                 schedule(function () { showItem(it); }, it.at);
             })(cfg.items[j]);
+        }
+
+        if (cfg.captions) {
+            for (var c = 0; c < cfg.captions.length; c++) {
+                (function (capItem) {
+                    schedule(function () { renderMovingCaption(capItem); }, capItem.at);
+                })(cfg.captions[c]);
+            }
         }
 
         schedule(function () { runWipe(); }, Math.max(400, cfg.duration - 450));
