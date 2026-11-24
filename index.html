@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>মোঃ সরওয়ার আলম সবুজ - রিলস মোশন গ্রাফিক্স</title>
+    <title>মোঃ সরওয়ার আলম সবুজ - রিলস অ্যানিমেশন ও ক্যাপশন</title>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -25,12 +25,37 @@
             position: relative;
             cursor: pointer;
         }
+
         #reel-area {
             position: relative;
             height: 100vh;
             width: min(100vw, 56.25vh);
             z-index: 2;
+            overflow: hidden;
         }
+
+        .top-bars {
+            position: absolute;
+            top: 12px;
+            left: 14px;
+            right: 14px;
+            display: flex;
+            gap: 5px;
+            z-index: 30;
+        }
+        .bar-seg {
+            flex: 1;
+            height: 4px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.22);
+            overflow: hidden;
+        }
+        .bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #fde047, #22c55e);
+        }
+
         .scene {
             position: absolute;
             inset: 0;
@@ -38,7 +63,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 9% 5%;
+            padding: 12% 6% 28% 6%;
             text-align: center;
         }
         .scene.active {
@@ -49,33 +74,28 @@
         .ic { width: 18px; height: 18px; flex-shrink: 0; }
         .ic-sm { width: 15px; height: 15px; flex-shrink: 0; }
         .ic-lg { width: 24px; height: 24px; flex-shrink: 0; }
-        .ic-question { width: 32px; height: 32px; flex-shrink: 0; }
-        .ic-laptop { width: 42px; height: 42px; flex-shrink: 0; }
+        .ic-question { width: 30px; height: 30px; flex-shrink: 0; }
+        .ic-laptop { width: 40px; height: 40px; flex-shrink: 0; }
 
         .check-badge {
-            width: 30px;
-            height: 30px;
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
             background: rgba(34, 197, 94, 0.22);
             border: 2px solid #4ade80;
             color: #fde047;
-            font-size: 1.05rem;
+            font-size: 1rem;
             font-weight: 800;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            line-height: 1;
         }
 
         .q-mark {
             font-size: 1.15em;
             font-weight: 800;
-            line-height: 1.1;
-            margin-left: 10px;
-            display: inline-block;
-            vertical-align: middle;
-            white-space: nowrap;
+            margin-left: 8px;
             color: #fde047;
         }
 
@@ -105,7 +125,7 @@
 
         #pause-badge {
             position: fixed;
-            top: 18px;
+            top: 22px;
             right: 18px;
             z-index: 50;
             padding: 6px 14px;
@@ -118,13 +138,11 @@
             display: none;
             pointer-events: none;
         }
-        body.paused #pause-badge {
-            display: inline-block;
-        }
+        body.paused #pause-badge { display: inline-block; }
 
         .anim-item {
             opacity: 0;
-            transform: translateY(24px) scale(0.95);
+            transform: translateY(22px) scale(0.95);
         }
         .anim-item.pop-in {
             animation: itemPopIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
@@ -134,34 +152,27 @@
             animation-play-state: paused;
         }
         @keyframes itemPopIn {
-            0% {
-                opacity: 0;
-                transform: translateY(24px) scale(0.95);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+            0% { opacity: 0; transform: translateY(22px) scale(0.95); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         .hello-text {
-            font-size: clamp(1.3rem, 3.6vh, 1.9rem);
+            font-size: clamp(1.25rem, 3.4vh, 1.8rem);
             font-weight: 600;
             margin-bottom: 8px;
             color: #ffffff;
         }
-
         .name-row {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 12px;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             flex-wrap: wrap;
         }
         .name-circle {
-            width: clamp(54px, 8.2vh, 72px);
-            height: clamp(54px, 8.2vh, 72px);
+            width: clamp(54px, 8vh, 70px);
+            height: clamp(54px, 8vh, 70px);
             border-radius: 50%;
             border: 2.5px solid #ffaa00;
             box-shadow: 0 0 18px rgba(255, 145, 0, 0.45);
@@ -173,7 +184,6 @@
             flex-shrink: 0;
             position: relative;
             font-weight: 700;
-            color: #ffffff;
         }
         .name-circle img {
             width: 100%;
@@ -183,13 +193,12 @@
             display: block;
         }
         .name-text {
-            font-size: clamp(1.6rem, 4.4vh, 2.5rem);
+            font-size: clamp(1.5rem, 4.1vh, 2.35rem);
             font-weight: 700;
             line-height: 1.25;
             color: #ffaa00;
         }
-
-        .badges-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+        .badges-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 9px; }
         .prof-badge {
             display: inline-flex;
             align-items: center;
@@ -198,27 +207,19 @@
             background: rgba(255, 115, 0, 0.16);
             border: 1px solid rgba(255, 145, 0, 0.5);
             border-radius: 50px;
-            font-size: clamp(0.88rem, 2vh, 1.08rem);
+            font-size: clamp(0.86rem, 1.95vh, 1.05rem);
             color: #ff9d42;
         }
         .prof-badge span { color: #f8fafc; }
 
         .card-box {
             width: 100%;
-            background: rgba(23, 35, 56, 0.88);
+            background: rgba(23, 35, 56, 0.9);
             border: 1px solid rgba(255, 145, 50, 0.36);
             border-radius: 16px;
-            padding: 14px 18px;
-            margin-bottom: 12px;
+            padding: 13px 16px;
+            margin-bottom: 10px;
             text-align: left;
-        }
-        .card-meta {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.86rem;
-            color: #ff9d42;
-            margin-bottom: 4px;
         }
         .card-main {
             display: flex;
@@ -228,16 +229,50 @@
             font-weight: 600;
             color: #ffffff;
         }
-
-        .profile-row {
+        .pill-box {
+            width: 100%;
+            background: rgba(23, 35, 56, 0.9);
+            border: 1px solid rgba(255, 145, 50, 0.36);
+            border-radius: 14px;
+            padding: 12px 15px;
+            margin-bottom: 9px;
+            font-weight: 600;
+            color: #ffb84d;
             display: flex;
             align-items: center;
-            gap: 12px;
-            width: 100%;
+            justify-content: space-between;
+            gap: 10px;
         }
+        .pill-left { display: inline-flex; align-items: center; gap: 9px; text-align: left; }
+        .mini-tag {
+            font-size: 0.76rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            flex-shrink: 0;
+        }
+
+        .title-lg {
+            font-size: clamp(1.22rem, 3.2vh, 1.9rem);
+            font-weight: 700;
+            margin-bottom: 14px;
+            background: linear-gradient(90deg, #fde047 0%, #84cc16 50%, #22c55e 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .profile-row { display: flex; align-items: center; gap: 12px; width: 100%; }
         .avatar-circle {
-            width: 56px;
-            height: 56px;
+            width: 52px;
+            height: 52px;
             border-radius: 50%;
             border: 2.5px solid #ff9d42;
             background: linear-gradient(135deg, #ff6a00, #d93800);
@@ -248,83 +283,17 @@
             flex-shrink: 0;
             position: relative;
             font-weight: 700;
-            color: #ffffff;
         }
-        .avatar-circle img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: top center;
-            display: block;
-        }
-        .avatar-fallback {
-            display: none;
-            font-size: 1rem;
-            letter-spacing: 0.5px;
-        }
-        .broken .avatar-fallback {
-            display: inline-block;
-        }
-        .profile-text {
-            text-align: left;
-        }
-        .profile-name {
-            font-weight: 700;
-            font-size: clamp(1rem, 2.4vh, 1.25rem);
-            color: #ffffff;
-        }
-        .profile-sub {
-            font-size: 0.84rem;
-            color: #cbd5e1;
-        }
-
-        .pill-box {
-            width: 100%;
-            background: rgba(23, 35, 56, 0.88);
-            border: 1px solid rgba(255, 145, 50, 0.36);
-            border-radius: 14px;
-            padding: 13px 16px;
-            margin-bottom: 10px;
-            font-weight: 600;
-            color: #ffb84d;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-        }
-        .pill-left {
-            display: inline-flex;
-            align-items: center;
-            gap: 9px;
-        }
-        .mini-tag {
-            font-size: 0.78rem;
-            font-weight: 700;
-            padding: 3px 8px;
-            border-radius: 6px;
-            background: rgba(255, 255, 255, 0.12);
-            color: #ffffff;
-        }
-
-        .title-lg {
-            font-size: clamp(1.35rem, 3.6vh, 2.15rem);
-            font-weight: 700;
-            margin-bottom: 16px;
-            background: linear-gradient(90deg, #fde047 0%, #84cc16 50%, #22c55e 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: nowrap;
-            white-space: nowrap;
-        }
+        .avatar-circle img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+        .avatar-fallback { display: none; font-size: 0.95rem; }
+        .broken .avatar-fallback { display: inline-block; }
+        .profile-text { text-align: left; }
+        .profile-name { font-weight: 700; font-size: clamp(1rem, 2.3vh, 1.2rem); color: #ffffff; }
+        .profile-sub { font-size: 0.82rem; color: #cbd5e1; }
 
         .follow-btn {
-            margin-top: 12px;
-            padding: 10px 22px;
+            margin-top: 10px;
+            padding: 9px 22px;
             border-radius: 50px;
             background: #ff6200;
             color: #fff;
@@ -334,16 +303,68 @@
             gap: 6px;
         }
         .follow-btn.done { background: #16a34a; }
+
+        /* একদম নিচের লাইভ ক্যাপশন (ভয়েস রেকর্ডিং ও ভিউয়ারদের জন্য) */
+        #bottom-caption {
+            position: absolute;
+            left: 5%;
+            right: 5%;
+            bottom: 5.5%;
+            z-index: 25;
+            text-align: center;
+            pointer-events: none;
+            padding: 9px 12px;
+            border-radius: 14px;
+            background: rgba(6, 10, 20, 0.76);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+        }
+        .cap-line {
+            font-size: clamp(1rem, 2.5vh, 1.35rem);
+            font-weight: 700;
+            line-height: 1.42;
+            color: #f8fafc;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.85);
+        }
+        .cap-hi {
+            display: inline-block;
+            padding: 1px 8px;
+            margin: 0 2px;
+            border-radius: 6px;
+            background: #fde047;
+            color: #090d16;
+            font-weight: 800;
+        }
+        .cap-hi-green {
+            display: inline-block;
+            padding: 1px 8px;
+            margin: 0 2px;
+            border-radius: 6px;
+            background: #4ade80;
+            color: #06120b;
+            font-weight: 800;
+        }
     </style>
 </head>
 <body>
 <div id="pause-badge">❚❚ থামানো হয়েছে</div>
+
 <div id="reel-area">
     <div id="wipe-overlay"></div>
 
-    <!-- সিন ১ -->
+    <div class="top-bars">
+        <div class="bar-seg"><div id="b1" class="bar-fill"></div></div>
+        <div class="bar-seg"><div id="b2" class="bar-fill"></div></div>
+        <div class="bar-seg"><div id="b3" class="bar-fill"></div></div>
+        <div class="bar-seg"><div id="b4" class="bar-fill"></div></div>
+        <div class="bar-seg"><div id="b5" class="bar-fill"></div></div>
+        <div class="bar-seg"><div id="b6" class="bar-fill"></div></div>
+        <div class="bar-seg"><div id="b7" class="bar-fill"></div></div>
+    </div>
+
+    <!-- সিন ১ (৫.৬ সেকেন্ড) -->
     <div id="scene-1" class="scene active">
-        <div id="e1" class="hello-text anim-item">Hello, আমি</div>
+        <div id="e1" class="hello-text anim-item">হ্যালো, আমি</div>
         <div id="e2" class="name-row anim-item">
             <div class="name-circle">
                 <img class="saroar01-photo" src="saroar01.png" alt="মোঃ সরওয়ার আলম সবুজ">
@@ -353,134 +374,66 @@
         </div>
         <div class="badges-container">
             <div id="e3" class="prof-badge anim-item">
-                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 19l7-7 3 3-7 7-3-3z"/>
-                    <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
-                </svg>
-                <span>Graphics Designer</span>
+                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/></svg>
+                <span>গ্রাফিক্স ডিজাইনার</span>
             </div>
             <div id="e4" class="prof-badge anim-item">
-                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="2" y="4" width="20" height="16" rx="2"/>
-                    <polygon points="10 9 15 12 10 15 10 9" fill="currentColor" stroke="none"/>
-                </svg>
-                <span>Video Editor</span>
+                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="4" width="20" height="16" rx="2"/><polygon points="10 9 15 12 10 15 10 9" fill="currentColor" stroke="none"/></svg>
+                <span>ভিডিও এডিটর</span>
             </div>
             <div id="e5" class="prof-badge anim-item">
-                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/>
-                    <line x1="9" y1="3" x2="9" y2="18"/>
-                    <line x1="15" y1="6" x2="15" y2="21"/>
-                </svg>
-                <span>Land Surveyor</span>
+                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
+                <span>ল্যান্ড সার্ভেয়ার</span>
             </div>
         </div>
     </div>
 
-    <!-- সিন ২ -->
+    <!-- সিন ২ (৯.০ সেকেন্ড) -->
     <div id="scene-2" class="scene">
         <div id="e7" class="card-box anim-item">
-            <div class="card-meta">
-                <svg class="ic-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                </svg>
-                <span>কমেন্ট</span>
-            </div>
             <div class="card-main">
-                <span>কীভাবে এই ভিডিও তৈরি করেন<span class="q-mark">?</span></span>
-                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#ff9d42" stroke-width="2.2">
-                    <rect x="2" y="4" width="20" height="16" rx="2"/>
-                    <polygon points="10 9 15 12 10 15 10 9" fill="#ff9d42" stroke="none"/>
-                </svg>
-            </div>
-        </div>
-        <div id="e8" class="card-box anim-item">
-            <div class="card-meta">
-                <svg class="ic-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                    <polyline points="22,6 12,13 2,6"/>
-                </svg>
-                <span>ইনবক্স</span>
-            </div>
-            <div class="card-main">
-                <span>কীভাবে এগুলো তৈরি করেন<span class="q-mark">?</span></span>
-                <svg class="ic" viewBox="0 0 24 24" fill="#ffb84d">
-                    <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/>
-                </svg>
+                <span>কমেন্টে বা ইনবক্সে জানতে চান — কীভাবে এই ভিডিও তৈরি করি<span class="q-mark">?</span></span>
             </div>
         </div>
         <div id="e9" class="pill-box anim-item">
-            <span class="pill-left">
-                <svg class="ic" viewBox="0 0 24 24" fill="#ffb84d">
-                    <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/>
-                </svg>
-                <span>AI</span>
-            </span>
-            <span class="mini-tag">TOOLS</span>
+            <span class="pill-left">✦ <span>এআই টুলস (AI Tools)</span></span>
+            <span class="mini-tag">AI</span>
         </div>
         <div id="e10" class="pill-box anim-item">
-            <span class="pill-left">
-                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#ffb84d" stroke-width="2.2">
-                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-                </svg>
-                <span>3D motion</span>
-            </span>
-            <span class="mini-tag">MOTION</span>
+            <span class="pill-left">❖ <span>থ্রিডি মোশন (3D Motion)</span></span>
+            <span class="mini-tag">3D</span>
         </div>
         <div id="e11" class="pill-box anim-item">
-            <span class="pill-left">
-                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#ffb84d" stroke-width="2.2">
-                    <rect x="2" y="4" width="20" height="16" rx="2"/>
-                    <polygon points="10 9 15 12 10 15 10 9" fill="#ffb84d" stroke="none"/>
-                </svg>
-                <span>Creative video</span>
-            </span>
+            <span class="pill-left">▶ <span>ক্রিয়েটিভ ভিডিওর কাজের মাধ্যমে</span></span>
             <span class="mini-tag">REELS</span>
         </div>
     </div>
 
-    <!-- সিন ৩ -->
+    <!-- সিন ৩ (৮.২ সেকেন্ড) -->
     <div id="scene-3" class="scene">
         <div id="e12" class="title-lg anim-item">
-            <svg class="ic-question" viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-                <line x1="12" y1="17" x2="12.01" y2="17"/>
-            </svg>
-            <span>কোনো course করাই কিনা<span class="q-mark">?</span></span>
+            <svg class="ic-question" viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2.6"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <span>কোনো কোর্স করাই কি না<span class="q-mark">?</span> — না</span>
         </div>
         <div id="e13" class="card-box anim-item">
             <div class="card-main">
-                <span class="pill-left">
-                    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#31a8ff" stroke-width="2.2">
-                        <rect x="3" y="3" width="18" height="18" rx="4"/>
-                    </svg>
-                    <span>Graphics Design — Ps, Ai</span>
-                </span>
-                <span class="mini-tag">Ps • Ai</span>
+                <span>ফটোশপ, ইলাস্ট্রেটর, আফটার ইফেক্ট ও গ্রাফিক্স ডিজাইন</span>
+                <span class="mini-tag">DESIGN</span>
             </div>
         </div>
         <div id="e14" class="card-box anim-item">
             <div class="card-main">
-                <span class="pill-left">
-                    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#ff9a00" stroke-width="2.2">
-                        <rect x="2" y="4" width="20" height="16" rx="2"/>
-                        <polygon points="10 9 15 12 10 15 10 9" fill="#ff9a00" stroke="none"/>
-                    </svg>
-                    <span>Video Editing — Motion &amp; Cut</span>
-                </span>
-                <span class="mini-tag">VIDEO</span>
+                <span>কিংবা ওয়েবসাইট তৈরীতে সহায়তা করি</span>
+                <span class="mini-tag">WEB</span>
             </div>
         </div>
     </div>
 
-    <!-- সিন ৪ -->
+    <!-- সিন ৪ (৫.৬ সেকেন্ড) -->
     <div id="scene-4" class="scene">
         <div id="e15" class="title-lg anim-item">
-            <svg class="ic-lg" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-            </svg>
-            <span>যোগাযোগ করুন</span>
+            <svg class="ic-lg" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.4"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span>সরাসরি যোগাযোগ করুন</span>
         </div>
         <div id="e16" class="card-box anim-item">
             <div class="profile-row">
@@ -490,121 +443,64 @@
                 </div>
                 <div class="profile-text">
                     <div class="profile-name">মোঃ সরওয়ার আলম সবুজ</div>
-                    <div class="profile-sub">Digital Creator • Land Surveyor</div>
+                    <div class="profile-sub">আমার নিচের ঠিকানায় যোগাযোগ করুন</div>
                 </div>
             </div>
         </div>
         <div id="e17" class="card-box anim-item">
             <div class="card-main">
-                <span class="pill-left">
-                    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                        <circle cx="12" cy="10" r="3"/>
-                    </svg>
-                    <span>কাদুটি বাজার, চান্দিনা, কুমিল্লা</span>
-                </span>
+                <span>কাদুটি বাজার, চান্দিনা, কুমিল্লা</span>
                 <span class="mini-tag">ADDRESS</span>
             </div>
         </div>
         <div id="e17b" class="card-box anim-item">
             <div class="card-main">
-                <span class="pill-left">
-                    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="6" y="2" width="12" height="20" rx="2"/>
-                        <line x1="11" y1="18" x2="13" y2="18"/>
-                    </svg>
-                    <span>মোবাইল - 01817068114</span>
-                </span>
+                <span>মোবাইল - 01817068114</span>
                 <span class="mini-tag">MOBILE</span>
             </div>
         </div>
     </div>
 
-    <!-- সিন ৫ -->
+    <!-- সিন ৫ (৮.৬ সেকেন্ড) -->
     <div id="scene-5" class="scene">
         <div id="e18" class="title-lg anim-item">
             <span class="check-badge">✓</span>
-            <span>আপনি শিখুন নিজেকে আপডেট রাখুন</span>
+            <span>আপনি নিজেও শিখুন ও আপডেট রাখুন</span>
         </div>
         <div id="e19" class="pill-box anim-item">
-            <span class="pill-left">
-                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#31a8ff" stroke-width="2.2">
-                    <path d="M12 19l7-7 3 3-7 7-3-3z"/>
-                </svg>
-                <span>Graphics Design (Ps, Ai)</span>
-            </span>
-            <span class="mini-tag">FREE</span>
-        </div>
-        <div id="e20" class="pill-box anim-item">
-            <span class="pill-left">
-                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#ff9a00" stroke-width="2.2">
-                    <rect x="2" y="4" width="20" height="16" rx="2"/>
-                    <polygon points="10 9 15 12 10 15 10 9" fill="#ff9a00" stroke="none"/>
-                </svg>
-                <span>Video Editing</span>
-            </span>
-            <span class="mini-tag">FREE</span>
+            <span class="pill-left">✦ <span>গ্রাফিক্স ডিজাইন ও ভিডিও এডিটিং</span></span>
+            <span class="mini-tag">SKILL</span>
         </div>
         <div id="e21" class="pill-box anim-item">
-            <span class="pill-left">
-                <svg class="ic" viewBox="0 0 24 24" fill="#ffb84d">
-                    <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/>
-                </svg>
-                <span>বিভিন্ন AI tools — ChatGPT, Gemini, Claude</span>
-            </span>
+            <span class="pill-left">✦ <span>চ্যাটজিপিটি, জেমিনি বা ক্লডের মতো এআই টুলস</span></span>
             <span class="mini-tag">AI</span>
         </div>
         <div id="e22" class="pill-box anim-item">
-            <span class="pill-left">
-                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#ffb84d" stroke-width="2.2">
-                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-                </svg>
-                <span>নতুন নতুন technology ও আরও অনেক কিছু</span>
-            </span>
-            <span class="mini-tag">+ MORE</span>
+            <span class="pill-left">⚡ <span>আর নতুন টেকনোলজি — সবই শেখার সুযোগ আছে</span></span>
+            <span class="mini-tag">TECH</span>
         </div>
     </div>
 
-    <!-- সিন ৬ -->
+    <!-- সিন ৬ (৪.৮ সেকেন্ড) -->
     <div id="scene-6" class="scene">
         <div id="e23" class="title-lg anim-item">
-            <svg class="ic-laptop" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="4" width="18" height="12" rx="2"/>
-                <line x1="1" y1="19" x2="23" y2="19"/>
-            </svg>
-            <span>ল্যাপটপ দিয়ে</span>
+            <svg class="ic-laptop" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.3"><rect x="3" y="4" width="18" height="12" rx="2"/><line x1="1" y1="19" x2="23" y2="19"/></svg>
+            <span>একটি ল্যাপটপ দিয়েই</span>
         </div>
         <div id="e24" class="pill-box anim-item">
-            <span class="pill-left">
-                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#ffb84d" stroke-width="2.5">
-                    <polyline points="20 6 9 17 4 12"/>
-                </svg>
-                <span>নতুন নতুন skill শিখুন</span>
-            </span>
-            <span class="mini-tag">SKILL</span>
+            <span class="pill-left">✓ <span>নতুন নতুন স্কিল শিখুন</span></span>
+            <span class="mini-tag">LEARN</span>
         </div>
         <div id="e25" class="pill-box anim-item">
-            <span class="pill-left">
-                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#ffb84d" stroke-width="2.2">
-                    <polyline points="23 4 23 10 17 10"/>
-                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10"/>
-                </svg>
-                <span>নিজেকে update রাখুন</span>
-            </span>
+            <span class="pill-left">↻ <span>আর নিজেকে সবসময় আপডেট রাখুন</span></span>
             <span class="mini-tag">UPDATE</span>
         </div>
     </div>
 
-    <!-- সিন ৭ -->
+    <!-- সিন ৭ (৫.৬ সেকেন্ড) -->
     <div id="scene-7" class="scene">
         <div id="e26" class="title-lg anim-item">
-            <svg class="ic-lg" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.4">
-                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                <circle cx="8.5" cy="7" r="4"/>
-                <line x1="20" y1="8" x2="20" y2="14"/>
-                <line x1="23" y1="11" x2="17" y2="11"/>
-            </svg>
-            <span>Follow করুন</span>
+            <span>সব আপডেট পেতে পেজটি ফলো করুন</span>
         </div>
         <div id="e27" class="card-box anim-item">
             <div class="profile-row">
@@ -618,21 +514,15 @@
                 </div>
             </div>
         </div>
-        <div id="e28" class="follow-btn anim-item">
-            <svg class="ic-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <line x1="12" y1="5" x2="12" y2="19"/>
-                <line x1="5" y1="12" x2="19" y2="12"/>
-            </svg>
-            <span>Follow</span>
+        <div id="e28" class="follow-btn anim-item">+ Follow</div>
+        <div id="e29" class="title-lg anim-item" style="margin-top:14px;">
+            <span>আর কী জানতে চান, কমেন্টে জানান<span class="q-mark">?</span></span>
         </div>
-        <div id="e29" class="title-lg anim-item" style="margin-top:18px;">
-            <svg class="ic-question" viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-                <line x1="12" y1="17" x2="12.01" y2="17"/>
-            </svg>
-            <span>আপনি কি জানতে চান<span class="q-mark">?</span></span>
-        </div>
+    </div>
+
+    <!-- একদম নিচের হাইলাইটেড ক্যাপশন -->
+    <div id="bottom-caption">
+        <div id="capLine" class="cap-line">হ্যালো, আমি <span class="cap-hi">মোঃ সরওয়ার আলম সবুজ</span>।</div>
     </div>
 </div>
 
@@ -643,86 +533,82 @@
     var paused = false;
     var actx = null;
     var activeTimers = [];
+    var barTimer = null;
 
     var scenesData = {
         1: {
-            duration: 4600,
+            duration: 5600,
             items: [
-                { id: 'e1', at: 0,    freq: 523.25 },
-                { id: 'e2', at: 750,  freq: 587.33 },
-                { id: 'e3', at: 1500, freq: 659.25 },
-                { id: 'e4', at: 2200, freq: 698.46 },
-                { id: 'e5', at: 2900, freq: 783.99 }
+                { id: 'e1', at: 0,    freq: 523.25, cap: 'হ্যালো, আমি <span class="cap-hi">মোঃ সরওয়ার আলম সবুজ</span>।' },
+                { id: 'e2', at: 1100, freq: 587.33 },
+                { id: 'e3', at: 2200, freq: 659.25, cap: 'একজন <span class="cap-hi">গ্রাফিক্স ডিজাইনার</span>,' },
+                { id: 'e4', at: 3400, freq: 698.46, cap: '<span class="cap-hi">ভিডিও এডিটর</span> এবং <span class="cap-hi-green">ল্যান্ড সার্ভেয়ার</span>।' },
+                { id: 'e5', at: 4400, freq: 783.99 }
             ]
         },
         2: {
-            duration: 9200,
+            duration: 9000,
             items: [
-                { id: 'e7',  at: 0,    freq: 523.25 },
-                { id: 'e8',  at: 1800, freq: 587.33 },
-                { id: 'e9',  at: 3600, freq: 659.25 },
-                { id: 'e10', at: 5200, freq: 698.46 },
-                { id: 'e11', at: 6800, freq: 783.99 }
+                { id: 'e7',  at: 0,    freq: 523.25, cap: 'অনেকেই কমেন্টে বা ইনবক্সে জানতে চান— <span class="cap-hi">কীভাবে এই ভিডিও</span> তৈরি করি?' },
+                { id: 'e9',  at: 3000, freq: 659.25, cap: 'মূলত <span class="cap-hi">এআই টুলস</span>, <span class="cap-hi-green">থ্রিডি মোশন</span>' },
+                { id: 'e10', at: 5200, freq: 698.46, cap: 'এবং <span class="cap-hi">ক্রিয়েটিভ ভিডিওর</span> কাজের মাধ্যমে।' },
+                { id: 'e11', at: 7000, freq: 783.99 }
             ]
         },
         3: {
-            duration: 4400,
+            duration: 8200,
             items: [
-                { id: 'e12', at: 0,    freq: 587.33 },
-                { id: 'e13', at: 1100, freq: 659.25 },
-                { id: 'e14', at: 2200, freq: 783.99 }
+                { id: 'e12', at: 0,    freq: 587.33, cap: 'অনেকের প্রশ্ন থাকে, আমি কোনো কোর্স করাই কি না— <span class="cap-hi">না</span>।' },
+                { id: 'e13', at: 2600, freq: 659.25, cap: 'তবে <span class="cap-hi">ফটোশপ, ইলাস্ট্রেটর, আফটার ইফেক্ট</span> ও গ্রাফিক্স ডিজাইন' },
+                { id: 'e14', at: 5400, freq: 783.99, cap: 'কিংবা <span class="cap-hi-green">ওয়েবসাইট তৈরীতে</span> সহায়তা করি।' }
             ]
         },
         4: {
             duration: 5600,
             items: [
-                { id: 'e15',  at: 0,    freq: 523.25 },
-                { id: 'e16',  at: 1100, freq: 587.33 },
-                { id: 'e17',  at: 2200, freq: 659.25 },
-                { id: 'e17b', at: 3300, freq: 783.99 }
+                { id: 'e15',  at: 0,    freq: 523.25, cap: '<span class="cap-hi">সরাসরি যোগাযোগ</span> করতে চাইলে' },
+                { id: 'e16',  at: 1400, freq: 587.33, cap: 'আমার <span class="cap-hi-green">নিচের ঠিকানায়</span> যোগাযোগ করুন।' },
+                { id: 'e17',  at: 2800, freq: 659.25, cap: '<span class="cap-hi">কাদুটি বাজার, চান্দিনা, কুমিল্লা</span>' },
+                { id: 'e17b', at: 4100, freq: 783.99, cap: 'মোবাইল: <span class="cap-hi-green">01817068114</span>' }
             ]
         },
         5: {
-            duration: 8000,
+            duration: 8600,
             items: [
-                { id: 'e18', at: 0,    freq: 523.25 },
-                { id: 'e19', at: 1350, freq: 587.33 },
-                { id: 'e20', at: 2700, freq: 659.25 },
-                { id: 'e21', at: 4050, freq: 698.46 },
-                { id: 'e22', at: 5400, freq: 783.99 }
+                { id: 'e18', at: 0,    freq: 523.25, cap: '<span class="cap-hi">আপনি নিজেও শিখুন</span> এবং নিজেকে আপডেট রাখুন।' },
+                { id: 'e19', at: 2200, freq: 587.33, cap: '<span class="cap-hi">গ্রাফিক্স ডিজাইন</span>, <span class="cap-hi-green">ভিডিও এডিটিং</span>,' },
+                { id: 'e21', at: 4400, freq: 698.46, cap: '<span class="cap-hi">চ্যাটজিপিটি, জেমিনি বা ক্লডের</span> মতো এআই টুলস' },
+                { id: 'e22', at: 6500, freq: 783.99, cap: 'আর <span class="cap-hi-green">নতুন টেকনোলজি</span>—সবই শেখার সুযোগ আছে।' }
             ]
         },
         6: {
-            duration: 4400,
+            duration: 4800,
             items: [
-                { id: 'e23', at: 0,    freq: 587.33 },
-                { id: 'e24', at: 1200, freq: 698.46 },
-                { id: 'e25', at: 2400, freq: 880.00 }
+                { id: 'e23', at: 0,    freq: 587.33, cap: 'একটি <span class="cap-hi">ল্যাপটপ দিয়েই</span> নতুন নতুন স্কিল শিখুন' },
+                { id: 'e24', at: 1600, freq: 698.46, cap: 'আর নিজেকে <span class="cap-hi-green">সবসময় আপডেট</span> রাখুন।' },
+                { id: 'e25', at: 3100, freq: 880.00 }
             ]
         },
         7: {
-            duration: 6200,
+            duration: 5600,
             items: [
-                { id: 'e26', at: 0,    freq: 587.33 },
-                { id: 'e27', at: 1000, freq: 659.25 },
-                { id: 'e28', at: 2000, freq: 880.00, isFollow: true },
-                { id: 'e29', at: 3000, freq: 987.77 }
+                { id: 'e26', at: 0,    freq: 587.33, cap: 'সব আপডেট পেতে <span class="cap-hi">পেজটি ফলো করুন</span>।' },
+                { id: 'e27', at: 1400, freq: 659.25 },
+                { id: 'e28', at: 2400, freq: 880.00, isFollow: true },
+                { id: 'e29', at: 3300, freq: 987.77, cap: 'আর <span class="cap-hi-green">কী জানতে চান</span>, কমেন্টে জানান?' }
             ]
         }
     };
 
     function clearTimers() {
-        for (var i = 0; i < activeTimers.length; i++) {
-            clearTimeout(activeTimers[i]);
-        }
+        for (var i = 0; i < activeTimers.length; i++) clearTimeout(activeTimers[i]);
         activeTimers = [];
+        clearInterval(barTimer);
     }
 
     function schedule(fn, ms) {
         var id = setTimeout(function () {
-            if (!paused) {
-                fn();
-            }
+            if (!paused) fn();
         }, ms);
         activeTimers.push(id);
     }
@@ -732,9 +618,7 @@
             var AC = window.AudioContext || window.webkitAudioContext;
             if (!AC) return;
             if (!actx) actx = new AC();
-            if (actx.state === 'suspended') {
-                actx.resume();
-            }
+            if (actx.state === 'suspended') actx.resume();
         } catch (err) {}
     }
 
@@ -746,12 +630,12 @@
             var gain = actx.createGain();
             osc.type = 'sine';
             osc.frequency.setValueAtTime(freq, now);
-            gain.gain.setValueAtTime(vol || 0.22, now);
-            gain.gain.exponentialRampToValueAtTime(0.001, now + (dur || 0.2));
+            gain.gain.setValueAtTime(vol || 0.16, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + (dur || 0.18));
             osc.connect(gain);
             gain.connect(actx.destination);
             osc.start(now);
-            osc.stop(now + (dur || 0.2));
+            osc.stop(now + (dur || 0.18));
         } catch (err) {}
     }
 
@@ -783,13 +667,12 @@
             var gain = actx.createGain();
             var now = actx.currentTime;
             gain.gain.setValueAtTime(0.001, now);
-            gain.gain.linearRampToValueAtTime(0.32, now + duration * 0.35);
+            gain.gain.linearRampToValueAtTime(0.28, now + duration * 0.35);
             gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
 
             src.connect(filter);
             filter.connect(gain);
             gain.connect(actx.destination);
-
             src.start(now);
             src.stop(now + duration);
         } catch (err) {}
@@ -803,9 +686,8 @@
                 var idx = 0;
                 img.onerror = function () {
                     idx++;
-                    if (idx < exts.length) {
-                        img.src = exts[idx];
-                    } else {
+                    if (idx < exts.length) img.src = exts[idx];
+                    else {
                         img.style.display = 'none';
                         if (img.parentNode && img.parentNode.className.indexOf('broken') === -1) {
                             img.parentNode.className += ' broken';
@@ -833,23 +715,50 @@
         var btn = document.getElementById('e28');
         if (btn) {
             btn.className = 'follow-btn anim-item';
-            btn.innerHTML = '<svg class="ic-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg><span>Follow</span>';
+            btn.innerHTML = '+ Follow';
         }
+    }
+
+    function setCaption(html) {
+        if (!html) return;
+        var cap = document.getElementById('capLine');
+        if (cap) cap.innerHTML = html;
     }
 
     function showItem(item) {
         var el = document.getElementById(item.id);
-        if (!el) return;
-        if (el.className.indexOf('pop-in') === -1) {
+        if (el && el.className.indexOf('pop-in') === -1) {
             el.className = el.className + ' pop-in';
         }
-        if (item.isFollow) {
+        if (item.isFollow && el) {
             el.className = 'follow-btn anim-item pop-in done';
             el.innerHTML = '✓ Following';
         }
-        if (item.freq) {
-            playTone(item.freq, 0.22, 0.22);
+        if (item.cap) setCaption(item.cap);
+        if (item.freq) playTone(item.freq, 0.18, 0.16);
+    }
+
+    function startBarProgress(num, duration) {
+        for (var i = 1; i <= totalScenes; i++) {
+            var b = document.getElementById('b' + i);
+            if (!b) continue;
+            b.style.width = i < num ? '100%' : '0%';
         }
+        var curBar = document.getElementById('b' + num);
+        var elapsed = 0;
+        var last = Date.now();
+
+        barTimer = setInterval(function () {
+            var now = Date.now();
+            if (paused) {
+                last = now;
+                return;
+            }
+            elapsed += (now - last);
+            last = now;
+            var pct = Math.min(100, (elapsed / duration) * 100);
+            if (curBar) curBar.style.width = pct + '%';
+        }, 50);
     }
 
     function playScene(num) {
@@ -857,9 +766,7 @@
         currentScene = num;
 
         var list = document.querySelectorAll('.scene');
-        for (var i = 0; i < list.length; i++) {
-            list[i].className = 'scene';
-        }
+        for (var i = 0; i < list.length; i++) list[i].className = 'scene';
 
         var sc = document.getElementById('scene-' + num);
         var cfg = scenesData[num];
@@ -867,18 +774,15 @@
 
         resetScene(sc);
         sc.className = 'scene active';
+        startBarProgress(num, cfg.duration);
 
         for (var j = 0; j < cfg.items.length; j++) {
             (function (it) {
-                schedule(function () {
-                    showItem(it);
-                }, it.at);
+                schedule(function () { showItem(it); }, it.at);
             })(cfg.items[j]);
         }
 
-        schedule(function () {
-            runWipe();
-        }, Math.max(400, cfg.duration - 450));
+        schedule(function () { runWipe(); }, Math.max(400, cfg.duration - 450));
 
         schedule(function () {
             var next = currentScene + 1;
@@ -892,14 +796,10 @@
         paused = !paused;
         if (paused) {
             document.body.className = 'paused';
-            if (actx && actx.state === 'running') {
-                actx.suspend();
-            }
+            if (actx && actx.state === 'running') actx.suspend();
         } else {
             document.body.className = '';
-            if (actx && actx.state === 'suspended') {
-                actx.resume();
-            }
+            if (actx && actx.state === 'suspended') actx.resume();
             playTone(620, 0.08, 0.14);
         }
     });
