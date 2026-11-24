@@ -63,7 +63,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 12% 6% 28% 6%;
+            padding: 12% 6% 26% 6%;
             text-align: center;
         }
         .scene.active {
@@ -304,31 +304,31 @@
         }
         .follow-btn.done { background: #16a34a; }
 
-        /* একদম নিচের লাইভ ক্যাপশন (ভয়েস রেকর্ডিং ও ভিউয়ারদের জন্য) */
+        /* হালকা ও কমপ্যাক্ট বটম ক্যাপশন বক্স */
         #bottom-caption {
             position: absolute;
-            left: 5%;
-            right: 5%;
-            bottom: 5.5%;
+            left: 6%;
+            right: 6%;
+            bottom: 4.5%;
             z-index: 25;
             text-align: center;
             pointer-events: none;
-            padding: 9px 12px;
-            border-radius: 14px;
-            background: rgba(6, 10, 20, 0.76);
-            backdrop-filter: blur(6px);
-            border: 1px solid rgba(255, 255, 255, 0.14);
+            padding: 5px 8px;
+            border-radius: 10px;
+            background: rgba(6, 10, 20, 0.24);
+            backdrop-filter: blur(2px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
         .cap-line {
             font-size: clamp(1rem, 2.5vh, 1.35rem);
             font-weight: 700;
-            line-height: 1.42;
-            color: #f8fafc;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.85);
+            line-height: 1.4;
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95), 0 0 4px rgba(0, 0, 0, 0.9);
         }
         .cap-hi {
             display: inline-block;
-            padding: 1px 8px;
+            padding: 1px 7px;
             margin: 0 2px;
             border-radius: 6px;
             background: #fde047;
@@ -337,7 +337,7 @@
         }
         .cap-hi-green {
             display: inline-block;
-            padding: 1px 8px;
+            padding: 1px 7px;
             margin: 0 2px;
             border-radius: 6px;
             background: #4ade80;
@@ -362,7 +362,7 @@
         <div class="bar-seg"><div id="b7" class="bar-fill"></div></div>
     </div>
 
-    <!-- সিন ১ (৫.৬ সেকেন্ড) -->
+    <!-- সিন ১ -->
     <div id="scene-1" class="scene active">
         <div id="e1" class="hello-text anim-item">হ্যালো, আমি</div>
         <div id="e2" class="name-row anim-item">
@@ -388,7 +388,7 @@
         </div>
     </div>
 
-    <!-- সিন ২ (৯.০ সেকেন্ড) -->
+    <!-- সিন ২ -->
     <div id="scene-2" class="scene">
         <div id="e7" class="card-box anim-item">
             <div class="card-main">
@@ -409,7 +409,7 @@
         </div>
     </div>
 
-    <!-- সিন ৩ (৮.২ সেকেন্ড) -->
+    <!-- সিন ৩ -->
     <div id="scene-3" class="scene">
         <div id="e12" class="title-lg anim-item">
             <svg class="ic-question" viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2.6"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
@@ -429,7 +429,7 @@
         </div>
     </div>
 
-    <!-- সিন ৪ (৫.৬ সেকেন্ড) -->
+    <!-- সিন ৪ -->
     <div id="scene-4" class="scene">
         <div id="e15" class="title-lg anim-item">
             <svg class="ic-lg" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.4"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -461,7 +461,7 @@
         </div>
     </div>
 
-    <!-- সিন ৫ (৮.৬ সেকেন্ড) -->
+    <!-- সিন ৫ -->
     <div id="scene-5" class="scene">
         <div id="e18" class="title-lg anim-item">
             <span class="check-badge">✓</span>
@@ -481,7 +481,7 @@
         </div>
     </div>
 
-    <!-- সিন ৬ (৪.৮ সেকেন্ড) -->
+    <!-- সিন ৬ -->
     <div id="scene-6" class="scene">
         <div id="e23" class="title-lg anim-item">
             <svg class="ic-laptop" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.3"><rect x="3" y="4" width="18" height="12" rx="2"/><line x1="1" y1="19" x2="23" y2="19"/></svg>
@@ -497,7 +497,7 @@
         </div>
     </div>
 
-    <!-- সিন ৭ (৫.৬ সেকেন্ড) -->
+    <!-- সিন ৭ -->
     <div id="scene-7" class="scene">
         <div id="e26" class="title-lg anim-item">
             <span>সব আপডেট পেতে পেজটি ফলো করুন</span>
