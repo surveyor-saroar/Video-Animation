@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>মোঃ সরওয়ার আলম সবুজ - রিলস অ্যানিমেশন</title>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -240,4 +243,87 @@ body.paused #pause-badge { display: inline-block; }
     </div>
 
     <div id="scene-7" class="scene">
-        <div id="e26"
+        <div id="e26" class="title-lg anim-item">সব আপডেট পেতে পেজটি ফলো করুন</div>
+        <div id="e27" class="card-box anim-item">
+            <div class="profile-row">
+                <div class="avatar-circle"><img class="saroar01-photo" src="saroar01.png" alt="সবুজ"><span class="avatar-fallback">SA</span></div>
+                <div>
+                    <div class="profile-name">মোঃ সরওয়ার আলম সবুজ</div>
+                    <div class="profile-sub">Facebook পেজ</div>
+                </div>
+            </div>
+        </div>
+        <div id="e28" class="follow-btn anim-item">+ Follow</div>
+        <div id="e29" class="title-lg anim-item" style="margin-top:14px;">আর কী জানতে চান, কমেন্টে জানান?</div>
+    </div>
+
+    <div id="bottom-caption"><div id="capLine" class="cap-line"></div></div>
+</div>
+
+<script>
+(function () {
+    var currentScene = 1;
+    var totalScenes = 7;
+    var paused = false;
+    var actx = null;
+    var timers = [];
+    var barInterval = null;
+
+    var scenesData = {
+        1: {
+            duration: 6200,
+            items: [
+                { id: 'e1', at: 80, freq: 523.25 },
+                { id: 'e2', at: 900, freq: 587.33 },
+                { id: 'e3', at: 2000, freq: 659.25 },
+                { id: 'e4', at: 3200, freq: 698.46 },
+                { id: 'e5', at: 4300, freq: 783.99 }
+            ],
+            captions: [
+                { at: 80, words: ['হ্যালো,', 'আমি', 'মোঃ সরওয়ার আলম', 'সবুজ।'], stepMs: 520 },
+                { at: 2200, words: ['গ্রাফিক্স ডিজাইনার,', 'ভিডিও এডিটর', 'ও', 'ল্যান্ড সার্ভেয়ার।'], stepMs: 850 }
+            ]
+        },
+        2: {
+            duration: 9400,
+            items: [
+                { id: 'e7', at: 100, freq: 523.25 },
+                { id: 'e9', at: 3200, freq: 659.25 },
+                { id: 'e10', at: 5500, freq: 698.46 },
+                { id: 'e11', at: 7400, freq: 783.99 }
+            ],
+            captions: [
+                { at: 100, words: ['কমেন্টে', 'বা ইনবক্সে', 'জানতে চান—', 'কীভাবে ভিডিও করি?'], stepMs: 750 },
+                { at: 3300, words: ['এআই টুলস,', 'থ্রিডি মোশন', 'ও', 'ক্রিয়েটিভ ভিডিওতে।'], stepMs: 1450 }
+            ]
+        },
+        3: {
+            duration: 8600,
+            items: [
+                { id: 'e12', at: 100, freq: 587.33 },
+                { id: 'e13', at: 2800, freq: 659.25 },
+                { id: 'e14', at: 5800, freq: 783.99 }
+            ],
+            captions: [
+                { at: 100, words: ['কোর্স', 'করাই কি না—', 'না।'], stepMs: 800 },
+                { at: 2700, words: ['ফটোশপ,', 'ইলাস্ট্রেটর,', 'আফটার ইফেক্ট', 'ও ডিজাইনে'], stepMs: 700 },
+                { at: 5600, words: ['কিংবা', 'ওয়েবসাইট তৈরীতে', 'সহায়তা করি।'], stepMs: 750 }
+            ]
+        },
+        4: {
+            duration: 6000,
+            items: [
+                { id: 'e15', at: 100, freq: 523.25 },
+                { id: 'e16', at: 1400, freq: 587.33 },
+                { id: 'e17', at: 2800, freq: 659.25 },
+                { id: 'e17b', at: 4200, freq: 783.99 }
+            ],
+            captions: [
+                { at: 100, words: ['সরাসরি', 'যোগাযোগ করতে', 'নিচের ঠিকানায়', 'আসুন।'], stepMs: 650 },
+                { at: 2700, words: ['কাদুটি বাজার,', 'চান্দিনা,', 'কুমিল্লা', '01817068114'], stepMs: 700 }
+            ]
+        },
+        5: {
+            duration: 8800,
+            items: [
+                { id: 'e18', at: 100, freq
