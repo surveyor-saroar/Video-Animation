@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>মোঃ সরওয়ার আলম সবুজ - এক লাইন মুভিং ওয়ার্ড হাইলাইট</title>
+    <title>মোঃ সরওয়ার আলম সবুজ - রিলস অ্যানিমেশন ও ক্যাপশন</title>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -72,7 +72,6 @@
         }
 
         .ic { width: 18px; height: 18px; flex-shrink: 0; }
-        .ic-sm { width: 15px; height: 15px; flex-shrink: 0; }
         .ic-lg { width: 24px; height: 24px; flex-shrink: 0; }
         .ic-question { width: 30px; height: 30px; flex-shrink: 0; }
         .ic-laptop { width: 40px; height: 40px; flex-shrink: 0; }
@@ -143,17 +142,11 @@
         .anim-item {
             opacity: 0;
             transform: translateY(22px) scale(0.95);
+            transition: opacity 0.4s ease, transform 0.4s ease;
         }
         .anim-item.pop-in {
-            animation: itemPopIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-        }
-        body.paused .anim-item.pop-in,
-        body.paused .wipe-run {
-            animation-play-state: paused;
-        }
-        @keyframes itemPopIn {
-            0% { opacity: 0; transform: translateY(22px) scale(0.95); }
-            100% { opacity: 1; transform: translateY(0) scale(1); }
+            opacity: 1;
+            transform: translateY(0) scale(1);
         }
 
         .hello-text {
@@ -298,171 +291,3 @@
             background: #ff6200;
             color: #fff;
             font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .follow-btn.done { background: #16a34a; }
-
-        /* এক লাইনে বটম ক্যাপশন: কোনো শেড বা গ্লো ছাড়া সলিড হলুদ ব্লকে সাদা লেখা */
-        #bottom-caption {
-            position: absolute;
-            left: 3%;
-            right: 3%;
-            bottom: 4.5%;
-            z-index: 25;
-            text-align: center;
-            pointer-events: none;
-            padding: 4px 6px;
-            border-radius: 10px;
-            background: rgba(6, 10, 20, 0.18);
-            overflow: hidden;
-        }
-        .cap-line {
-            font-size: clamp(0.76rem, 1.85vh, 1.02rem);
-            font-weight: 700;
-            line-height: 1.35;
-            color: #ffffff;
-            display: flex;
-            flex-wrap: nowrap;
-            justify-content: center;
-            align-items: center;
-            gap: 4px;
-            white-space: nowrap;
-        }
-        .cap-word {
-            display: inline-block;
-            padding: 2px 6px;
-            border-radius: 6px;
-            background: transparent;
-            color: #ffffff;
-            white-space: nowrap;
-            flex-shrink: 0;
-        }
-        .cap-word.active-word {
-            background: #fde047;
-            color: #ffffff;
-            font-weight: 800;
-        }
-    </style>
-</head>
-<body>
-<div id="pause-badge">❚❚ থামানো হয়েছে</div>
-
-<div id="reel-area">
-    <div id="wipe-overlay"></div>
-
-    <div class="top-bars">
-        <div class="bar-seg"><div id="b1" class="bar-fill"></div></div>
-        <div class="bar-seg"><div id="b2" class="bar-fill"></div></div>
-        <div class="bar-seg"><div id="b3" class="bar-fill"></div></div>
-        <div class="bar-seg"><div id="b4" class="bar-fill"></div></div>
-        <div class="bar-seg"><div id="b5" class="bar-fill"></div></div>
-        <div class="bar-seg"><div id="b6" class="bar-fill"></div></div>
-        <div class="bar-seg"><div id="b7" class="bar-fill"></div></div>
-    </div>
-
-    <!-- সিন ১ -->
-    <div id="scene-1" class="scene active">
-        <div id="e1" class="hello-text anim-item">হ্যালো, আমি</div>
-        <div id="e2" class="name-row anim-item">
-            <div class="name-circle">
-                <img class="saroar01-photo" src="saroar01.png" alt="মোঃ সরওয়ার আলম সবুজ">
-                <span class="avatar-fallback">SA</span>
-            </div>
-            <div class="name-text">মোঃ সরওয়ার আলম সবুজ</div>
-        </div>
-        <div class="badges-container">
-            <div id="e3" class="prof-badge anim-item">
-                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/></svg>
-                <span>গ্রাফিক্স ডিজাইনার</span>
-            </div>
-            <div id="e4" class="prof-badge anim-item">
-                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="4" width="20" height="16" rx="2"/><polygon points="10 9 15 12 10 15 10 9" fill="currentColor" stroke="none"/></svg>
-                <span>ভিডিও এডিটর</span>
-            </div>
-            <div id="e5" class="prof-badge anim-item">
-                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
-                <span>ল্যান্ড সার্ভেয়ার</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- সিন ২ -->
-    <div id="scene-2" class="scene">
-        <div id="e7" class="card-box anim-item">
-            <div class="card-main">
-                <span>কমেন্টে বা ইনবক্সে জানতে চান — কীভাবে এই ভিডিও তৈরি করি<span class="q-mark">?</span></span>
-            </div>
-        </div>
-        <div id="e9" class="pill-box anim-item">
-            <span class="pill-left">✦ <span>এআই টুলস (AI Tools)</span></span>
-            <span class="mini-tag">AI</span>
-        </div>
-        <div id="e10" class="pill-box anim-item">
-            <span class="pill-left">❖ <span>থ্রিডি মোশন (3D Motion)</span></span>
-            <span class="mini-tag">3D</span>
-        </div>
-        <div id="e11" class="pill-box anim-item">
-            <span class="pill-left">▶ <span>ক্রিয়েটিভ ভিডিওর কাজের মাধ্যমে</span></span>
-            <span class="mini-tag">REELS</span>
-        </div>
-    </div>
-
-    <!-- সিন ৩ -->
-    <div id="scene-3" class="scene">
-        <div id="e12" class="title-lg anim-item">
-            <svg class="ic-question" viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2.6"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-            <span>কোনো কোর্স করাই কি না<span class="q-mark">?</span> — না</span>
-        </div>
-        <div id="e13" class="card-box anim-item">
-            <div class="card-main">
-                <span>ফটোশপ, ইলাস্ট্রেটর, আফটার ইফেক্ট ও গ্রাফিক্স ডিজাইন</span>
-                <span class="mini-tag">DESIGN</span>
-            </div>
-        </div>
-        <div id="e14" class="card-box anim-item">
-            <div class="card-main">
-                <span>কিংবা ওয়েবসাইট তৈরীতে সহায়তা করি</span>
-                <span class="mini-tag">WEB</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- সিন ৪ -->
-    <div id="scene-4" class="scene">
-        <div id="e15" class="title-lg anim-item">
-            <svg class="ic-lg" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.4"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            <span>সরাসরি যোগাযোগ করুন</span>
-        </div>
-        <div id="e16" class="card-box anim-item">
-            <div class="profile-row">
-                <div class="avatar-circle">
-                    <img class="saroar01-photo" src="saroar01.png" alt="মোঃ সরওয়ার আলম সবুজ">
-                    <span class="avatar-fallback">SA</span>
-                </div>
-                <div class="profile-text">
-                    <div class="profile-name">মোঃ সরওয়ার আলম সবুজ</div>
-                    <div class="profile-sub">আমার নিচের ঠিকানায় যোগাযোগ করুন</div>
-                </div>
-            </div>
-        </div>
-        <div id="e17" class="card-box anim-item">
-            <div class="card-main">
-                <span>কাদুটি বাজার, চান্দিনা, কুমিল্লা</span>
-                <span class="mini-tag">ADDRESS</span>
-            </div>
-        </div>
-        <div id="e17b" class="card-box anim-item">
-            <div class="card-main">
-                <span>মোবাইল - 01817068114</span>
-                <span class="mini-tag">MOBILE</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- সিন ৫ -->
-    <div id="scene-5" class="scene">
-        <div id="e18" class="title-lg anim-item">
-            <span class="check-badge">✓</span>
-            <span>আপনি
