@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>মোঃ সরওয়ার আলম সবুজ - মুভিং ওয়ার্ড হাইলাইট রিলস</title>
+    <title>মোঃ সরওয়ার আলম সবুজ - এক লাইন মুভিং ওয়ার্ড হাইলাইট</title>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -63,7 +63,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 12% 6% 26% 6%;
+            padding: 12% 6% 24% 6%;
             text-align: center;
         }
         .scene.active {
@@ -304,48 +304,45 @@
         }
         .follow-btn.done { background: #16a34a; }
 
-        /* হালকা বটম ক্যাপশন বক্স + উজ্জ্বল হলুদ ব্লকের ভেতরে সাদা লেখা */
+        /* এক লাইনে বটম ক্যাপশন: কোনো শেড বা গ্লো ছাড়া সলিড হলুদ ব্লকে সাদা লেখা */
         #bottom-caption {
             position: absolute;
-            left: 5%;
-            right: 5%;
+            left: 3%;
+            right: 3%;
             bottom: 4.5%;
             z-index: 25;
             text-align: center;
             pointer-events: none;
-            padding: 6px 8px;
-            border-radius: 12px;
-            background: rgba(6, 10, 20, 0.24);
-            backdrop-filter: blur(2px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 4px 6px;
+            border-radius: 10px;
+            background: rgba(6, 10, 20, 0.18);
+            overflow: hidden;
         }
         .cap-line {
-            font-size: clamp(0.98rem, 2.45vh, 1.32rem);
+            font-size: clamp(0.76rem, 1.85vh, 1.02rem);
             font-weight: 700;
-            line-height: 1.55;
-            color: #f8fafc;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.92);
+            line-height: 1.35;
+            color: #ffffff;
             display: flex;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             justify-content: center;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
+            white-space: nowrap;
         }
         .cap-word {
             display: inline-block;
-            padding: 1px 8px;
-            border-radius: 7px;
+            padding: 2px 6px;
+            border-radius: 6px;
             background: transparent;
-            color: #f8fafc;
-            transition: background-color 0.22s ease, color 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease, text-shadow 0.22s ease;
+            color: #ffffff;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
         .cap-word.active-word {
-            background: linear-gradient(135deg, #facc15 0%, #eab308 100%);
+            background: #fde047;
             color: #ffffff;
             font-weight: 800;
-            transform: translateY(-2px) scale(1.06);
-            box-shadow: 0 4px 16px rgba(250, 204, 21, 0.65);
-            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85), 0 0 2px rgba(0, 0, 0, 0.9);
         }
     </style>
 </head>
@@ -468,470 +465,4 @@
     <div id="scene-5" class="scene">
         <div id="e18" class="title-lg anim-item">
             <span class="check-badge">✓</span>
-            <span>আপনি নিজেও শিখুন ও আপডেট রাখুন</span>
-        </div>
-        <div id="e19" class="pill-box anim-item">
-            <span class="pill-left">✦ <span>গ্রাফিক্স ডিজাইন ও ভিডিও এডিটিং</span></span>
-            <span class="mini-tag">SKILL</span>
-        </div>
-        <div id="e21" class="pill-box anim-item">
-            <span class="pill-left">✦ <span>চ্যাটজিপিটি, জেমিনি বা ক্লডের মতো এআই টুলস</span></span>
-            <span class="mini-tag">AI</span>
-        </div>
-        <div id="e22" class="pill-box anim-item">
-            <span class="pill-left">⚡ <span>আর নতুন টেকনোলজি — সবই শেখার সুযোগ আছে</span></span>
-            <span class="mini-tag">TECH</span>
-        </div>
-    </div>
-
-    <!-- সিন ৬ -->
-    <div id="scene-6" class="scene">
-        <div id="e23" class="title-lg anim-item">
-            <svg class="ic-laptop" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.3"><rect x="3" y="4" width="18" height="12" rx="2"/><line x1="1" y1="19" x2="23" y2="19"/></svg>
-            <span>একটি ল্যাপটপ দিয়েই</span>
-        </div>
-        <div id="e24" class="pill-box anim-item">
-            <span class="pill-left">✓ <span>নতুন নতুন স্কিল শিখুন</span></span>
-            <span class="mini-tag">LEARN</span>
-        </div>
-        <div id="e25" class="pill-box anim-item">
-            <span class="pill-left">↻ <span>আর নিজেকে সবসময় আপডেট রাখুন</span></span>
-            <span class="mini-tag">UPDATE</span>
-        </div>
-    </div>
-
-    <!-- সিন ৭ -->
-    <div id="scene-7" class="scene">
-        <div id="e26" class="title-lg anim-item">
-            <span>সব আপডেট পেতে পেজটি ফলো করুন</span>
-        </div>
-        <div id="e27" class="card-box anim-item">
-            <div class="profile-row">
-                <div class="avatar-circle">
-                    <img class="saroar01-photo" src="saroar01.png" alt="মোঃ সরওয়ার আলম সবুজ">
-                    <span class="avatar-fallback">SA</span>
-                </div>
-                <div class="profile-text">
-                    <div class="profile-name">মোঃ সরওয়ার আলম সবুজ</div>
-                    <div class="profile-sub">Facebook পেজ</div>
-                </div>
-            </div>
-        </div>
-        <div id="e28" class="follow-btn anim-item">+ Follow</div>
-        <div id="e29" class="title-lg anim-item" style="margin-top:14px;">
-            <span>আর কী জানতে চান, কমেন্টে জানান<span class="q-mark">?</span></span>
-        </div>
-    </div>
-
-    <!-- একদম নিচের মুভিং হলুদ-ব্লক সাদা-লেখা ওয়ার্ড ক্যাপশন -->
-    <div id="bottom-caption">
-        <div id="capLine" class="cap-line"></div>
-    </div>
-</div>
-
-<script>
-(function () {
-    var currentScene = 1;
-    var totalScenes = 7;
-    var paused = false;
-    var actx = null;
-    var activeTimers = [];
-    var barTimer = null;
-
-    var scenesData = {
-        1: {
-            duration: 6200,
-            items: [
-                { id: 'e1', at: 0,    freq: 523.25 },
-                { id: 'e2', at: 1200, freq: 587.33 },
-                { id: 'e3', at: 2400, freq: 659.25 },
-                { id: 'e4', at: 3600, freq: 698.46 },
-                { id: 'e5', at: 4700, freq: 783.99 }
-            ],
-            captions: [
-                {
-                    at: 0,
-                    words: ['হ্যালো,', 'আমি', 'মোঃ সরওয়ার আলম', 'সবুজ।'],
-                    stepMs: 550
-                },
-                {
-                    at: 2300,
-                    words: ['একজন', 'গ্রাফিক্স ডিজাইনার,', 'ভিডিও এডিটর', 'এবং', 'ল্যান্ড সার্ভেয়ার।'],
-                    stepMs: 680
-                }
-            ]
-        },
-        2: {
-            duration: 9400,
-            items: [
-                { id: 'e7',  at: 0,    freq: 523.25 },
-                { id: 'e9',  at: 3200, freq: 659.25 },
-                { id: 'e10', at: 5500, freq: 698.46 },
-                { id: 'e11', at: 7400, freq: 783.99 }
-            ],
-            captions: [
-                {
-                    at: 0,
-                    words: ['অনেকেই', 'কমেন্টে', 'বা ইনবক্সে', 'জানতে চান—', 'কীভাবে এই ভিডিও', 'তৈরি করি?'],
-                    stepMs: 520
-                },
-                {
-                    at: 3300,
-                    words: ['মূলত', 'এআই টুলস,', 'থ্রিডি মোশন', 'এবং', 'ক্রিয়েটিভ ভিডিওর', 'কাজের মাধ্যমে।'],
-                    stepMs: 920
-                }
-            ]
-        },
-        3: {
-            duration: 8600,
-            items: [
-                { id: 'e12', at: 0,    freq: 587.33 },
-                { id: 'e13', at: 2800, freq: 659.25 },
-                { id: 'e14', at: 5800, freq: 783.99 }
-            ],
-            captions: [
-                {
-                    at: 0,
-                    words: ['অনেকের প্রশ্ন থাকে,', 'আমি কোনো', 'কোর্স করাই কি না—', 'না।'],
-                    stepMs: 650
-                },
-                {
-                    at: 2700,
-                    words: ['তবে', 'ফটোশপ,', 'ইলাস্ট্রেটর,', 'আফটার ইফেক্ট', 'ও গ্রাফিক্স ডিজাইন'],
-                    stepMs: 560
-                },
-                {
-                    at: 5600,
-                    words: ['কিংবা', 'ওয়েবসাইট তৈরীতে', 'সহায়তা করি।'],
-                    stepMs: 750
-                }
-            ]
-        },
-        4: {
-            duration: 6000,
-            items: [
-                { id: 'e15',  at: 0,    freq: 523.25 },
-                { id: 'e16',  at: 1400, freq: 587.33 },
-                { id: 'e17',  at: 2800, freq: 659.25 },
-                { id: 'e17b', at: 4200, freq: 783.99 }
-            ],
-            captions: [
-                {
-                    at: 0,
-                    words: ['সরাসরি', 'যোগাযোগ করতে চাইলে', 'আমার নিচের ঠিকানায়', 'যোগাযোগ করুন।'],
-                    stepMs: 650
-                },
-                {
-                    at: 2700,
-                    words: ['কাদুটি বাজার,', 'চান্দিনা,', 'কুমিল্লা', '— 01817068114'],
-                    stepMs: 720
-                }
-            ]
-        },
-        5: {
-            duration: 8800,
-            items: [
-                { id: 'e18', at: 0,    freq: 523.25 },
-                { id: 'e19', at: 2200, freq: 587.33 },
-                { id: 'e21', at: 4500, freq: 698.46 },
-                { id: 'e22', at: 6700, freq: 783.99 }
-            ],
-            captions: [
-                {
-                    at: 0,
-                    words: ['আপনি নিজেও', 'শিখুন', 'এবং নিজেকে', 'আপডেট রাখুন।'],
-                    stepMs: 520
-                },
-                {
-                    at: 2150,
-                    words: ['গ্রাফিক্স ডিজাইন,', 'ভিডিও এডিটিং,', 'চ্যাটজিপিটি, জেমিনি', 'বা ক্লডের মতো', 'এআই টুলস'],
-                    stepMs: 850
-                },
-                {
-                    at: 6500,
-                    words: ['আর নতুন', 'টেকনোলজি—', 'সবই শেখার', 'সুযোগ আছে।'],
-                    stepMs: 520
-                }
-            ]
-        },
-        6: {
-            duration: 5000,
-            items: [
-                { id: 'e23', at: 0,    freq: 587.33 },
-                { id: 'e24', at: 1600, freq: 698.46 },
-                { id: 'e25', at: 3200, freq: 880.00 }
-            ],
-            captions: [
-                {
-                    at: 0,
-                    words: ['একটি', 'ল্যাপটপ দিয়েই', 'নতুন নতুন স্কিল', 'শিখুন'],
-                    stepMs: 560
-                },
-                {
-                    at: 2300,
-                    words: ['আর নিজেকে', 'সবসময়', 'আপডেট রাখুন।'],
-                    stepMs: 650
-                }
-            ]
-        },
-        7: {
-            duration: 6000,
-            items: [
-                { id: 'e26', at: 0,    freq: 587.33 },
-                { id: 'e27', at: 1400, freq: 659.25 },
-                { id: 'e28', at: 2500, freq: 880.00, isFollow: true },
-                { id: 'e29', at: 3500, freq: 987.77 }
-            ],
-            captions: [
-                {
-                    at: 0,
-                    words: ['সব আপডেট পেতে', 'পেজটি', 'ফলো করুন।'],
-                    stepMs: 750
-                },
-                {
-                    at: 2400,
-                    words: ['আর', 'কী জানতে চান,', 'কমেন্টে জানান?'],
-                    stepMs: 720
-                }
-            ]
-        }
-    };
-
-    function clearTimers() {
-        for (var i = 0; i < activeTimers.length; i++) clearTimeout(activeTimers[i]);
-        activeTimers = [];
-        clearInterval(barTimer);
-    }
-
-    function schedule(fn, ms) {
-        var id = setTimeout(function () {
-            if (!paused) fn();
-        }, ms);
-        activeTimers.push(id);
-    }
-
-    function ensureAudio() {
-        try {
-            var AC = window.AudioContext || window.webkitAudioContext;
-            if (!AC) return;
-            if (!actx) actx = new AC();
-            if (actx.state === 'suspended') actx.resume();
-        } catch (err) {}
-    }
-
-    function playTone(freq, dur, vol) {
-        try {
-            if (!actx || actx.state !== 'running' || paused) return;
-            var now = actx.currentTime;
-            var osc = actx.createOscillator();
-            var gain = actx.createGain();
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(freq, now);
-            gain.gain.setValueAtTime(vol || 0.14, now);
-            gain.gain.exponentialRampToValueAtTime(0.001, now + (dur || 0.16));
-            osc.connect(gain);
-            gain.connect(actx.destination);
-            osc.start(now);
-            osc.stop(now + (dur || 0.16));
-        } catch (err) {}
-    }
-
-    function playWindBlow(dur) {
-        try {
-            if (!actx || actx.state !== 'running' || paused) return;
-            var duration = dur || 0.85;
-            var sr = actx.sampleRate;
-            var len = Math.floor(sr * duration);
-            var buf = actx.createBuffer(1, len, sr);
-            var ch = buf.getChannelData(0);
-            var prev = 0;
-            for (var i = 0; i < len; i++) {
-                var w = Math.random() * 2 - 1;
-                ch[i] = (prev + 0.04 * w) / 1.04;
-                prev = ch[i];
-                ch[i] *= 2.8;
-            }
-            var src = actx.createBufferSource();
-            src.buffer = buf;
-
-            var filter = actx.createBiquadFilter();
-            filter.type = 'bandpass';
-            filter.Q.setValueAtTime(1.4, actx.currentTime);
-            filter.frequency.setValueAtTime(190, actx.currentTime);
-            filter.frequency.exponentialRampToValueAtTime(680, actx.currentTime + duration * 0.45);
-            filter.frequency.exponentialRampToValueAtTime(220, actx.currentTime + duration);
-
-            var gain = actx.createGain();
-            var now = actx.currentTime;
-            gain.gain.setValueAtTime(0.001, now);
-            gain.gain.linearRampToValueAtTime(0.28, now + duration * 0.35);
-            gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
-
-            src.connect(filter);
-            filter.connect(gain);
-            gain.connect(actx.destination);
-            src.start(now);
-            src.stop(now + duration);
-        } catch (err) {}
-    }
-
-    function setupPhotos() {
-        var exts = ['saroar01.png', 'saroar01.jpg', 'saroar01.jpeg', 'saroar01.webp'];
-        var imgs = document.querySelectorAll('.saroar01-photo');
-        for (var i = 0; i < imgs.length; i++) {
-            (function (img) {
-                var idx = 0;
-                img.onerror = function () {
-                    idx++;
-                    if (idx < exts.length) img.src = exts[idx];
-                    else {
-                        img.style.display = 'none';
-                        if (img.parentNode && img.parentNode.className.indexOf('broken') === -1) {
-                            img.parentNode.className += ' broken';
-                        }
-                    }
-                };
-            })(imgs[i]);
-        }
-    }
-
-    function runWipe() {
-        var w = document.getElementById('wipe-overlay');
-        if (!w) return;
-        w.className = '';
-        void w.offsetWidth;
-        w.className = 'wipe-run';
-        playWindBlow(0.85);
-    }
-
-    function resetScene(el) {
-        var items = el.querySelectorAll('.anim-item');
-        for (var i = 0; i < items.length; i++) {
-            items[i].className = items[i].className.replace(/\s*pop-in\b/g, '').replace(/\s*done\b/g, '');
-        }
-        var btn = document.getElementById('e28');
-        if (btn) {
-            btn.className = 'follow-btn anim-item';
-            btn.innerHTML = '+ Follow';
-        }
-    }
-
-    function renderMovingCaption(capObj) {
-        var capLine = document.getElementById('capLine');
-        if (!capLine || !capObj || !capObj.words) return;
-
-        var html = '';
-        for (var i = 0; i < capObj.words.length; i++) {
-            html += '<span id="cw-' + i + '" class="cap-word">' + capObj.words[i] + '</span>';
-        }
-        capLine.innerHTML = html;
-
-        var step = capObj.stepMs || 550;
-        for (var w = 0; w < capObj.words.length; w++) {
-            (function (wordIdx) {
-                schedule(function () {
-                    var all = capLine.querySelectorAll('.cap-word');
-                    for (var k = 0; k < all.length; k++) {
-                        all[k].className = 'cap-word';
-                    }
-                    var target = document.getElementById('cw-' + wordIdx);
-                    if (target) {
-                        target.className = 'cap-word active-word';
-                    }
-                }, wordIdx * step);
-            })(w);
-        }
-    }
-
-    function showItem(item) {
-        var el = document.getElementById(item.id);
-        if (el && el.className.indexOf('pop-in') === -1) {
-            el.className = el.className + ' pop-in';
-        }
-        if (item.isFollow && el) {
-            el.className = 'follow-btn anim-item pop-in done';
-            el.innerHTML = '✓ Following';
-        }
-        if (item.freq) playTone(item.freq, 0.16, 0.14);
-    }
-
-    function startBarProgress(num, duration) {
-        for (var i = 1; i <= totalScenes; i++) {
-            var b = document.getElementById('b' + i);
-            if (!b) continue;
-            b.style.width = i < num ? '100%' : '0%';
-        }
-        var curBar = document.getElementById('b' + num);
-        var elapsed = 0;
-        var last = Date.now();
-
-        barTimer = setInterval(function () {
-            var now = Date.now();
-            if (paused) {
-                last = now;
-                return;
-            }
-            elapsed += (now - last);
-            last = now;
-            var pct = Math.min(100, (elapsed / duration) * 100);
-            if (curBar) curBar.style.width = pct + '%';
-        }, 50);
-    }
-
-    function playScene(num) {
-        clearTimers();
-        currentScene = num;
-
-        var list = document.querySelectorAll('.scene');
-        for (var i = 0; i < list.length; i++) list[i].className = 'scene';
-
-        var sc = document.getElementById('scene-' + num);
-        var cfg = scenesData[num];
-        if (!sc || !cfg) return;
-
-        resetScene(sc);
-        sc.className = 'scene active';
-        startBarProgress(num, cfg.duration);
-
-        for (var j = 0; j < cfg.items.length; j++) {
-            (function (it) {
-                schedule(function () { showItem(it); }, it.at);
-            })(cfg.items[j]);
-        }
-
-        if (cfg.captions) {
-            for (var c = 0; c < cfg.captions.length; c++) {
-                (function (capItem) {
-                    schedule(function () { renderMovingCaption(capItem); }, capItem.at);
-                })(cfg.captions[c]);
-            }
-        }
-
-        schedule(function () { runWipe(); }, Math.max(400, cfg.duration - 450));
-
-        schedule(function () {
-            var next = currentScene + 1;
-            if (next > totalScenes) next = 1;
-            playScene(next);
-        }, cfg.duration);
-    }
-
-    document.addEventListener('click', function () {
-        ensureAudio();
-        paused = !paused;
-        if (paused) {
-            document.body.className = 'paused';
-            if (actx && actx.state === 'running') actx.suspend();
-        } else {
-            document.body.className = '';
-            if (actx && actx.state === 'suspended') actx.resume();
-            playTone(620, 0.08, 0.14);
-        }
-    });
-
-    setupPhotos();
-    playScene(1);
-})();
-</script>
-</body>
-</html>
+            <span>আপনি
