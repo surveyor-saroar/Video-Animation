@@ -326,4 +326,231 @@ body.paused #pause-badge { display: inline-block; }
         5: {
             duration: 8800,
             items: [
-                { id: 'e18', at: 100, freq
+                { id: 'e18', at: 100, freq: 523.25 },
+                { id: 'e19', at: 2200, freq: 587.33 },
+                { id: 'e21', at: 4500, freq: 698.46 },
+                { id: 'e22', at: 6700, freq: 783.99 }
+            ],
+            captions: [
+                { at: 100, words: ['আপনি', 'নিজেও শিখুন', 'ও আপডেট', 'রাখুন।'], stepMs: 520 },
+                { at: 2150, words: ['গ্রাফিক্স,', 'ভিডিও,', 'চ্যাটজিপিটি,', 'জেমিনি,', 'ক্লড'], stepMs: 850 },
+                { at: 6500, words: ['ও নতুন', 'টেকনোলজি—', 'সবই শেখার', 'সুযোগ আছে।'], stepMs: 520 }
+            ]
+        },
+        6: {
+            duration: 5000,
+            items: [
+                { id: 'e23', at: 100, freq: 587.33 },
+                { id: 'e24', at: 1600, freq: 698.46 },
+                { id: 'e25', at: 3200, freq: 880.00 }
+            ],
+            captions: [
+                { at: 100, words: ['একটি', 'ল্যাপটপ দিয়েই', 'নতুন স্কিল', 'শিখুন'], stepMs: 550 },
+                { at: 2300, words: ['আর নিজেকে', 'সবসময় আপডেট', 'রাখুন।'], stepMs: 650 }
+            ]
+        },
+        7: {
+            duration: 6000,
+            items: [
+                { id: 'e26', at: 100, freq: 587.33 },
+                { id: 'e27', at: 1400, freq: 659.25 },
+                { id: 'e28', at: 2500, freq: 880.00, isFollow: true },
+                { id: 'e29', at: 3500, freq: 987.77 }
+            ],
+            captions: [
+                { at: 100, words: ['সব আপডেট পেতে', 'পেজটি', 'ফলো করুন।'], stepMs: 750 },
+                { at: 2400, words: ['আর কী', 'জানতে চান,', 'কমেন্টে জানান?'], stepMs: 700 }
+            ]
+        }
+    };
+
+    function clearAllTimers() {
+        for (var i = 0; i < timers.length; i++) clearTimeout(timers[i]);
+        timers = [];
+        if (barInterval) { clearInterval(barInterval); barInterval = null; }
+    }
+
+    function addTimer(fn, delay) {
+        var id = setTimeout(function () { if (!paused) fn(); }, delay);
+        timers.push(id);
+    }
+
+    function ensureAudio() {
+        try {
+            var AC = window.AudioContext || window.webkitAudioContext;
+            if (!AC) return;
+            if (!actx) actx = new AC();
+            if (actx.state === 'suspended') actx.resume();
+        } catch (e) {}
+    }
+
+    function playTone(freq, dur, vol) {
+        try {
+            if (!actx || actx.state !== 'running' || paused) return;
+            var now = actx.currentTime;
+            var osc = actx.createOscillator();
+            var gain = actx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, now);
+            gain.gain.setValueAtTime(vol || 0.14, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + (dur || 0.16));
+            osc.connect(gain); gain.connect(actx.destination);
+            osc.start(now); osc.stop(now + (dur || 0.16));
+        } catch (e) {}
+    }
+
+    function playWindBlow(dur) {
+        try {
+            if (!actx || actx.state !== 'running' || paused) return;
+            var duration = dur || 0.8;
+            var sr = actx.sampleRate;
+            var len = Math.floor(sr * duration);
+            var buf = actx.createBuffer(1, len, sr);
+            var ch = buf.getChannelData(0);
+            var prev = 0;
+            for (var i = 0; i < len; i++) {
+                var w = Math.random() * 2 - 1;
+                ch[i] = (prev + 0.04 * w) / 1.04;
+                prev = ch[i]; ch[i] *= 2.8;
+            }
+            var src = actx.createBufferSource();
+            src.buffer = buf;
+            var filter = actx.createBiquadFilter();
+            filter.type = 'bandpass';
+            filter.frequency.setValueAtTime(200, actx.currentTime);
+            filter.frequency.exponentialRampToValueAtTime(650, actx.currentTime + duration * 0.5);
+            var gain = actx.createGain();
+            gain.gain.setValueAtTime(0.001, actx.currentTime);
+            gain.gain.linearRampToValueAtTime(0.25, actx.currentTime + duration * 0.35);
+            gain.gain.exponentialRampToValueAtTime(0.001, actx.currentTime + duration);
+            src.connect(filter); filter.connect(gain); gain.connect(actx.destination);
+            src.start(); src.stop(actx.currentTime + duration);
+        } catch (e) {}
+    }
+
+    function setupPhotos() {
+        var imgs = document.querySelectorAll('.saroar01-photo');
+        for (var i = 0; i < imgs.length; i++) {
+            (function (img) {
+                img.onerror = function () {
+                    img.style.display = 'none';
+                    if (img.parentNode) img.parentNode.classList.add('broken');
+                };
+            })(imgs[i]);
+        }
+    }
+
+    function runWipe() {
+        var w = document.getElementById('wipe-overlay');
+        if (!w) return;
+        w.className = '';
+        void w.offsetWidth;
+        w.className = 'wipe-run';
+        playWindBlow(0.8);
+    }
+
+    function resetScene(sceneEl) {
+        var items = sceneEl.querySelectorAll('.anim-item');
+        for (var i = 0; i < items.length; i++) {
+            items[i].classList.remove('pop-in');
+            items[i].classList.remove('done');
+        }
+        var btn = document.getElementById('e28');
+        if (btn) { btn.className = 'follow-btn anim-item'; btn.innerHTML = '+ Follow'; }
+    }
+
+    function renderMovingCaption(capObj) {
+        var capLine = document.getElementById('capLine');
+        if (!capLine || !capObj || !capObj.words) return;
+        var html = '';
+        for (var i = 0; i < capObj.words.length; i++) {
+            html += '<span id="cw-' + i + '" class="cap-word">' + capObj.words[i] + '</span>';
+        }
+        capLine.innerHTML = html;
+
+        var step = capObj.stepMs || 550;
+        for (var w = 0; w < capObj.words.length; w++) {
+            (function (wordIdx) {
+                addTimer(function () {
+                    var all = capLine.querySelectorAll('.cap-word');
+                    for (var k = 0; k < all.length; k++) all[k].classList.remove('active-word');
+                    var target = document.getElementById('cw-' + wordIdx);
+                    if (target) target.classList.add('active-word');
+                }, wordIdx * step);
+            })(w);
+        }
+    }
+
+    function showItem(item) {
+        var el = document.getElementById(item.id);
+        if (el) el.classList.add('pop-in');
+        if (item.isFollow && el) { el.classList.add('done'); el.innerHTML = '✓ Following'; }
+        if (item.freq) playTone(item.freq, 0.16, 0.14);
+    }
+
+    function startBarProgress(num, duration) {
+        for (var i = 1; i <= totalScenes; i++) {
+            var b = document.getElementById('b' + i);
+            if (b) b.style.width = i < num ? '100%' : '0%';
+        }
+        var curBar = document.getElementById('b' + num);
+        var elapsed = 0;
+        var lastTick = Date.now();
+        barInterval = setInterval(function () {
+            var now = Date.now();
+            if (paused) { lastTick = now; return; }
+            elapsed += (now - lastTick);
+            lastTick = now;
+            var pct = Math.min(100, (elapsed / duration) * 100);
+            if (curBar) curBar.style.width = pct + '%';
+        }, 50);
+    }
+
+    function playScene(num) {
+        clearAllTimers();
+        currentScene = num;
+        var allScenes = document.querySelectorAll('.scene');
+        for (var i = 0; i < allScenes.length; i++) allScenes[i].classList.remove('active');
+        var sc = document.getElementById('scene-' + num);
+        var cfg = scenesData[num];
+        if (!sc || !cfg) return;
+
+        resetScene(sc);
+        sc.classList.add('active');
+        startBarProgress(num, cfg.duration);
+
+        for (var j = 0; j < cfg.items.length; j++) {
+            (function (it) { addTimer(function () { showItem(it); }, it.at); })(cfg.items[j]);
+        }
+        if (cfg.captions) {
+            for (var c = 0; c < cfg.captions.length; c++) {
+                (function (capItem) { addTimer(function () { renderMovingCaption(capItem); }, capItem.at); })(cfg.captions[c]);
+            }
+        }
+        addTimer(function () { runWipe(); }, Math.max(400, cfg.duration - 450));
+        addTimer(function () {
+            var next = currentScene + 1;
+            if (next > totalScenes) next = 1;
+            playScene(next);
+        }, cfg.duration);
+    }
+
+    document.addEventListener('click', function () {
+        ensureAudio();
+        paused = !paused;
+        if (paused) {
+            document.body.classList.add('paused');
+            if (actx && actx.state === 'running') actx.suspend();
+        } else {
+            document.body.classList.remove('paused');
+            if (actx && actx.state === 'suspended') actx.resume();
+            playTone(620, 0.08, 0.14);
+        }
+    });
+
+    setupPhotos();
+    playScene(1);
+})();
+</script>
+</body>
+</html>
