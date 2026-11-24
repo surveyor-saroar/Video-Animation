@@ -23,7 +23,6 @@
             width: 100vw;
             user-select: none;
             position: relative;
-            cursor: pointer;
         }
         #reel-area {
             position: relative;
@@ -41,7 +40,10 @@
             padding: 9% 5%;
             text-align: center;
         }
-        .scene.active { display: flex; z-index: 10; }
+        .scene.active {
+            display: flex;
+            z-index: 10;
+        }
 
         .ic { width: 18px; height: 18px; flex-shrink: 0; }
         .ic-sm { width: 15px; height: 15px; flex-shrink: 0; }
@@ -53,7 +55,7 @@
             width: 30px;
             height: 30px;
             border-radius: 50%;
-            background: rgba(34, 197, 94, 0.2);
+            background: rgba(34, 197, 94, 0.22);
             border: 2px solid #4ade80;
             color: #fde047;
             font-size: 1.05rem;
@@ -91,10 +93,7 @@
         }
         .wipe-animate {
             opacity: 1;
-            animation: screenWipe 0.8s cubic-bezier(0.77, 0, 0.175, 1) forwards;
-        }
-        body.paused .wipe-animate {
-            animation-play-state: paused;
+            animation: screenWipe 0.75s cubic-bezier(0.77, 0, 0.175, 1) forwards;
         }
         @keyframes screenWipe {
             0% { left: -140%; opacity: 1; }
@@ -104,16 +103,17 @@
         }
 
         .anim-item {
-            opacity: 0;
-            transform: translateY(20px) scale(0.95);
-            transition: opacity 0.45s ease, transform 0.45s ease;
-        }
-        .anim-item.show {
             opacity: 1;
             transform: translateY(0) scale(1);
+            transition: opacity 0.35s ease, transform 0.35s ease;
         }
 
-        .hello-text { font-size: clamp(1.3rem, 3.6vh, 1.9rem); font-weight: 600; margin-bottom: 8px; }
+        .hello-text {
+            font-size: clamp(1.3rem, 3.6vh, 1.9rem);
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
 
         .name-row {
             display: inline-flex;
@@ -142,4 +142,526 @@
         .name-circle img {
             width: 100%;
             height: 100%;
-            object-fit:
+            object-fit: cover;
+            object-position: top center;
+            display: block;
+        }
+        .name-text {
+            font-size: clamp(1.6rem, 4.4vh, 2.5rem);
+            font-weight: 700;
+            line-height: 1.25;
+            color: #ffaa00;
+        }
+
+        .badges-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+        .prof-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 8px 14px;
+            background: rgba(255, 115, 0, 0.16);
+            border: 1px solid rgba(255, 145, 0, 0.5);
+            border-radius: 50px;
+            font-size: clamp(0.88rem, 2vh, 1.08rem);
+            color: #ff9d42;
+        }
+        .prof-badge span { color: #f8fafc; }
+
+        .card-box {
+            width: 100%;
+            background: rgba(23, 35, 56, 0.88);
+            border: 1px solid rgba(255, 145, 50, 0.36);
+            border-radius: 16px;
+            padding: 14px 18px;
+            margin-bottom: 12px;
+            text-align: left;
+        }
+        .card-meta {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.86rem;
+            color: #ff9d42;
+            margin-bottom: 4px;
+        }
+        .card-main {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .profile-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+        }
+        .avatar-circle {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: 2.5px solid #ff9d42;
+            background: linear-gradient(135deg, #ff6a00, #d93800);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            position: relative;
+            font-weight: 700;
+            color: #ffffff;
+        }
+        .avatar-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            display: block;
+        }
+        .avatar-fallback {
+            display: none;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+        }
+        .broken .avatar-fallback {
+            display: inline-block;
+        }
+        .profile-text {
+            text-align: left;
+        }
+        .profile-name {
+            font-weight: 700;
+            font-size: clamp(1rem, 2.4vh, 1.25rem);
+            color: #ffffff;
+        }
+        .profile-sub {
+            font-size: 0.84rem;
+            color: #cbd5e1;
+        }
+
+        .pill-box {
+            width: 100%;
+            background: rgba(23, 35, 56, 0.88);
+            border: 1px solid rgba(255, 145, 50, 0.36);
+            border-radius: 14px;
+            padding: 13px 16px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #ffb84d;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .pill-left {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+        }
+        .mini-tag {
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+        }
+
+        .title-lg {
+            font-size: clamp(1.35rem, 3.6vh, 2.15rem);
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: linear-gradient(90deg, #fde047 0%, #84cc16 50%, #22c55e 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: nowrap;
+            white-space: nowrap;
+        }
+
+        .follow-btn {
+            margin-top: 12px;
+            padding: 10px 22px;
+            border-radius: 50px;
+            background: #ff6200;
+            color: #fff;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .follow-btn.done { background: #16a34a; }
+    </style>
+</head>
+<body>
+<div id="reel-area">
+    <div id="wipe-overlay"></div>
+
+    <!-- সিন ১ -->
+    <div id="scene-1" class="scene active">
+        <div id="e1" class="hello-text anim-item">Hello, আমি</div>
+        <div id="e2" class="name-row anim-item">
+            <div class="name-circle">
+                <img class="saroar01-photo" src="saroar01.png" alt="মোঃ সরওয়ার আলম সবুজ">
+                <span class="avatar-fallback">SA</span>
+            </div>
+            <div class="name-text">মোঃ সরওয়ার আলম সবুজ</div>
+        </div>
+        <div class="badges-container">
+            <div id="e3" class="prof-badge anim-item">
+                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 19l7-7 3 3-7 7-3-3z"/>
+                    <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+                </svg>
+                <span>Graphics Designer</span>
+            </div>
+            <div id="e4" class="prof-badge anim-item">
+                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                    <polygon points="10 9 15 12 10 15 10 9" fill="currentColor" stroke="none"/>
+                </svg>
+                <span>Video Editor</span>
+            </div>
+            <div id="e5" class="prof-badge anim-item">
+                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/>
+                    <line x1="9" y1="3" x2="9" y2="18"/>
+                    <line x1="15" y1="6" x2="15" y2="21"/>
+                </svg>
+                <span>Land Surveyor</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- সিন ২ -->
+    <div id="scene-2" class="scene">
+        <div id="e7" class="card-box anim-item">
+            <div class="card-meta">
+                <svg class="ic-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                </svg>
+                <span>কমেন্ট</span>
+            </div>
+            <div class="card-main">
+                <span>কীভাবে এই ভিডিও তৈরি করেন<span class="q-mark">?</span></span>
+                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#ff9d42" stroke-width="2.2">
+                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                    <polygon points="10 9 15 12 10 15 10 9" fill="#ff9d42" stroke="none"/>
+                </svg>
+            </div>
+        </div>
+        <div id="e8" class="card-box anim-item">
+            <div class="card-meta">
+                <svg class="ic-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                <span>ইনবক্স</span>
+            </div>
+            <div class="card-main">
+                <span>কীভাবে এগুলো তৈরি করেন<span class="q-mark">?</span></span>
+                <svg class="ic" viewBox="0 0 24 24" fill="#ffb84d">
+                    <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/>
+                </svg>
+            </div>
+        </div>
+        <div id="e9" class="pill-box anim-item">
+            <span class="pill-left">
+                <svg class="ic" viewBox="0 0 24 24" fill="#ffb84d">
+                    <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/>
+                </svg>
+                <span>AI</span>
+            </span>
+            <span class="mini-tag">TOOLS</span>
+        </div>
+        <div id="e10" class="pill-box anim-item">
+            <span class="pill-left">
+                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#ffb84d" stroke-width="2.2">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                </svg>
+                <span>3D motion</span>
+            </span>
+            <span class="mini-tag">MOTION</span>
+        </div>
+        <div id="e11" class="pill-box anim-item">
+            <span class="pill-left">
+                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#ffb84d" stroke-width="2.2">
+                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                    <polygon points="10 9 15 12 10 15 10 9" fill="#ffb84d" stroke="none"/>
+                </svg>
+                <span>Creative video</span>
+            </span>
+            <span class="mini-tag">REELS</span>
+        </div>
+    </div>
+
+    <!-- সিন ৩ -->
+    <div id="scene-3" class="scene">
+        <div id="e12" class="title-lg anim-item">
+            <svg class="ic-question" viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+            <span>কোনো course করাই কিনা<span class="q-mark">?</span></span>
+        </div>
+        <div id="e13" class="card-box anim-item">
+            <div class="card-main">
+                <span class="pill-left">
+                    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#31a8ff" stroke-width="2.2">
+                        <rect x="3" y="3" width="18" height="18" rx="4"/>
+                    </svg>
+                    <span>Graphics Design — Ps, Ai</span>
+                </span>
+                <span class="mini-tag">Ps • Ai</span>
+            </div>
+        </div>
+        <div id="e14" class="card-box anim-item">
+            <div class="card-main">
+                <span class="pill-left">
+                    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#ff9a00" stroke-width="2.2">
+                        <rect x="2" y="4" width="20" height="16" rx="2"/>
+                        <polygon points="10 9 15 12 10 15 10 9" fill="#ff9a00" stroke="none"/>
+                    </svg>
+                    <span>Video Editing — Motion &amp; Cut</span>
+                </span>
+                <span class="mini-tag">VIDEO</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- সিন ৪ -->
+    <div id="scene-4" class="scene">
+        <div id="e15" class="title-lg anim-item">
+            <svg class="ic-lg" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            <span>যোগাযোগ করুন</span>
+        </div>
+        <div id="e16" class="card-box anim-item">
+            <div class="profile-row">
+                <div class="avatar-circle">
+                    <img class="saroar01-photo" src="saroar01.png" alt="মোঃ সরওয়ার আলম সবুজ">
+                    <span class="avatar-fallback">SA</span>
+                </div>
+                <div class="profile-text">
+                    <div class="profile-name">মোঃ সরওয়ার আলম সবুজ</div>
+                    <div class="profile-sub">Digital Creator • Land Surveyor</div>
+                </div>
+            </div>
+        </div>
+        <div id="e17" class="card-box anim-item">
+            <div class="card-main">
+                <span class="pill-left">
+                    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                    <span>কাদুটি বাজার, চান্দিনা, কুমিল্লা</span>
+                </span>
+                <span class="mini-tag">ADDRESS</span>
+            </div>
+        </div>
+        <div id="e17b" class="card-box anim-item">
+            <div class="card-main">
+                <span class="pill-left">
+                    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="6" y="2" width="12" height="20" rx="2"/>
+                        <line x1="11" y1="18" x2="13" y2="18"/>
+                    </svg>
+                    <span>মোবাইল - 01817068114</span>
+                </span>
+                <span class="mini-tag">MOBILE</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- সিন ৫ -->
+    <div id="scene-5" class="scene">
+        <div id="e18" class="title-lg anim-item">
+            <span class="check-badge">✓</span>
+            <span>আপনি শিখুন নিজেকে আপডেট রাখুন</span>
+        </div>
+        <div id="e19" class="pill-box anim-item">
+            <span class="pill-left">
+                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#31a8ff" stroke-width="2.2">
+                    <path d="M12 19l7-7 3 3-7 7-3-3z"/>
+                </svg>
+                <span>Graphics Design (Ps, Ai)</span>
+            </span>
+            <span class="mini-tag">FREE</span>
+        </div>
+        <div id="e20" class="pill-box anim-item">
+            <span class="pill-left">
+                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#ff9a00" stroke-width="2.2">
+                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                    <polygon points="10 9 15 12 10 15 10 9" fill="#ff9a00" stroke="none"/>
+                </svg>
+                <span>Video Editing</span>
+            </span>
+            <span class="mini-tag">FREE</span>
+        </div>
+        <div id="e21" class="pill-box anim-item">
+            <span class="pill-left">
+                <svg class="ic" viewBox="0 0 24 24" fill="#ffb84d">
+                    <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/>
+                </svg>
+                <span>বিভিন্ন AI tools — ChatGPT, Gemini, Claude</span>
+            </span>
+            <span class="mini-tag">AI</span>
+        </div>
+        <div id="e22" class="pill-box anim-item">
+            <span class="pill-left">
+                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#ffb84d" stroke-width="2.2">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                </svg>
+                <span>নতুন নতুন technology ও আরও অনেক কিছু</span>
+            </span>
+            <span class="mini-tag">+ MORE</span>
+        </div>
+    </div>
+
+    <!-- সিন ৬ -->
+    <div id="scene-6" class="scene">
+        <div id="e23" class="title-lg anim-item">
+            <svg class="ic-laptop" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="12" rx="2"/>
+                <line x1="1" y1="19" x2="23" y2="19"/>
+            </svg>
+            <span>ল্যাপটপ দিয়ে</span>
+        </div>
+        <div id="e24" class="pill-box anim-item">
+            <span class="pill-left">
+                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#ffb84d" stroke-width="2.5">
+                    <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                <span>নতুন নতুন skill শিখুন</span>
+            </span>
+            <span class="mini-tag">SKILL</span>
+        </div>
+        <div id="e25" class="pill-box anim-item">
+            <span class="pill-left">
+                <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#ffb84d" stroke-width="2.2">
+                    <polyline points="23 4 23 10 17 10"/>
+                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10"/>
+                </svg>
+                <span>নিজেকে update রাখুন</span>
+            </span>
+            <span class="mini-tag">UPDATE</span>
+        </div>
+    </div>
+
+    <!-- সিন ৭ -->
+    <div id="scene-7" class="scene">
+        <div id="e26" class="title-lg anim-item">
+            <svg class="ic-lg" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.4">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="8.5" cy="7" r="4"/>
+                <line x1="20" y1="8" x2="20" y2="14"/>
+                <line x1="23" y1="11" x2="17" y2="11"/>
+            </svg>
+            <span>Follow করুন</span>
+        </div>
+        <div id="e27" class="card-box anim-item">
+            <div class="profile-row">
+                <div class="avatar-circle">
+                    <img class="saroar01-photo" src="saroar01.png" alt="মোঃ সরওয়ার আলম সবুজ">
+                    <span class="avatar-fallback">SA</span>
+                </div>
+                <div class="profile-text">
+                    <div class="profile-name">মোঃ সরওয়ার আলম সবুজ</div>
+                    <div class="profile-sub">Facebook পেজ</div>
+                </div>
+            </div>
+        </div>
+        <div id="e28" class="follow-btn anim-item">
+            <svg class="ic-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+            <span>Follow</span>
+        </div>
+        <div id="e29" class="title-lg anim-item" style="margin-top:18px;">
+            <svg class="ic-question" viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+            <span>আপনি কি জানতে চান<span class="q-mark">?</span></span>
+        </div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var currentScene = 1;
+    var totalScenes = 7;
+    var sceneDurations = [4500, 10500, 4500, 6000, 9500, 4500, 7000];
+    var timerId = null;
+
+    function setupPhotos() {
+        var list = ['saroar01.png', 'saroar01.jpg', 'saroar01.jpeg', 'saroar01.webp'];
+        var imgs = document.querySelectorAll('.saroar01-photo');
+        for (var i = 0; i < imgs.length; i++) {
+            (function (img) {
+                var k = 0;
+                img.onerror = function () {
+                    k++;
+                    if (k < list.length) {
+                        img.src = list[k];
+                    } else {
+                        img.style.display = 'none';
+                        if (img.parentNode && img.parentNode.className.indexOf('broken') === -1) {
+                            img.parentNode.className += ' broken';
+                        }
+                    }
+                };
+            })(imgs[i]);
+        }
+    }
+
+    function wipe() {
+        var w = document.getElementById('wipe-overlay');
+        if (!w) return;
+        w.className = '';
+        void w.offsetWidth;
+        w.className = 'wipe-animate';
+    }
+
+    function openScene(num) {
+        currentScene = num;
+        var scenes = document.querySelectorAll('.scene');
+        for (var i = 0; i < scenes.length; i++) {
+            scenes[i].className = 'scene';
+        }
+        var target = document.getElementById('scene-' + num);
+        if (target) target.className = 'scene active';
+
+        var btn = document.getElementById('e28');
+        if (btn && num === 7) {
+            btn.className = 'follow-btn anim-item done';
+            btn.innerHTML = '✓ Following';
+        }
+
+        clearTimeout(timerId);
+        timerId = setTimeout(function () {
+            wipe();
+            var next = currentScene + 1;
+            if (next > totalScenes) next = 1;
+            openScene(next);
+        }, sceneDurations[num - 1] || 5000);
+    }
+
+    setupPhotos();
+    openScene(1);
+})();
+</script>
+</body>
+</html>
