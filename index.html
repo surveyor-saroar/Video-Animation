@@ -23,6 +23,7 @@
             width: 100vw;
             user-select: none;
             position: relative;
+            cursor: pointer;
         }
         #reel-area {
             position: relative;
@@ -604,7 +605,37 @@
     var currentScene = 1;
     var totalScenes = 7;
     var sceneDurations = [4500, 10500, 4500, 6000, 9500, 4500, 7000];
+    var sceneNotes = [523.25, 587.33, 659.25, 698.46, 783.99, 880.00, 987.77];
     var timerId = null;
+    var actx = null;
+
+    function unlockAudio() {
+        try {
+            var AC = window.AudioContext || window.webkitAudioContext;
+            if (!AC) return;
+            if (!actx) actx = new AC();
+            if (actx.state === 'suspended') {
+                actx.resume();
+            }
+        } catch (err) {}
+    }
+
+    function playTone(freq, dur, vol) {
+        try {
+            if (!actx || actx.state !== 'running') return;
+            var now = actx.currentTime;
+            var osc = actx.createOscillator();
+            var gain = actx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, now);
+            gain.gain.setValueAtTime(vol || 0.22, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + (dur || 0.22));
+            osc.connect(gain);
+            gain.connect(actx.destination);
+            osc.start(now);
+            osc.stop(now + (dur || 0.22));
+        } catch (err) {}
+    }
 
     function setupPhotos() {
         var list = ['saroar01.png', 'saroar01.jpg', 'saroar01.jpeg', 'saroar01.webp'];
@@ -633,6 +664,7 @@
         w.className = '';
         void w.offsetWidth;
         w.className = 'wipe-animate';
+        playTone(349.23, 0.25, 0.2);
     }
 
     function openScene(num) {
@@ -650,6 +682,8 @@
             btn.innerHTML = '✓ Following';
         }
 
+        playTone(sceneNotes[num - 1] || 587.33, 0.28, 0.24);
+
         clearTimeout(timerId);
         timerId = setTimeout(function () {
             wipe();
@@ -658,6 +692,19 @@
             openScene(next);
         }, sceneDurations[num - 1] || 5000);
     }
+
+    document.addEventListener('pointerdown', function () {
+        unlockAudio();
+        playTone(659.25, 0.14, 0.22);
+    });
+    document.addEventListener('click', function () {
+        unlockAudio();
+        playTone(659.25, 0.14, 0.22);
+    });
+    document.addEventListener('touchstart', function () {
+        unlockAudio();
+        playTone(659.25, 0.14, 0.22);
+    });
 
     setupPhotos();
     openScene(1);
