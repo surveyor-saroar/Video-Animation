@@ -45,6 +45,7 @@
         .ic { width: 18px; height: 18px; flex-shrink: 0; }
         .ic-sm { width: 15px; height: 15px; flex-shrink: 0; }
         .ic-lg { width: 22px; height: 22px; flex-shrink: 0; }
+        .ic-laptop { width: 32px; height: 32px; flex-shrink: 0; }
 
         #wipe-overlay {
             position: fixed;
@@ -441,13 +442,25 @@
         <div id="e17" class="card-box anim-item">
             <div class="card-main">
                 <span class="pill-left">
-                    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2.2">
+                    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
                         <circle cx="12" cy="10" r="3"/>
                     </svg>
-                    <span>Cumilla, Bangladesh</span>
+                    <span>কাদুটি বাজার, চান্দিনা, কুমিল্লা</span>
                 </span>
-                <span class="mini-tag">BD</span>
+                <span class="mini-tag">ADDRESS</span>
+            </div>
+        </div>
+        <div id="e17b" class="card-box anim-item">
+            <div class="card-main">
+                <span class="pill-left">
+                    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="6" y="2" width="12" height="20" rx="2"/>
+                        <line x1="11" y1="18" x2="13" y2="18"/>
+                    </svg>
+                    <span>মোবাইল - 01817068114</span>
+                </span>
+                <span class="mini-tag">MOBILE</span>
             </div>
         </div>
     </div>
@@ -502,9 +515,9 @@
     <!-- সিন ৬ -->
     <div id="scene-6" class="scene">
         <div id="e23" class="title-lg anim-item">
-            <svg class="ic-lg" viewBox="0 0 24 24" fill="none" stroke="#ff9500" stroke-width="2.2">
-                <rect x="2" y="3" width="20" height="14" rx="2"/>
-                <line x1="2" y1="20" x2="22" y2="20"/>
+            <svg class="ic-laptop" viewBox="0 0 24 24" fill="none" stroke="#ff9500" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="12" rx="2"/>
+                <line x1="1" y1="19" x2="23" y2="19"/>
             </svg>
             <span>ল্যাপটপ দিয়ে</span>
         </div>
@@ -673,7 +686,8 @@
 
         [20000, function () { showScene(4); showEl('e15', 540); }],
         [21500, function () { showEl('e16', 620); }],
-        [23000, function () { showEl('e17', 680); }],
+        [22600, function () { showEl('e17', 660); }],
+        [23400, function () { showEl('e17b', 680); }],
         [26000, function () { doWipe(); }],
 
         [26500, function () { showScene(5); showEl('e18', 560); }],
